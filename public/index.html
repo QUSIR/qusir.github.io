@@ -855,6 +855,84 @@ sudo kill 进程pid
 
 
   
+    <article id="post-使用docker搭建android源码编译环境" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/06/07/使用docker搭建android源码编译环境/" class="article-date">
+      <time datetime="2017-06-07T09:06:20.000Z" itemprop="datePublished">2017-06-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/07/使用docker搭建android源码编译环境/">使用docker搭建android源码编译环境</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>##说明<br>&emsp;由于工作原因要对android源码进行编译，用于修改底层驱动，对系统进行定制。但是编译过程中要使用特定ubuntu版本和gcc版本，所以会比较麻烦。当时第一反映是安装VMware虚拟机，装一个指定版本然后将源码拷贝进去再编译，该方法是可行的。后来才发现很麻烦，虚拟机很占用空间，于是决定使用docker试试，实验了一番，还真可以，方便占用存储小，启动起来快。</p>
+<p>##环境<br>主机：Ubuntu 16.04.2 LTS  64位  16G内存 500G硬盘  16个内核</p>
+<p>docker版本: 17.03.0-ce</p>
+<p>docke镜像：ubuntu12.04 64位</p>
+<p>##同步镜像</p>
+<pre><code>sudo docker pull registry.cn-shenzhen.aliyuncs.com/qusir/ubuntu12.04_msm8909:0.1
+</code></pre><p>以上镜像我已经定制好了的版本ubuntu12.04 64位，安装好了依赖项和gcc，可以直接使用msm8909高通平台编译。</p>
+<p>##修改后保存镜像</p>
+<p>###docker提交镜像<br>先查看运行镜像的ID，不要将镜像停止运行，然后用以下命令</p>
+<pre><code>速冻docker commit 61412230ae46 registry.cn-hangzhou.aliyuncs.com/qusir/liang
+</code></pre><p>###添加镜像<br>    sudo docker tag 70838701e83a registry.cn-hangzhou.aliyuncs.com/qusir/liang:0.1</p>
+<p>###推送镜像<br>    sudo docker push registry.cn-hangzhou.aliyuncs.com/qusir/liang:0.1</p>
+<p>##编译源码</p>
+<p>###启动镜像，映射目录</p>
+<pre><code>docker run -it --rm -v /home/liang/data:/data registry.cn-shenzhen.aliyuncs.com/qusir/ubuntu12.04_msm8909 bash
+</code></pre><p>将主机上的<code>/home/liang/data</code>的目录映射到docke的<code>/data</code>目录下</p>
+<p>###编译源码<br>初始化环境变量</p>
+<pre><code>source ./build/envsetup.sh 
+</code></pre><p>选择编译选项</p>
+<pre><code>lunch
+</code></pre><p>选择</p>
+<pre><code>34. msm8909-userdebug
+</code></pre><p>开始编译</p>
+<pre><code>make -j8
+</code></pre><p>###关闭镜像<br>    Ctrl+D退出镜像</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-espeak编译安装" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -909,84 +987,6 @@ sudo kill 进程pid
 wavegen.cpp:(.text+0x26c): undefined reference to</code>Pa_StreamActive’<br>wavegen.o: In function <code>WavegenCloseSound()&#39;:
 wavegen.cpp:(.text+0x58e): undefined reference to</code>Pa_StreamActive’<br>collect2: error: ld returned 1 exit status<br>Makefile:105: recipe for target ‘speak’ failed<br>make: <em>*</em> [speak] Error 1</p>
 <p>###解决<br>    cp portaudio19.h portaudio.h<br>    make clean<br>    make</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-使用docker搭建android源码编译环境" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/06/07/使用docker搭建android源码编译环境/" class="article-date">
-      <time datetime="2017-06-07T09:06:20.000Z" itemprop="datePublished">2017-06-07</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/07/使用docker搭建android源码编译环境/">使用docker搭建android源码编译环境</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>##说明<br>&emsp;由于工作原因要对android源码进行编译，用于修改底层驱动，对系统进行定制。但是编译过程中要使用特定ubuntu版本和gcc版本，所以会比较麻烦。当时第一反映是安装VMware虚拟机，装一个指定版本然后将源码拷贝进去再编译，该方法是可行的。后来才发现很麻烦，虚拟机很占用空间，于是决定使用docker试试，实验了一番，还真可以，方便占用存储小，启动起来快。</p>
-<p>##环境<br>主机：Ubuntu 16.04.2 LTS  64位  16G内存 500G硬盘  16个内核</p>
-<p>docker版本: 17.03.0-ce</p>
-<p>docke镜像：ubuntu12.04 64位</p>
-<p>##同步镜像</p>
-<pre><code>sudo docker pull registry.cn-shenzhen.aliyuncs.com/qusir/ubuntu12.04_msm8909:0.1
-</code></pre><p>以上镜像我已经定制好了的版本ubuntu12.04 64位，安装好了依赖项和gcc，可以直接使用msm8909高通平台编译。</p>
-<p>##修改后保存镜像</p>
-<p>###docker提交镜像<br>先查看运行镜像的ID，不要将镜像停止运行，然后用以下命令</p>
-<pre><code>速冻docker commit 61412230ae46 registry.cn-hangzhou.aliyuncs.com/qusir/liang
-</code></pre><p>###添加镜像<br>    sudo docker tag 70838701e83a registry.cn-hangzhou.aliyuncs.com/qusir/liang:0.1</p>
-<p>###推送镜像<br>    sudo docker push registry.cn-hangzhou.aliyuncs.com/qusir/liang:0.1</p>
-<p>##编译源码</p>
-<p>###启动镜像，映射目录</p>
-<pre><code>docker run -it --rm -v /home/liang/data:/data registry.cn-shenzhen.aliyuncs.com/qusir/ubuntu12.04_msm8909 bash
-</code></pre><p>将主机上的<code>/home/liang/data</code>的目录映射到docke的<code>/data</code>目录下</p>
-<p>###编译源码<br>初始化环境变量</p>
-<pre><code>source ./build/envsetup.sh 
-</code></pre><p>选择编译选项</p>
-<pre><code>lunch
-</code></pre><p>选择</p>
-<pre><code>34. msm8909-userdebug
-</code></pre><p>开始编译</p>
-<pre><code>make -j8
-</code></pre><p>###关闭镜像<br>    Ctrl+D退出镜像</p>
 
       
     </div>
