@@ -217,11 +217,11 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-Ubuntu16-04安装Screenlets" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-ubuntu16-04搭建xrdp远程桌面链接" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/01/21/Ubuntu16-04安装Screenlets/" class="article-date">
-      <time datetime="2017-01-21T09:03:45.000Z" itemprop="datePublished">2017-01-21</time>
+      <a href="/2017/03/12/ubuntu16-04搭建xrdp远程桌面链接/" class="article-date">
+      <time datetime="2017-03-12T15:24:34.000Z" itemprop="datePublished">2017-03-12</time>
 </a>
     </div>
   
@@ -234,7 +234,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/21/Ubuntu16-04安装Screenlets/">Ubuntu16.04安装Screenlets</a>
+      <a class="article-title" href="/2017/03/12/ubuntu16-04搭建xrdp远程桌面链接/">ubuntu16.04搭建xrdp远程桌面链接</a>
     </h1>
   
 
@@ -244,20 +244,25 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>##通过添加软件源的方式安装装</p>
-<pre><code>sudo add-apt-repository ppa:screenlets/ppa
-sudo apt-get update
-sudo apt-get install screenlets
-</code></pre><p>以上方法在ubuntu16.04下不可行  </p>
-<p>##以源码的方式安装<br>    sudo apt install python-beautifulsoup python-wnck python-vte python-tz<br>    cd /tmp<br>    wget -O - <a href="https://launchpad.net/screenlets/trunk/0.1.6/+download/screenlets-0.1.6.tar.bz2" target="_blank" rel="external">https://launchpad.net/screenlets/trunk/0.1.6/+download/screenlets-0.1.6.tar.bz2</a> | bunzip2 -c - | tar xf -<br>    wget -O - <a href="https://launchpad.net/indiv-screenlets/trunk/0.1.6/+download/indiv-screenlets-0.1.6.tar.bz2" target="_blank" rel="external">https://launchpad.net/indiv-screenlets/trunk/0.1.6/+download/indiv-screenlets-0.1.6.tar.bz2</a> | bunzip2 -c - | tar xf -<br>    cd screenlets-0.1.6<br>    sudo setuo.py install<br>    cd ../indiv-screenlets-0.1.6<br>    sudo setup.py install<br>    screenlets &amp;</p>
-<p>##出错解决<br>在终端下执行screenlets指令在运行过程中会提示出错信息。发现缺少相关库，使用以下指令安装。</p>
-<pre><code>sudo apt-get install python-gconf
-sudo apt-get install libcanberra-gtk-module
-sudo apt-get install python-xdg
-</code></pre><p>##使用方法<br>打开screenlets双击相应的桌面控件，便会在桌面生成，相应的小程序，点击开始/停止也可以，或者点击登录时自启动，使桌面小程序，开机显示在桌面。</p>
-<p>##设置界面<br><img src="http://ohjvpki1b.bkt.clouddn.com/Screenlets1.png" alt=""></p>
-<p>##效果图</p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/Screenlets2.png" alt=""></p>
+        <p>#说明</p>
+<p>xrdp支持xfce4和mate桌面,不支持gnome和ubuntu桌面</p>
+<p>由于之前安装xfce4桌面后屏幕上显示一条黑线，所以选择放弃使用xfce4桌面使用mate桌面。</p>
+<p>##安装mate桌面</p>
+<pre><code>sudo apt-get install mate-core mate-desktop-environment mate-notification-daemon
+</code></pre><p>#安装tightvncserver<br>    sudo apt-get install tightvncserver</p>
+<p>#安装xrdp<br>    sudo apt-get install xrdp</p>
+<p>#配置xrdp<br>    echo mate-session &gt;~/.xsession<br>    vim /etc/xrdp/startwm.sh</p>
+<pre><code>#在./etc/X11/Xsession前插入
+mate-session
+#重启xrdp
+cd /etc/init.d/
+</code></pre><p>#卸载xrdp和tightvncserver</p>
+<pre><code>sudo apt-get purge xrdp
+
+sudo apt-get purge tightvncserver
+</code></pre><p>#要注意地方<br>    一定要先装tightvncserver后装xrdp,不能够装vnc4server，已改为tightvncserver.</p>
+<p>#完成的效果图</p>
+<p><img src="http://ohjvpki1b.bkt.clouddn.com/mate_view.png" alt="view"></p>
 
       
     </div>
@@ -284,11 +289,11 @@ sudo apt-get install python-xdg
 
 
   
-    <article id="post-linux终端实现代理" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Mediostream框架filter使用说明" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/12/19/linux终端实现代理/" class="article-date">
-      <time datetime="2016-12-19T13:31:41.000Z" itemprop="datePublished">2016-12-19</time>
+      <a href="/2017/03/12/Mediostream框架filter使用说明/" class="article-date">
+      <time datetime="2017-03-12T15:23:40.000Z" itemprop="datePublished">2017-03-12</time>
 </a>
     </div>
   
@@ -301,7 +306,7 @@ sudo apt-get install python-xdg
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/19/linux终端实现代理/">linux终端实现代理</a>
+      <a class="article-title" href="/2017/03/12/Mediostream框架filter使用说明/">Mediostream框架filter使用说明</a>
     </h1>
   
 
@@ -311,421 +316,52 @@ sudo apt-get install python-xdg
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>##ubuntu 14.04安装Shadowsocks-Qt5</p>
-<pre><code>sudo add-apt-repository ppa:hzwhuang/ss-qt5
-sudo apt-get update
-sudo apt-get install shadowsocks-qt5
-</code></pre><p>##运行Shadowsocks-Qt5</p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/Shadowsocks-Qt5config.png" alt="Shadowsocks-Qt5config"></p>
-<p>配置好账号和代理端口，代理端口为1080 socks5</p>
-<p>##安装Privoxy</p>
-<pre><code>sudo apt-get install privoxy
-</code></pre><p>##设置配置文件<br>找到<br>4.1. listen-address这一节，确认监听的端口号。</p>
-<pre><code>listen-address  localhost:8118
-</code></pre><p>找到5.2. forward-socks4, forward-socks4a, forward-socks5 and forward-socks5t</p>
-<pre><code>forward-socks5   /               127.0.0.1:1080 .
-</code></pre><p><a href="http://ohjvpki1b.bkt.clouddn.com/config" target="_blank" rel="external">我修改过后的配置文件</a></p>
-<p>##重启Privoxy</p>
-<pre><code>sudo /etc/init.d/privoxy restart
-</code></pre><p>##配置环境变量<br>    sudo vim /etc/profile<br>在文件末尾添加以下代码</p>
-<pre><code>export http_proxy=&quot;127.0.0.1:8118&quot;
-export https_proxy=&quot;127.0.0.1:8118&quot;
-</code></pre><p>使环境变量生效</p>
-<pre><code>source /etc/profile
-</code></pre><p>##设置privoxy开机启动<br>编辑启动项文件</p>
-<pre><code>sudo vim /etc/rc.local
-</code></pre><p>在exit0之前添加如下语句</p>
-<pre><code>sudo /etc/init.d/privoxy start
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
+        <p>##1.链接说明</p>
+<pre><code>   ms_filter_link(stream-&gt;soundread,0,stream-&gt;ec,0);
+ms_filter_link(stream-&gt;ec,0,stream-&gt;encoder,0);    
+//inputs[0] 将数据链接到0
+ms_filter_link(stream-&gt;decoder,0,stream-&gt;ec,1);
+ms_filter_link(stream-&gt;ec,1,stream-&gt;soundwrite,0);
+//inputs[1]将数据链接到1
+</code></pre><p>##2.数据读取</p>
+<pre><code>while((tmp=ms_queue_get(f-&gt;inputs[1]))!=NULL){
+    //拿回inputs[1]数据  是从soundread来的
+    log_error(&quot;save_voice tmp.pcm&quot;);
+    inputlen=msgdsize(tmp);
+    memcpy(tmpinput,tmp-&gt;b_rptr,inputlen);
+    save_voice(voicetmp,tmpinput,inputlen);
+   //save_voice(voicetmp,tmp-&gt;b_rptr,msgdsize(tmp));
+    ile++;
+    ce=allocb(inputlen,0);
 
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
+    memcpy(ce-&gt;b_rptr, tmp-&gt;b_rptr, inputlen);
 
+    ce-&gt;b_wptr+=inputlen;
+    ms_queue_put(f-&gt;outputs[1],ce);
 
-
-
-
-
-
-
-
-  
-    <article id="post-linux-git实现代理" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/12/19/linux-git实现代理/" class="article-date">
-      <time datetime="2016-12-19T13:30:53.000Z" itemprop="datePublished">2016-12-19</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/19/linux-git实现代理/">linux git实现代理</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>##说明<br>&emsp;Git 目前支持的三种协议 <code>git://</code>、<code>ssh://</code> 和 <code>http://</code>，使用<code>git://</code> 和 <code>http://</code>比较多,<code>ssh://</code>忽略，翻墙后可以直接加快同步google和github代码。</p>
-<p>方式是通过Shadowsocks实现翻墙再使用<a href="https://github.com/QUSIR/connect" target="_blank" rel="external">connect</a>工具实现代理转换。 </p>
-<p>##安装配置shadowsock-qt5</p>
-<p>###安装</p>
-<pre><code>sudo add-apt-repository ppa:hzwhuang/ss-qt5
-sudo apt-get update
-sudo apt-get install shadowsocks-qt5
-</code></pre><p>###配置</p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/Shadowsocks-Qt5config.png" alt=""></p>
-<p>使用socks5的1080端口</p>
-<p>##安装connect-proxy</p>
-<p>在ubuntu 14.04 64位系统下</p>
-<pre><code>sudo apt-get install connect-proxy
-</code></pre><p>##<code>git://</code>协议代理</p>
-<p>###创建socks5proxywrapper文件添加如下语句</p>
-<pre><code>#!/bin/sh
-connect -S 127.0.0.1:1080 &quot;$@&quot;
-</code></pre><p>注意：是1080端口</p>
-<p>###赋予可执行权限</p>
-<pre><code>chmod +x socks5proxywrapper
-</code></pre><p>###配置git<br>打开git配置文件</p>
-<pre><code>vim .gitconfig
-</code></pre><p>添加以下语句</p>
-<pre><code>[core]
-    gitproxy = /path/to/socks5proxywrapper
-</code></pre><p>说明：也就是创建socks5proxywrapper文件存放目录。</p>
-<p>##<code>https://</code>代理</p>
-<p>###配置git执行以下语句</p>
-<pre><code>git config --global http.proxy &apos;socks5://127.0.0.1:1080&apos;
-git config --global https.proxy &apos;socks5://127.0.0.1:1080&apos;
-</code></pre><p>###查看配置查看里面是否有相关选项</p>
-<pre><code>cat ~.gitconfig
-</code></pre><p><a href="https://segmentfault.com/q/1010000000118837" target="_blank" rel="external">参考教程</a></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-使用ndk编译c可执行程序" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/12/19/使用ndk编译c可执行程序/" class="article-date">
-      <time datetime="2016-12-19T13:30:20.000Z" itemprop="datePublished">2016-12-19</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/19/使用ndk编译c可执行程序/">使用ndk编译c可执行程序</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>##1.创建工程目录</p>
-<p>&emsp;在ubuntu系统下搭建好ndk编译环境,创建test目录</p>
-<pre><code>mkdir test
-</code></pre><p>在test目录下创建jni目录<br>    cd test<br>    mkdir jni</p>
-<p>##2.编写源代码</p>
-<p>vim hello-exe.c</p>
-<pre><code>#include&lt;stdio.h&gt;
-
-int main(){
- printf(&quot;hello\n&quot;);
- return 0;
+    freemsg(tmp);
 }
-</code></pre><p>##3.创建android makefile文件</p>
-<p>创建Android.mk和Application.mk文件，在jni目录下</p>
-<p>Android.mk</p>
-<pre><code>LOCAL_PATH := $(call my-dir)
 
-include $(CLEAR_VARS)
-
-LOCAL_CFLAGS += -fPIE  
-LOCAL_LDFLAGS += -fPIE -pie
-
-
-LOCAL_MODULE    :=hello-exe
-
-LOCAL_SRC_FILES    :=hello-exe.c
-
-include $(BUILD_EXECUTABLE)  
-</code></pre><p>Application.mk</p>
-<pre><code>APP_ABI := all
-</code></pre><p>##说明：<br>&emsp;如果将程序拷到sd卡内会出现无法修改程序的可执行权限，可以拷贝到手机内部存储再修改。</p>
-<p>如果程序执行的时候提示PIE出错则要在android.mk里面添加以下两段字段</p>
-<pre><code>LOCAL_CFLAGS += -fPIE  
-LOCAL_LDFLAGS += -fPIE -pie
-</code></pre><p><a href="http://ohjvpki1b.bkt.clouddn.com/ndk%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91.7z" target="_blank" rel="external">源程序</a></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-编译Android源码" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/12/19/编译Android源码/" class="article-date">
-      <time datetime="2016-12-19T13:29:48.000Z" itemprop="datePublished">2016-12-19</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/19/编译Android源码/">编译Android源码</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>##编译版本要求</p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/%E7%BC%96%E8%AF%91%E7%89%88%E6%9C%AC%E8%A6%81%E6%B1%82.png" alt=""></p>
-<p>##基本安装环境</p>
-<p>###ubuntu 14.04 64</p>
-<pre><code>sudo apt-get install git-core gnupg flex bison gperf build-essential \
-  zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 \
-  lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z-dev ccache \
-  libgl1-mesa-dev libxml2-utils xsltproc unzip
-</code></pre><p>###ubuntu 16.04 64</p>
-<pre><code>sudo apt-get install libx11-dev:i386 libreadline6-dev:i386 libgl1-mesa-dev g++-multilib 
-sudo apt-get install -y git flex bison gperf build-essential libncurses5-dev:i386 
-sudo apt-get install tofrodos python-markdown libxml2-utils xsltproc zlib1g-dev:i386 
-sudo apt-get install dpkg-dev libsdl1.2-dev libesd0-dev
-sudo apt-get install git-core gnupg flex bison gperf build-essential  
-sudo apt-get install zip curl zlib1g-dev gcc-multilib g++-multilib 
-sudo apt-get install libc6-dev-i386 
-sudo apt-get install lib32ncurses5-dev x11proto-core-dev libx11-dev 
-sudo apt-get install libgl1-mesa-dev libxml2-utils xsltproc unzip m4
-sudo apt-get install lib32z-dev ccache
-</code></pre><p>##配置环境变量<br>    source build/envsetup.sh</p>
-<p>##设置编译选项<br>    lunch aosp_hammerhead-userdebug</p>
-<p>##编译<br>    make -j4<br>make失败或停止后，可以使用make -k 继续编译</p>
-<p>##运行模拟器<br>在编译完成之后,就可以通过以下命令运行Android虚拟机了,<br>命令如下:</p>
-<pre><code>source build/envsetup.sh
-
-lunch(选择刚才你设置的目标版本,比如这里了我选择的是2
-
-emulator
-</code></pre><p>如果你是在编译完后立刻运行虚拟机,由于我们之前已经执行过source及lunch命令了,因此现在你只需要执行命令就可以运行虚拟机:</p>
-<p>既然谈到了模拟器运行,这里我们顺便介绍模拟器运行所需要四个文件:</p>
-<pre><code>Linux Kernel
-system.
-img
-userdate
-.img
-ramdisk.img
-</code></pre><p>如果你在使用lunch命令时选择的是aosp_arm-eng,<br>那么在执行不带参数的emualtor命令时,Linux Kernel默认使用的是/source/prebuilds/qemu-kernel/arm/kernel-qemu目录下的kernel-qemu文件<br>;而android镜像文件则是默认使用source/out/target/product/generic目录下的system.img,userdata.img和ramdisk.img,也就是我们刚刚编译出来的镜像文件.</p>
-<p>上面我在使用lunch命令时选择的是aosp_arm64-eng,因此linux默认使用的/source/prebuilds/qemu-kernel/arm64/kernel-qemu下的kernel-qemu,<br>而其他文件则是使用的source/out/target/product/generic64目录下的system.img,userdata.img和ramdisk.img.<br>当然,emulator指令允许你通过参数制定使用不同的文件,具体用法可以通过emulator –help查看</p>
-<p>##模块编译<br>除了通过make命令编译可以整个android源码外,<br>Google也为我们提供了相应的命令来支持单独模块的编译.</p>
-<p>编译环境初始化(即执行source build/envsetup.sh)之后,我们可以得到一些有用的指令,<br>除了上边用到的lunch,还有以下:</p>
-<pre><code>- croot: Changes directory to the top of the tree.
-
-- m: Makes from the top of the tree.
-
-- mm: Builds all of the modules in the current directory.
-
-- mmm: Builds all of the modules in the supplied directories.
-
-- cgrep: Greps on all local C/C++ files.
-- jgrep: Greps on all local Java files.
-
-- resgrep: Greps on all local res/*.xml files.
-
-- godir: Go to the directory containing a file.
-</code></pre><p>其中mmm指令就是用来编译指定目录.通常来说,每个目录只包含一个模块.比如这里我们要编译Launcher2模块,<br>执行指令:</p>
-<p>mmm packages/apps/Launcher2/<br>稍等一会之后,<br>如果提示:</p>
-<pre><code>### make completed success fully ###
-</code></pre><p>即表示编译完成,<br>此时在out/target/product/gereric/system/app就可以看到编译的Launcher2.apk文件了.</p>
-<p>重新打包系统镜像<br>编译好指定模块后,如果我们想要将该模块对应的apk集成到系统镜像中,<br>需要借助make snod指令重新打包系统镜像,这样我们新生成的system.img中就包含了刚才编译的Launcher2模块了.<br>重启模拟器之后生效.</p>
-<p>单独安装模块<br>我们在不断的修改某些模块,总不能每次编译完成后都要重新打包system.img<br>,然后重启手机吧?有没有什么简单的方法呢?<br>在编译完后,借助adb install命令直接将生成的apk文件安装到设备上即可,<br>相比使用make snod,会节省很多事件.</p>
-<p>##补充</p>
-<p>我们简单的来介绍out/target/product/generic/system目录下的常用目录:<br>Android系统自带的apk文件都在out/target/product/generic/system/apk目录下;</p>
-<p>一些可执行文件(比如C编译的执行),放在out/target/product/generic/system/bin目录下;</p>
-<p>动态链接库放在out/target/product/generic/system/lib目录下;</p>
-<p>硬件抽象层文件都放在out/targer/product/generic/system/lib/hw目录下.</p>
-<p>##SDK编译</p>
-<p>如果你需要自己编译SDK使用,很简单,只需要执行命令<code>make sdk</code>即可.</p>
-<p>##编译fastboot adb</p>
-<pre><code>make fastboot adb
-</code></pre><p>##BUILD<br>指的是特定功能的组合的特定名称,即表示编译出的镜像可以运行在什么环境.<br>其中,aosp(Android Open Source Project)代表Android开源项目;arm表示系统<br>是运行在arm架构的处理器上,arm64则是指64位arm架构;处理器,x86则表示x86架<br>构的处理器;此外,还有一些单词代表了特定的Nexus设备,下面是常用的设备代码和<br>编译目标,更多参考官方文档</p>
-<pre><code>|受型号|设备代码|编译目标
-
-
-|Nexus 6P|angler|aosp_angler-userdebug|
-
-|Nexus 5X|bullhead|aosp_bullhead-userdebug|
-
-|Nexus 6|shamu|aosp_shamu-userdebug|
-
-|Nexus 5|hammerhead|aosp_hammerhead-userdebug|
-</code></pre><p>##BUILD TYPE<br>则指的是编译类型,通常有三种:</p>
-<pre><code>-user:代表这是编译出的系统镜像是可以用来正式发布到市场的版本,
-其权限是被限制的(如,没有root权限,不能dedug等)
-
--userdebug:在user版本的基础上开放了root权限和debug权限.
-
--eng:代表engineer,也就是所谓的开发工程师的版本,拥有最大的权限(root等),
-此外还附带了许多debug工具
-</code></pre><p>##清除编译</p>
-<pre><code>make clobber
-</code></pre><p>##理解 Android Build 系统<br><a href="http://ohjvpki1b.bkt.clouddn.com/%E7%90%86%E8%A7%A3%20Android%20Build%20%E7%B3%BB%E7%BB%9F.pdf" target="_blank" rel="external">外部文档</a></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-提取刷机包内system-new-dat文件" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/12/19/提取刷机包内system-new-dat文件/" class="article-date">
-      <time datetime="2016-12-19T13:29:15.000Z" itemprop="datePublished">2016-12-19</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/19/提取刷机包内system-new-dat文件/">提取刷机包内system.new.dat文件</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>##转换<br>使用python脚本sdat2img来完成</p>
-<p>sdat2img.py system.transfer.list system.new.dat system.img</p>
-<p>输出信息</p>
-<pre><code>Skipping command erase
-Copying 32767 blocks into position 0...
-Copying 2 blocks into position 32768...
-Copying 2 blocks into position 32809...
-Copying 32212 blocks into position 33323...
-Copying 2 blocks into position 65536...
-Copying 20457 blocks into position 66050...
-Copying 2 blocks into position 98304...
-Copying 2 blocks into position 98345...
-Copying 32212 blocks into position 98859...
-Copying 2 blocks into position 131072...
-
-Done! Output image: /home/hexiongjun/android/CM_XiaoMi4/cm12.1/system.img
-</code></pre><p>这样就有了我们需要的system.img文件了 </p>
-<p>##挂载img文件<br>mount到system目录</p>
-<pre><code>sudo mount -t ext4 system.img  system
+while((im=ms_queue_get(f-&gt;inputs[0]))!=NULL){
+    int len=msgdsize(im);
+//拿回inputs[0]数据   是从decoder来的
+</code></pre><p>##3.接口说明</p>
+<pre><code>MSFilterDesc ms_webrtc_aec_desc={
+    MS_WEBRTC_AEC_ID,
+    &quot;MSWebRTCAEC&quot;,
+    &quot;Echo canceller using WebRTC library.&quot;,
+    MS_FILTER_OTHER,
+    &quot;AEC&quot;,
+    2,  //两进两出  ipnuts[0]和inputs[1]
+    2,
+    webrtc_aec_init,
+    webrtc_aec_preprocess,
+    webrtc_aec_process,
+    webrtc_aec_postprocess,
+    webrtc_aec_uninit,
+    webrtc_aec_methods,
+    0
+};
 </code></pre>
       
     </div>
@@ -752,11 +388,11 @@ Done! Output image: /home/hexiongjun/android/CM_XiaoMi4/cm12.1/system.img
 
 
   
-    <article id="post-加速android源码编译" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-同步webrtc-android源码" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/12/19/加速android源码编译/" class="article-date">
-      <time datetime="2016-12-19T13:28:44.000Z" itemprop="datePublished">2016-12-19</time>
+      <a href="/2017/03/12/同步webrtc-android源码/" class="article-date">
+      <time datetime="2017-03-12T15:22:53.000Z" itemprop="datePublished">2017-03-12</time>
 </a>
     </div>
   
@@ -769,7 +405,7 @@ Done! Output image: /home/hexiongjun/android/CM_XiaoMi4/cm12.1/system.img
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/19/加速android源码编译/">加速android源码编译</a>
+      <a class="article-title" href="/2017/03/12/同步webrtc-android源码/">同步webrtc_android源码</a>
     </h1>
   
 
@@ -779,125 +415,13 @@ Done! Output image: /home/hexiongjun/android/CM_XiaoMi4/cm12.1/system.img
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="添加缓存环境变量"><a href="#添加缓存环境变量" class="headerlink" title="添加缓存环境变量 :"></a>添加缓存环境变量 :</h2><p>在 ~/.bashrc 环境变量文件中 添加 <code>export USE_CCACHE=1</code>环境变量,  加速随后的编译过程; </p>
-<p>##分配缓存磁盘大小<br>为 ccache 指定磁盘中的一部分大小, 用于缓存, 使用<code>prebuilts/misc/linux-x86/ccache/ccache -M 50G</code> 命令,大小可以自己设定，20G也可以。</p>
-<p>##命令执行位置<br>在 Android 源码根目录执行 <code>prebuilts/misc/linux-x86/ccache/ccache -M 50G</code> 命令;</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-安装切换openjdk" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/12/19/安装切换openjdk/" class="article-date">
-      <time datetime="2016-12-19T13:28:17.000Z" itemprop="datePublished">2016-12-19</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/19/安装切换openjdk/">安装切换openjdk</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>##安装各种版本openjdk</p>
-<pre><code>sudo apt-get install openjdk-6-jdk
-sudo apt-get install openjdk-7-jdk
-sudo apt-get install openjdk-8-jdk
-</code></pre><p>##切换版本<br>    sudo update-alternatives –config java<br>    sudo update-alternatives –config javac</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-android手机解锁引导程序" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/12/19/android手机解锁引导程序/" class="article-date">
-      <time datetime="2016-12-19T13:27:41.000Z" itemprop="datePublished">2016-12-19</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/19/android手机解锁引导程序/">android手机解锁引导程序</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>##1.重启手机进入fastboot模式<br>&emsp;一般关机状态下按手机音量减+开机键，成功后会显示fastboot字提示。</p>
-<p>##2.查看设备信息<br>    fastboot devices</p>
-<p>说明:fastboot是一个工具软件</p>
-<p>##3.解锁设备</p>
-<pre><code>fastboot oem unlock
+        <p>##下载同步工具</p>
+<pre><code>git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+</code></pre><p>##配置环境变量</p>
+<pre><code>$ export PATH=`pwd`/depot_tools:&quot;$PATH&quot;
+</code></pre><p>##开始同步</p>
+<pre><code>fetch --nohooks webrtc_android
+gclient sync
 </code></pre>
       
     </div>
@@ -924,11 +448,11 @@ sudo apt-get install openjdk-8-jdk
 
 
   
-    <article id="post-用open-gapps安装google-play" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-我对灯光的各种印象" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/12/19/用open-gapps安装google-play/" class="article-date">
-      <time datetime="2016-12-19T13:22:17.000Z" itemprop="datePublished">2016-12-19</time>
+      <a href="/2017/03/12/我对灯光的各种印象/" class="article-date">
+      <time datetime="2017-03-12T15:18:00.000Z" itemprop="datePublished">2017-03-12</time>
 </a>
     </div>
   
@@ -941,7 +465,7 @@ sudo apt-get install openjdk-8-jdk
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/19/用open-gapps安装google-play/">用open_gapps安装google play</a>
+      <a class="article-title" href="/2017/03/12/我对灯光的各种印象/">我对灯光的各种印象</a>
     </h1>
   
 
@@ -951,19 +475,500 @@ sudo apt-get install openjdk-8-jdk
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>##说明</p>
-<p>&emsp;一个开放源码脚本自动生成最新的谷歌应用程序包。对整个google play 程序框架的打包，包括一些google官方的程序。对于阉割了google ply用户来说是一个不错的选择。</p>
-<p>##使用</p>
-<p><a href="http://opengapps.org/" target="_blank" rel="external">下载网址</a></p>
-<p><a href="https://github.com/opengapps/opengapps" target="_blank" rel="external">GitHub</a></p>
-<p>###通过压缩包安装</p>
-<p>选择对应android版本cpu架构和对应大小</p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/opengapps.png" alt="opengapps"></p>
-<p>下载压缩包后，手机进入recovery模式刷入zip刷机包。</p>
-<p>###通过apk安装</p>
-<p>下载apk安装到手机</p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/opengapps_app.png" alt="opengapps_app"></p>
+        <p>&emsp;记得小时候晚上提供的光源是黄色光的那种灯泡，没电的时候用蜡烛或是油灯。那时候的科技还没有现在那么发达，再加上是农村，没有后面发白光的灯管和LED。每个夜晚给我留下的回忆是昏黄色的，跟白色的光芒差很远，可看不太清楚，在那种光的照耀下事物也变成了黄色，给我的感觉不是很好。记得小时候喜欢吃甜食，弄得牙齿不好，经常牙痛。当时我缓解牙痛的办法就是哭，毕竟那个时候的我对疼痛忍耐力有限，再加上在哭的过程中，引起奶奶关心，会弄些蜜糖水给我喝，哭过之后疼痛也逐渐消去。但眼中的泪水还停留在眼角，哭的时候我常对着那黄色的灯泡，调节自己眼睛张开距离来控制我眼角中的泪珠。使那黄色的光芒透过那泪珠产生的折射现象。这时我眼中的那枚灯泡光线四散，像是闪亮的星星，觉得好玩好看。还有一种可能是我小时候哭多了的缘故，最终导致我眼睛下面多了一颗眼泪痣。<br>&emsp;随着科技发展，那种发黄色光的灯泡比较少用了，随即而来的是灯管，发出白色的光芒。它的那种光跟白天的太阳光并不会差很远，它可以将事物照得很清楚。对于这种灯光我是比较渴望的，这种渴望是我初中那个时候产生的。由于初中时候需要大量时间学习，也就需要光，追赶着别人。夜自习时间总是感觉太短，回到宿舍又会关灯，且是那种黄色灯泡，看不清楚。为了花更多时间在学习上，经常去快班借光学习。因为其他的班都在晚自习下课之后都关灯，而快班还留有一盏灯管。那时的我渴望自己能够在那白色光芒之下学习，上进的我。<br>&emsp;还有一种灯光会带来一种温暖，是那种建筑工地专用高瓦数的照明小灯管。看上去它的体积并没有那种家用灯管那么大，但它发出的光芒比家用灯管要耀眼。由于父亲是装修工人的缘故。自己也时常会呆在工地，玩或是帮忙。每当他加班赶工的时候开启那种灯，天气冷的时候我会靠近那盏灯。它散发出的光之中有股温暖，可能是功率高的缘故，那光以热量形式散发出来。</p>
 
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-armbian定制教程" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/02/14/armbian定制教程/" class="article-date">
+      <time datetime="2017-02-14T14:42:39.000Z" itemprop="datePublished">2017-02-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/14/armbian定制教程/">armbian定制教程</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>##时间201702141045</p>
+<p>##官方网站</p>
+<p><a href="https://www.armbian.com/" target="_blank" rel="external">https://www.armbian.com/</a></p>
+<p>可以下载相应板子对应的镜像</p>
+<p><img src="http://ohjvpki1b.bkt.clouddn.com/armbian_download.png" alt="view"></p>
+<p>###下载源码，定制系统生成相对应镜像</p>
+<pre><code>mkdir armbian
+apt-get -y install git
+git clone https://github.com/igorpecovnik/lib --depth 1
+cp lib/compile.sh .
+</code></pre><p>开启代理，不然会生成失败，需要下载相应文件，服务器在国外会比较慢，或是被墙住了</p>
+<pre><code>生成指令
+./compile.sh KERNEL_CONFIGURE=yes
+</code></pre><p>生成过程中选择相对应板子选项，然后再<code>output/image/</code>目录下生成相对应文件，然后将该文件烧入SD卡内。</p>
+<p>##官方文档<br><a href="https://docs.armbian.com/" target="_blank" rel="external">https://docs.armbian.com/</a></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-orangePi源码编译教程" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/02/14/orangePi源码编译教程/" class="article-date">
+      <time datetime="2017-02-14T13:36:30.000Z" itemprop="datePublished">2017-02-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/14/orangePi源码编译教程/">orangePi源码编译教程</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>#环境<br>    ubuntu 12.04.5 64位 8G内存<br>    jdk-6u45-linux-x64.bin 64位JDK6<br>    板子是 orangePC pc<br>如果内存不够会编译不成功，安装好jdk6配置好环境变量</p>
+<p><a href="http://pan.baidu.com/s/1eR8pJKA" target="_blank" rel="external">jdk网盘下载链接</a> 密码：jkei</p>
+<p>#linux源码编译<br>下载源码压缩包</p>
+<p>网址<a href="http://www.orangepi.org/downloadresources/" target="_blank" rel="external">http://www.orangepi.org/downloadresources/</a></p>
+<p>###解压源码<br>tar -xzvf h3-lichee-1.0.tar.gz<br>解压出 lichee目录，进入该目录</p>
+<p>buildroot: 工程编译脚本<br>brandy: boot，uboot 源码以及开源交叉编译工具 gcc-linaro<br>linux-3.4: 内核源码<br>tools： 工程编译工具<br>build.sh: 编译脚本</p>
+<p>###执行编译指令<br>在lichee目录执行以下指令</p>
+<pre><code>$ ./build.sh configA
+</code></pre><p>选择<br>此时系统会提示芯片的选择，对于 OrangePi PC ，选择 sun8iw7p1</p>
+<p>此时系统会提示平台的选择，对于 OrangePi PC，选择 dragonboard</p>
+<p>此时系统会调试板子的选择，对于 OrangePi PC，选择 dolphin-p1</p>
+<p>编译成功后会如下显示</p>
+<p><img src="http://ohjvpki1b.bkt.clouddn.com/orangepi_PC_build_OK.png" alt="view"></p>
+<p>###内核镜像文件和库的替换<br>编译完成之后，将会目录下生成如下文件：</p>
+<p>boot： /lichee/tools/pack/chips/sun8iw7p1/bin/boot0_sdcard_sun8iw7p1.bin</p>
+<p>uboot： /lichee/tools/pack/chips/sun8iw7p1/bin/u-boot-sun8iw7p1.bin</p>
+<p>uImage： /lichee/out/sun8iw7p1/dragonboard/common/uImage</p>
+<p>libs： /lichee/linux-3.4/output/lib/modules</p>
+<p>将以上生成文件替换原有系统目录下相应的文件</p>
+<p>源码网盘下载地址</p>
+<p><a href="http://pan.baidu.com/s/1jIp0XkM" target="_blank" rel="external">百度网盘链接</a> 密码：lh9l</p>
+<p>#android源码编译</p>
+<p><a href="http://pan.baidu.com/s/1skMg0Lv" target="_blank" rel="external">android源码链接</a> 密码：9zsj</p>
+<p><a href="http://pan.baidu.com/s/1qYrq9eG" target="_blank" rel="external">makefile文件链接</a> 密码：x9ov</p>
+<p>###安装相应软件包<br>    $ sudo apt-get install git gnupg flex bison gperf build-essential \<br>    zip curl libc6-dev libncurses5-dev:i386 x11proto-core-dev \<br>    libx11-dev:i386 libreadline6-dev:i386 libgl1-mesa-glx:i386 \<br>    libgl1-mesa-dev g++-multilib mingw32 tofrodos \<br>    python-markdown libxml2-utils xsltproc zlib1g-dev:i386</p>
+<pre><code>$ sudo ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 /usr/lib/i386-linux-gnu/libGL.so
+</code></pre><p>###解压源码<br>    创建目录<br>    mkdir H3<br>    移动文件<br>    mv H3-homlet-1.0.tar.gz ./H3<br>    解压<br>    tar -xzvf H3-homlet-1.0.tar.gz<br>解压完之后会得到两个目录</p>
+<pre><code>android lichee
+</code></pre><p>###lichee源码编译</p>
+<pre><code>$ cd lichee
+$ ./build.sh lunch
+</code></pre><p><img src="http://ohjvpki1b.bkt.clouddn.com/build_lichee.png" alt="view"></p>
+<p>编译成功后打印信息</p>
+<p><img src="http://ohjvpki1b.bkt.clouddn.com/build_lichee_ok.png" alt="view"></p>
+<p>###android代码编译</p>
+<pre><code>$ cd android
+$ source ./build/envsetup.sh
+$ lunch dolphin_fvd_p1-eng #选择方案号
+$ extract-bsp #拷贝内核及驱动模块
+</code></pre><p>由于源码解压出来没有makefile文件，需要将makefile文件拷到目录下才能执行make命令</p>
+<pre><code>$ make –j8 #后面的数值为同时编译的进程，依赖于主机的配置
+$ pack #打包生成固件
+</code></pre><p><img src="http://ohjvpki1b.bkt.clouddn.com/OrangePi_build_android_pack.png" alt="view"></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-编译hikey-bootloader" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/01/21/编译hikey-bootloader/" class="article-date">
+      <time datetime="2017-01-21T09:20:17.000Z" itemprop="datePublished">2017-01-21</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/21/编译hikey-bootloader/">编译hikey bootloader</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>##交叉编译工具链：</p>
+<p>##下载：<br>    <a href="http://releases.linaro.org/15.02/components/toolch" target="_blank" rel="external">http://releases.linaro.org/15.02/components/toolch</a>…<br>    <a href="http://releases.linaro.org/15.02/components/toolch" target="_blank" rel="external">http://releases.linaro.org/15.02/components/toolch</a>…</p>
+<p>##安装：<br>    mkdir arm-tc arm64-tc<br>    tar –strip-components=1 -C ${PWD}/arm-tc -xf gcc-linaro-4.9-<em>-x86_64_aarch64-linux-gnu.tar.xz<br>    tar –strip-components=1 -C ${PWD}/arm64-tc -xf gcc-linaro-4.9-</em>-x86_64_arm-linux-gnueabihf.tar.xz<br>    export PATH=”${PWD}/arm-tc/bin:${PWD}/arm64-tc/bin:$PATH”</p>
+<p>##bootloader代码下载:<br>    git clone -b hikey –depth 1 <a href="https://github.com/96boards/edk2.git" target="_blank" rel="external">https://github.com/96boards/edk2.git</a> linaro-edk2<br>    git clone -b hikey –depth 1 <a href="https://github.com/96boards-hikey/arm-trusted-firmware.git" target="_blank" rel="external">https://github.com/96boards-hikey/arm-trusted-firmware.git</a><br>    git clone -b hikey –depth 1 <a href="https://github.com/96boards/LinaroPkg.git" target="_blank" rel="external">https://github.com/96boards/LinaroPkg.git</a><br>    git clone –depth 1 <a href="https://github.com/96boards/l-loader.git" target="_blank" rel="external">https://github.com/96boards/l-loader.git</a><br>    git clone git://git.linaro.org/uefi/uefi-tools.git</p>
+<p>##编译UEFI<br>    export AARCH64_TOOLCHAIN=GCC49<br>    export EDK2_DIR=${PWD}/linaro-edk2<br>    export UEFI_TOOLS_DIR=${PWD}/uefi-tools</p>
+<pre><code>cd ${EDK2_DIR}
+${UEFI_TOOLS_DIR}/uefi-build.sh -c ../LinaroPkg/platforms.config -b RELEASE -a ../arm-trusted-firmware hikey
+
+cd ../l-loader
+ln -s ${EDK2_DIR}/Build/HiKey/RELEASE_GCC49/FV/bl1.bin
+ln -s ${EDK2_DIR}/Build/HiKey/RELEASE_GCC49/FV/fip.bin
+arm-linux-gnueabihf-gcc -c -o start.o start.S
+arm-linux-gnueabihf-gcc -c -o debug.o debug.S
+arm-linux-gnueabihf-ld -Bstatic -Tl-loader.lds -Ttext 0xf9800800 start.o debug.o -o loader
+arm-linux-gnueabihf-objcopy -O binary loader temp
+python gen_loader.py -o l-loader.bin --img_loader=temp --img_bl1=bl1.bin
+sudo PTABLE=aosp-8g bash -x generate_ptable.sh
+python gen_loader.py -o ptable-aosp-8g.img --img_prm_ptable=prm_ptable.img
+</code></pre><p>##镜像输出(l-loader目录下)：<br>fip.bin l-loader.bin ptable-aosp-8g.img</p>
+<p>##烧写<br>    sudo python hisi-idt.py –img1=l-loader.bin -d /dev/ttyUSB0<br>    sudo fastboot flash ptable ptable-aosp-8g.img<br>    sudo fastboot flash fastboot fip.bin</p>
+<p>注意:<br>这里编译的boot_fat.uefi.img要和上面编译的fip.bin一起烧写,否则无法启动</p>
+<p>如果不想烧写上面编译的fip.bin的话则需要手动修改生成boot_fat.uefi.img：<br>手动打包过程如下(将你自己编译的内核,DT和RAMDISK替换进去下面下载的prebuild的boot_fat.uefi.img后就可以了):</p>
+<pre><code>wget http://builds.96boards.org/releases/reference-plat...
+wget https://builds.96boards.org/snapshots/reference-pl... -O grubaa64.efi
+mkdir boot-fat
+dd if=/dev/zero of=boot-fat.uefi.img bs=512 count=131072
+sudo mkfs.fat -n &quot;BOOT IMG&quot; boot-fat.uefi.img
+sudo mount -o loop,rw,sync boot-fat.uefi.img boot-fat
+sudo cp hi6220-hikey.dtb boot-fat/hi6220-hikey.dtb
+sudo cp AndroidFastbootApp.efi boot-fat/fastboot.efi
+sudo cp grubaa64.efi boot-fat/grubaa64.efi
+sudo umount boot-fat
+sudo mv boot-fat.uefi.img hikey-boot-linux-VERSION.uefi.img
+rm -rf boot-fat
+</code></pre><p>##出错 fatal error: uuid/uuid.h: No such file or directory</p>
+<pre><code>解决
+
+ sudo apt-get install uuid-dev
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-hikey替换android内核" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/01/21/hikey替换android内核/" class="article-date">
+      <time datetime="2017-01-21T09:18:49.000Z" itemprop="datePublished">2017-01-21</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/21/hikey替换android内核/">hikey替换android内核</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>##配置编译器<br>    mkdir ~/arm64-tc</p>
+<p>###输入如下命令下载编译需要用到的组件压缩包<br>    wget <a href="https://releases.linaro.org/14.09/components/toolchain/binaries/" target="_blank" rel="external">https://releases.linaro.org/14.09/components/toolchain/binaries/</a><br>    gcc-linaro-aarch64-linux-gnu-4.9-2014.09_linux.tar.xz</p>
+<p>###然后输入如下命令解压上面下载的压缩包 </p>
+<pre><code>tar --strip-components=1 -C ~/arm64-tc -xf gcc-linaro-aarch64-linux-gnu-4.9-2014.09_linux.tar.xz
+</code></pre><p>###然后设置环境变量 </p>
+<pre><code>export PATH=~/arm64-tc/bin:$PATH
+</code></pre><p>##目前有两种版本选择，一种为Landing Team版本，另外一种为Reference Platform Build版本 </p>
+<p>##下载Landing Team版本内核源码<br>    git clone <a href="https://github.com/96boards/linux.git" target="_blank" rel="external">https://github.com/96boards/linux.git</a></p>
+<pre><code>然后输入如下命令检出最新内核版本15.11 
+
+cd linux
+git checkout -b working-hikey 96boards-hikey-15.11
+</code></pre><p>##如果使用Reference Platform Build版本内核源码，输入如下命令下载 </p>
+<pre><code>git clone https://github.com/rsalveti/linux.git
+
+然后输入如下命令检出最新内核 
+
+git checkout reference-hikey-rebase
+</code></pre><p>##最后输入如下命令开始编译内核 </p>
+<pre><code>export ARCH=arm64
+export CROSS_COMPILE=aarch64-linux-gnu-
+export LOCALVERSION=&quot;-linaro-hikey&quot;
+make distclean 
+make defconfig 
+make -j8 Image modules hi6220-hikey.dtb 2&gt;&amp;1 | tee build-log.txt
+</code></pre><p>##使用以下命令编译内核模块 </p>
+<pre><code>export PWD=`pwd`
+export INSTALL_MOD_PATH=&quot;$PWD/installed-modules&quot;
+mkdir $INSTALL_MOD_PATH
+make -j8 modules_install
+</code></pre><p>生成如下文件</p>
+<pre><code>arch/arm64/boot/dts/hisilicon/hi6220-hikey.dtb
+arch/arm64/boot/Image-dtb
+</code></pre><p>复制到前面新建的目录下面，即AOSP的/kernel/hikey-linaro目录。</p>
+<p>确保我们此时的环境是HiKey的编译环境，即</p>
+<pre><code>$ source build/envsetup.sh 
+$ lunch hikey-userdebug
+</code></pre><p>最后，编译boot.img文件</p>
+<pre><code>$ make bootimage -j4
+</code></pre><p>这一步时间很短，我花了13S就完成了。</p>
+<p>其实会生成2个文件，即<br>/out/target/product/hikey/boot.img<br>和<br>/out/target/product/hikey/ramdisk.img<br>刷机</p>
+<p>有了前面编译AOSP并且刷机的经验，这一过程就比较简单了。</p>
+<p>根据使用HiKey进行开发里所说的，我们首先关机状态下将j15的跳线5-6闭合。然后开机进入fastboot模式。</p>
+<p>然后将设备连接至虚拟机，可以使用如下命令查看设备是否已连接：</p>
+<pre><code>$ fastboot devices
+</code></pre><p>连接上之后，我们只刷boot分区，命令如下(假定你在AOSP根目录)</p>
+<pre><code>fastboot flash boot out/target/product/hikey/boot.img
+</code></pre><p>大约不到2s，刷机完成。</p>
+<p>##问题与解决</p>
+<p>刷机完成之后，开机进入系统，发现Kernel version的信息和之前的没有变化。也就是说我们刚才刷入的依然是Google prebuilt的kernel。</p>
+<p>首先我对比了新生成的boot.img文件和之前的boot.img文件(幸好虚拟机有备份)，发现md5一模一样，也就是说并没有生成新的boot.img文件。</p>
+<p>回想之前编译完成kernel之后，要手动复制2个文件到指定目录(hi6220-hikey.dtb和Image-dtb)。在AOSP根目录使用find命令搜索这两个文件，发现除了out目录和我们前边创建的/kernel/hikey-linaro目录外，在下面的目录还有这两个文件</p>
+<p>/device/linaro/hikey-kernel</p>
+<p>其实这个目录里的文件就是Google prebuilt的kernel文件。<br>我们将前边编译生成的hi6220-hikey.dtb和Image-dtb文件复制到上面的目录中(你可以将原来的文件备份到一个新建的目录里边以防止刷编译的kernel失败之后可以快速切换回来)。</p>
+<p>然后，我们再重新执行上面的编译boot.img文件步骤，生成新的boot.img文件。<br>由于前面的失败经历，这次长了个心眼，将新老boot.img文件的md5对比了一下，发现确实不一样。</p>
+<p>真正编译成功后我们再执行前面的刷机步骤，开机之后发现Kernel version的信息确实变了：</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-hikey-android源码编译" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/01/21/hikey-android源码编译/" class="article-date">
+      <time datetime="2017-01-21T09:17:41.000Z" itemprop="datePublished">2017-01-21</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/21/hikey-android源码编译/">hikey android源码编译</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>##同步源码<br>    repo init -u <a href="https://android.googlesource.com/platform/manifest" target="_blank" rel="external">https://android.googlesource.com/platform/manifest</a> -b master</p>
+<pre><code>repo sync -j24
+</code></pre><p>##下载相应驱动</p>
+<pre><code>wget https://dl.google.com/dl/android/aosp/linaro-hikey-20160226-67c37b1a.tgz
+
+tar xzf linaro-hikey-20160226-67c37b1a.tgz
+
+./extract-linaro-hikey.sh
+</code></pre><p>##编译源码<br>     . ./build/envsetup.sh</p>
+<pre><code>lunch hikey-userdebug
+
+make -j32
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-同步codeaurora-Android源码" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/01/21/同步codeaurora-Android源码/" class="article-date">
+      <time datetime="2017-01-21T09:12:57.000Z" itemprop="datePublished">2017-01-21</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/21/同步codeaurora-Android源码/">同步codeaurora Android源码</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>##说明<br>codeaurora没有被墙</p>
+<p>##源码目录</p>
+<p><a href="https://source.codeaurora.org/quic/la/" target="_blank" rel="external">https://source.codeaurora.org/quic/la/</a></p>
+<p>##官网<br><a href="https://www.codeaurora.org/" target="_blank" rel="external">https://www.codeaurora.org/</a></p>
+<p>##高通源码</p>
+<p><a href="https://wiki.codeaurora.org/xwiki/bin/QAEP/release" target="_blank" rel="external">https://wiki.codeaurora.org/xwiki/bin/QAEP/release</a></p>
+<p>##初始化<br>    repo init -u git://codeaurora.org/platform/manifest.git -b release -m LA.BR.1.2.3-10210-8x09.0.xml –repo-url=git://codeaurora.org/tools/repo.git –repo-branch=caf-stable</p>
+<p>说明：参数LA.BR.1.2.3-10210-8x09.0.xml可以通过<a href="https://wiki.codeaurora.org/xwiki/bin/QAEP/release获得" target="_blank" rel="external">https://wiki.codeaurora.org/xwiki/bin/QAEP/release获得</a></p>
+<p>##同步</p>
+<pre><code>repo sync -j16
+</code></pre>
       
     </div>
     
@@ -991,7 +996,7 @@ sudo apt-get install openjdk-8-jdk
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 </div>

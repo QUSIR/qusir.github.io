@@ -217,11 +217,11 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-各种开源Android-系统定制" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-烧写poky生成镜像" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/12/19/各种开源Android-系统定制/" class="article-date">
-      <time datetime="2016-12-19T13:21:36.000Z" itemprop="datePublished">2016-12-19</time>
+      <a href="/2017/01/21/烧写poky生成镜像/" class="article-date">
+      <time datetime="2017-01-21T09:11:46.000Z" itemprop="datePublished">2017-01-21</time>
 </a>
     </div>
   
@@ -234,7 +234,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/19/各种开源Android-系统定制/">各种开源Android 系统定制</a>
+      <a class="article-title" href="/2017/01/21/烧写poky生成镜像/">烧写poky生成镜像</a>
     </h1>
   
 
@@ -244,26 +244,10 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>#MIUI<br><img src="http://ohjvpki1b.bkt.clouddn.com/miui-logo.jpg" alt="MIUI"><br>MIUI是由小米科技开发的Android装置系统。2016年2月24日，MIUI全球用户超过1.7亿。部分开源代码托管在<a href="https://github.com/MiCode/" target="_blank" rel="external">GitHub</a></p>
-<p><a href="www.miui.com">官网</a></p>
-<p><a href="http://en.miui.com/" target="_blank" rel="external">国际网站</a></p>
-<p><a href="http://miuiandroid.com/" target="_blank" rel="external">http://miuiandroid.com/</a></p>
-<p>#Flyme<br><img src="http://ohjvpki1b.bkt.clouddn.com/flyme.jpg" alt="Flyme"></p>
-<p><a href="https://github.com/FlymeOS" target="_blank" rel="external">Flyme GitHub</a></p>
-<p>Flyme OS是由魅族科技开发的基于AOSP或YunOS的设备固件。</p>
-<p><a href="http://www.flymeos.com/" target="_blank" rel="external">官网</a></p>
-<p>#AOSP<br><img src="http://ohjvpki1b.bkt.clouddn.com/Android-logo-wordmark.png" alt="AOSP"></p>
-<p>“Android Open-Source Project”的缩写<br>中文意为”Android 开放源代码项目”</p>
-<p>android原生态的系统。</p>
-<p><a href="https://source.android.com/" target="_blank" rel="external">官网</a></p>
-<p>#CyanogenMod<br><img src="http://ohjvpki1b.bkt.clouddn.com/Cyanogen-Inc-new-logo.jpg" alt="CyanogenMod"></p>
-<p>CyanogenMod（英语发音：/saɪ.ˈæn.oʊ.ˌdʒɛn.mɒd/），缩写作“CM”，是一个基于Android，供智能手机和平板电脑使用的操作系统固件。它是基于Google发布的Android源码，再加上原创或第三方程式码而开发的开放源代码软件，并使用滚动更新开发模式。</p>
-<p><a href="https://github.com/CyanogenMod" target="_blank" rel="external">GitHub</a></p>
-<p><a href="https://www.cyanogenmod.org/" target="_blank" rel="external">官网</a></p>
-<p>#PAC-ROM<br><img src="http://ohjvpki1b.bkt.clouddn.com/banner.png" alt="PAC-ROM"></p>
-<p>PAC - ROM是只读存储器与许多定制选项一起提供了一个纯粹的Android界面。正如它的名字一样，它像偏执狂的Android.</p>
-<p><a href="http://www.pac-rom.com/" target="_blank" rel="external">官网</a></p>
-<p><a href="https://github.com/PAC-ROM" target="_blank" rel="external">GitHub</a></p>
+        <p>sudo dd if= rpi-hwup-image-raspberrypi0-20170117030238.rootfsrpi-sdimg of=/dev/sdc bs=4M oflag=sync status=noxfer</p>
+<p>说明<br>rpi-hwup-image-raspberrypi0-20170117030238.rootfsrpi-sdimg为生成镜像</p>
+<p>/dev/sdc<br>为SD卡路径</p>
+<p>烧写完成之后<br>要用串口看调试，因为很多东西没有安装配置，无法输出到显示，默认账号root  没有密码</p>
 
       
     </div>
@@ -290,11 +274,11 @@
 
 
   
-    <article id="post-各种Android手机Root方法" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-raspbian更新内核" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/12/19/各种Android手机Root方法/" class="article-date">
-      <time datetime="2016-12-19T13:21:06.000Z" itemprop="datePublished">2016-12-19</time>
+      <a href="/2017/01/21/raspbian更新内核/" class="article-date">
+      <time datetime="2017-01-21T09:11:13.000Z" itemprop="datePublished">2017-01-21</time>
 </a>
     </div>
   
@@ -307,7 +291,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/19/各种Android手机Root方法/">各种Android手机Root方法</a>
+      <a class="article-title" href="/2017/01/21/raspbian更新内核/">raspbian更新内核</a>
     </h1>
   
 
@@ -317,17 +301,55 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>##Root的介绍</p>
-<p>&emsp;谷歌的android系统管理员用户就叫做root，该帐户拥有整个系统至高无上的权利，它可以访问和修改你手机几乎所有的文件，只有root才具备最高级别的管理权限。我们root手机的过程也就是获得手机最高使用权限的过程。同时为了防止不良软件也取得root用户的权限，当我们在root的过程中，还会给系统装一个程序，用来作为运行提示，由用户来决定，是否给予最高权限。这个程序的名字叫做Superuser.apk。当某些程序执行su指令想取得系统最高权限的时候，Superuser就会自动启动，拦截该动作并作出询问，当用户认为该程序可以安全使用的时候，那么我们就选择允许，否则，可以禁止该程序继续取得最高权限。Root的过程其实就是把su文件放到/system/bin/ <code>Superuser.apk</code> 放到system/app下面，还需要设置/system/bin/su可以让任意用户可运行，有set uid和set gid的权限。即要在android机器上运行命令：<code>adb shell chmod 4755 /system/bin/su</code>。而通常，厂商是不会允许我们随便这么去做的，我们就需要利用操作系统的各种漏洞，来完成这个过程。</p>
-<p>特别说明：我们烧机中的Eng版本并没有Root权限</p>
-<p>##说明<br>&emsp;想手机root必须要在android系统内加入su程序，再安装对su管理的apk程序。</p>
-<p>##方法<br>&emsp;在手机刷了第三方的<code>recovery</code>前提下，通过刷zip的方式刷入<code>su</code>和<code>apk</code>程序。</p>
-<p>##步骤</p>
-<p>###去官网下载SuperSU压缩包<br>网址<a href="http://www.supersu.com/" target="_blank" rel="external">http://www.supersu.com/</a></p>
-<p>可能需要翻墙<br>进入该网站后进入download</p>
-<p>下载压缩包<br><img src="http://ohjvpki1b.bkt.clouddn.com/qusirSuperSU.png" alt=""></p>
-<p>进入recovery，刷入zip文件</p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/qusirrecovery_install_zip.jpg" alt=""></p>
+        <p>##获取升级所需源码</p>
+<p>###1)下载地址：</p>
+<p>官方网址：<a href="https://github.com/raspberrypi" target="_blank" rel="external">raspberrypi</a></p>
+<p><code>firmware</code>:树莓派的交叉编译好的二进制内核、模块、库、bootloader</p>
+<p><code>linux</code>:内核源码</p>
+<p><code>tools</code>:编译内核和其他源码所需的工具——交叉编译器等</p>
+<p>我们只需要以上三个文件即可，下面的工程可以了解一下</p>
+<p><code>documentation</code>:树莓派离线帮助文档，教你如何使用、部署树莓派（树莓派官方使用教程）</p>
+<p><code>userland</code>：arm端用户空间的一些应用库的源码——vc视频硬浮点、EGL、mmal、openVG等</p>
+<p><code>hats：Hardware Attached on Top</code>，树莓派 B+型板子的扩展板资料</p>
+<p><code>maynard</code>：一个gtk写成的桌面环境</p>
+<p><code>scratch</code>：一个简易、可视化编程环境</p>
+<p><code>noobs</code>:一个树莓派镜像管理工具，他可以让你在一个树莓派上部署多个镜像</p>
+<p><code>weston</code>：一个应用程序</p>
+<p><code>target_fs</code>：树莓派最小文件系统，使用busybox制作</p>
+<p><code>quake3</code>：雷神之锤3有线开发源码firmwareb</p>
+<p>点到所需要下载的工程，左上角选版本，右方有一个download ZIP按钮可直接下载（笔者下载完成后，在Linux中解压提示出错，windows又非常慢切内核建议不要在windows环境解压，所以笔者不建议使用这种办法）</p>
+<p>##使用Git下载<br>    $ mkdir raspeberrypi_src<br>    $ cd raspberrypi_src<br>    $ git clone git://github.com/raspberrypi/firmware.git<br>    $ git clone git://github.com/raspberrypi/linux.git<br>    $ git clone git://github.com/raspberrypi/tools.git</p>
+<p>会得到三个文件夹：<br>firmware linux tools</p>
+<p>##编译、提取内核及其模块</p>
+<p>###获得内核配置文件<br>在运行的树莓派中运行：</p>
+<pre><code>$ls /proc/
+</code></pre><p>可看到一个叫config.gz的文件，他是当前的树莓派配置选项记录文件，我们将他拷出，放入我们的内核源码目录树下</p>
+<pre><code>$cp /proc/config /home/pi
+</code></pre><p>我们这里使用前面交过的samba拷出并拷入内核源码目录下，不熟悉的人可参考前面文章</p>
+<p>在linux内核源码下执行：</p>
+<pre><code>$zcat config.gz &gt; .config
+</code></pre><p>##配置、编译内核</p>
+<p>###修改内核源码makefile ARCH类型和编译器路径<br>$vi Makefile +195<br>找到以上类似代码，改为</p>
+<pre><code>ARCH        ?= arm
+CROSS_COMPILE    ?= ../tools/arm-bcm2708/arm-bcm2708hardfp-linux-gnueabi/bin/arm-bcm2708hardfp-linux-gnueabi-
+</code></pre><p>###查看、修改配置选项<br>    $make menuconfig</p>
+<p>如果不做修改，直接选中exit即可（注意使用键盘操作）</p>
+<p>###编译内核镜像<br>    $make<br>在arch/arm/boot目录下可以看到一个叫zImage的文件，就是我们新的内核</p>
+<p>但是树莓派需要另外一种格式的镜像，需要进行处理一下，执行以下命令</p>
+<pre><code>$cd tools/mkimage
+
+$./imagetool-uncompressed.py ../../linux/arch/arm/boot/zImage
+</code></pre><p>即可在当前文件夹下看到一个叫：kernel.img的文件，就是我们需要的新内核了</p>
+<p>###提取modules<br>上一步其实不但编译出来了内核的源码，一些模块文件也编译出来了，这里我们提取一下</p>
+<pre><code>$cd raspberrypi_src
+$mkdir modules
+$cd linux
+$ make modules_install INSTALL_MOD_PATH=../modules
+</code></pre><p>即可在modules得到我们需要的模块文件</p>
+<p>##升级RPi的kernel、Firmware、lib<br>将SD卡拔下插在电脑上（可使用读卡器）</p>
+<p>###升级内核<br>将新编好的内核拷入SD卡，改名为：kernel_new.img<br>打开boot目录下<br>找到config.txt文件，加入：kernel=kernel_new.img这一行</p>
+<p>###升级boot<br>将firmware/boot/目录下 以下文件拷入SD卡boot目录：fbootcode.bin fixup.dat fixup_cd.dat start.elf</p>
+<p>###更新vc库及内核modules<br>编译出来的modules/lib/modules拷入树莓派文件系统/lib下</p>
 
       
     </div>
@@ -354,11 +376,11 @@
 
 
   
-    <article id="post-FileZillaFTP使用教程" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-poky-raspbian开发" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/12/19/FileZillaFTP使用教程/" class="article-date">
-      <time datetime="2016-12-19T13:20:34.000Z" itemprop="datePublished">2016-12-19</time>
+      <a href="/2017/01/21/poky-raspbian开发/" class="article-date">
+      <time datetime="2017-01-21T09:10:37.000Z" itemprop="datePublished">2017-01-21</time>
 </a>
     </div>
   
@@ -371,7 +393,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/19/FileZillaFTP使用教程/">FileZillaFTP使用教程</a>
+      <a class="article-title" href="/2017/01/21/poky-raspbian开发/">poky raspbian开发</a>
     </h1>
   
 
@@ -381,472 +403,830 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><img src="http://ohjvpki1b.bkt.clouddn.com/FileZillaFTP1.png" alt="s"></p>
-<p>FileZillaServer.exe服务启动和关闭程序</p>
-<p>FileZilla Server Interface.exe 服务  管理程序  配置ftp服务器的用户名，密码，目录，目录读写权限</p>
-<p>启动FileZillaServer后点击FileZilla Server Interface.exe  默认配置  点确定   用于映射本地端口  连接的时候使用默认FTP端口</p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/FileZillaFTP2.png" alt="s"></p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/FileZillaFTP3.png" alt="s"></p>
-<p>Logged on表示登陆成功</p>
-<p>点击人头图标，配置服务器选项</p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/FileZillaFTP4.png" alt="s"></p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/FileZillaFTP5.png" alt="s"></p>
-<p>设置完毕后直接点击确定，使配置生效。</p>
-<p>客户端连接设置</p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/FileZillaFTP6.png" alt="s"></p>
-<p>关掉FileZilla Server Interface配置程序后，只要后台服务还在运行，FTP服务器就可以连接</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Android手机刷recovery" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/12/19/Android手机刷recovery/" class="article-date">
-      <time datetime="2016-12-19T13:19:11.000Z" itemprop="datePublished">2016-12-19</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/19/Android手机刷recovery/">Android手机刷recovery</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>##以前觉得android刷机是件很麻烦的事，现在倒不觉得了。</p>
-<p>&emsp;只要手机刷入第三方的recovery，一切都好办了，无论是<code>root</code>还是刷<code>google play</code>。</p>
-<p>&emsp;recovery开源的有两大阵营，<code>twrp</code>和<code>cwm</code>。</p>
-<p><a href="https://github.com/TeamWin/Team-Win-Recovery-Project" target="_blank" rel="external">TWRP GitHub</a></p>
-<p><a href="http://teamw.in/project/twrp2/" target="_blank" rel="external">TWRP下载</a></p>
-<p>查找适合你手机机型的recovery</p>
-<p><a href="https://twrp.me/Devices/" target="_blank" rel="external">https://twrp.me/Devices/</a></p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/twrp_recovery.png" alt="Search"></p>
-<p>CyanogenMod源码中附带CWM源码,使用CyanogenMod可生成recovery镜像文件。</p>
-<p>找到适合自己机型的recovery后，手机进入fastboot模式(手机都有这个模式，进入该模式方法不一样而已)，数据线链接电脑，装好驱动，在Android工具目录下执行以下指令。</p>
-<pre><code>fastboot flash recovery recovery.img
-</code></pre><p>成功后会显示，成功提示。</p>
-<p>然后点电源键强制关机，后重启，进入recover模式。然后就可以刷任何<code>zip</code>文件了</p>
-<p>##补充</p>
-<p>有些手机可能还需要解锁</p>
-<p>可以参考我另一篇文章</p>
-<p><a href="http://www.cnblogs.com/QUSIR/p/6179506.html" target="_blank" rel="external">http://www.cnblogs.com/QUSIR/p/6179506.html</a></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-mediastreamer" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/12/19/mediastreamer/" class="article-date">
-      <time datetime="2016-12-19T13:05:15.000Z" itemprop="datePublished">2016-12-19</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/19/mediastreamer/">mediastreamer使用教程</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>#mediastreamer使用教程</p>
-<p>##1.各个函数功能简介<br><code>ms_filter_destroy</code> 释放filter资源</p>
-<p><code>ms_ticker_destroy</code>释放ticker</p>
-<p>说明：ticker为定时器线程，每隔10ms执行一次</p>
-<p><code>ms_filter_new</code>创建filter，传进参数为filter的ID</p>
-<p><code>ms_connection_helper_start</code>拿到filter链接起始位置</p>
-<p><code>ms_connection_helper_link</code>链接filter</p>
-<p><code>ms_filter_link</code>链接filter</p>
-<p><code>ms_ticker_new</code>创建ticker</p>
-<p>ticker说明：</p>
-<p>ticker是属于一个线程不能够运行两个阻塞式的过程，比如socks的发送与接收，必须将<br>发送和接收放在filter线程里面。</p>
-<p><code>ms_ticker_set_name</code>设置ticker名称</p>
-<p><code>ms_ticker_attach</code>将ticker附加到线程中</p>
-<p><code>ms_ticker_detach</code>去掉ticker</p>
-<p><code>ms_connection_helper_unlink</code>去掉filter链接</p>
-<p><code>ms_filter_unlink</code> 去掉filter链接</p>
-<p><code>ms_new filter</code>数据结构创建</p>
-<p><code>ms_free</code> 数据结构数据释放</p>
-<p><code>ms_queue_get(f-&gt;inpputs[0])</code>获取filter数据</p>
-<p><code>msgdsize</code>获取filter里面数据长度</p>
-<p><code>ms_queue_put(f-&gt;outputs[0],om)</code>往filter里面塞数据</p>
-<p><code>freemsg</code>释放filter数据</p>
-<p><code>ms_thread_join</code>在filter里面创建线程</p>
-<p><code>ms_filter_call_method</code>往filter里面发送数据</p>
-<p>##2.创建filter过程</p>
-<p>###2.1在Allfilters.h里面添加filter的ID</p>
-<p>###2.2在Alldescs.h里面添加filter结构体变量</p>
-<p>###2.3在实现filter的源文件里面添加相关头文件</p>
-<pre><code>#include &quot;msfilter.h&quot;
-#include &quot;msticker.h&quot;
-</code></pre><p>###2.4.一个标准的filter过程</p>
-<pre><code>#include &quot;msfilter.h&quot;
-#include &quot;msticker.h&quot;
-
-static void enc_init(MSFilter *f){
-
-}
-
-static void enc_uninit(MSFilter *f){
-
-}
-
-static void enc_preprocess(MSFilter *f)
-{
-}
-
-static void enc_process(MSFilter *f){
-
-
-}
-
-static void enc_postprocess(MSFilter *f){
-}
-
-static MSFilterMethod enc_methods[]={
-        {0,NULL}
-};
-
-MSFilterDesc ms_amr_enc_desc={
-        MS_AMR_ENCODER_ID, //filter ID
-        &quot;amrEnc&quot;,  //filter名称
-        &quot;amr encoder&quot;,
-        MS_FILTER_ENCODER,  //filter类型MS_FILTER_OTHER 其他,
-                            //MS_FILTER_ENCODER 编码器,
-                            //MS_FILTER_DECODER 解码器
-        &quot;amr&quot;,
-        1,
-        1,
-        enc_init,   //初始化操作
-        enc_preprocess,  //预初始化操作
-        enc_process,   //处理过程
-        enc_postprocess,  //预结束操作
-        enc_uninit,  //结束操作
-        enc_methods  //程序模块方法，用于参数传递
-};
-
-
-static void dec_init(MSFilter *f){
-
-}
-
-static void dec_uninit(MSFilter *f){
-
-}
-
-static void dec_preprocess(MSFilter *f){
-}
-
-static void dec_postprocess(MSFilter *f){
-}
-
-static void dec_process(MSFilter *f){
-
-}
-
-static MSFilterMethod dec_methods[]={
-        {0,NULL}
-};
-
-MSFilterDesc ms_amr_dec_desc={
-        MS_AMR_DECODER_ID,
-        &quot;amrDec&quot;,
-        &quot;amr decoder&quot;,
-        MS_FILTER_DECODER,
-        &quot;amr&quot;,
-        1,
-        1,
-        dec_init,
-        dec_preprocess,
-        dec_process,
-        dec_postprocess,
-        dec_uninit,
-        dec_methods
-};
-
-MS_FILTER_DESC_EXPORT(ms_amr_dec_desc)
-MS_FILTER_DESC_EXPORT(ms_amr_enc_desc)
-</code></pre><p>##3.替换编码器</p>
-<p>将原来silk编码器换为amr编码器</p>
-<p>###3.1创建amr的filter</p>
-<pre><code>stream-&gt;decoder=ms_filter_new(MS_AMR_DECODER_ID);
-</code></pre><p>###3.2链接编码filter</p>
-<pre><code>ms_filter_link(stream-&gt;tcpRecv,0,stream-&gt;decoder,0);
-</code></pre><p>##4.filter创建注意事项</p>
-<p>###4.1 filter里面数据流要对应</p>
-<pre><code>MSFilterDesc ms_amr_dec_desc={
-        MS_AMR_DECODER_ID,
-        &quot;amrDec&quot;,
-        &quot;amr decoder&quot;,
-        MS_FILTER_DECODER,
-        &quot;amr&quot;,
-        1,  //进
-        1,  //出
-        dec_init,
-        dec_preprocess,
-        dec_process,
-        dec_postprocess,
-        dec_uninit,
-        dec_methods
-};
-</code></pre><p>以上是编码器filter,是一进一出，原始数据进去出来编码后的数据。</p>
-<pre><code>MSFilterDesc ms_tcpclient_send_desc={
-        MS_TCP_SEND_ID,
-        &quot;TcpClientSend&quot;,
-        &quot;TcpClient_Send&quot;,
-        MS_FILTER_OTHER,
-        &quot;tcpclient&quot;,
-        1,  //进
-        0,  //出
-        tcp_send_init,
-        tcp_send_preprocess,
-        tcp_send_process,
-        tcp_send_postprocess,
-        tcp_send_uninit,
-        tcpclient_send_methods
-};
-</code></pre><p>以上是TCP数据发送filter，只有进没有出，数据进来之后都发送数据都发送出去了</p>
-<p>###4.2 filter里面new的结构体数据要记得free</p>
-<p>##5.例子：一个音频流启动过程</p>
-<pre><code>#include &quot;mediastreamer/audiostream.h&quot;
-#include &quot;rtpsession.h&quot;
-#include &quot;mediastreamer/msrtp.h&quot;
-#include &quot;mediastreamer/mssndcard.h&quot;
-#include &quot;mediastreamer/msvolume.h&quot;
-#include&quot;mediastreamer/TcpClientFilter.h&quot;
-#include &lt;signal.h&gt;
-#include &lt;stdio.h&gt;
-
-static ms_mutex_t stream_mutex;
-
-//初始化结构体数据
-AudioStream* audio_stream_new() {
-    AudioStream *stream = (AudioStream *)ms_new0 (AudioStream, 1);
-    return stream;
-}
-//释放音频流
-void audio_stream_free(AudioStream *stream) {
-
-    if(stream-&gt;source!=NULL)
-        ms_filter_destroy(stream-&gt;source);
-    if(stream-&gt;encoder!=NULL)
-        ms_filter_destroy(stream-&gt;encoder);
-
-        if(stream-&gt;tcpSend!=NULL)
-                ms_filter_destroy(stream-&gt;tcpSend);
-        if(stream-&gt;tcpRecv!=NULL)
-                ms_filter_destroy(stream-&gt;tcpRecv);
-        if(stream-&gt;dest!=NULL)
-                ms_filter_destroy(stream-&gt;dest);
-
-        if(stream-&gt;ticker!=NULL)
-        {
-                printf(&quot;ms_ticker_destroy begin r 41\n&quot;);
-        ms_ticker_destroy(stream-&gt;ticker);
-                printf(&quot;ms_ticker_destroy end  r43 audiostream.c \n&quot;);
-        }
-
-
-    ms_free(stream);
-        ms_mutex_destroy(&amp;stream_mutex);
-        printf(&quot;ms_free(stream) end \n&quot;);
-}
-
-#define payload_type_set_number2(pt,n)    (pt)-&gt;user_data=(void*)((long)n);
-static void dp_set_payload_type(PayloadType *const_pt, int number, const char *recv_fmtp)
-{
-    payload_type_set_number2(const_pt, number);
-
-    rtp_profile_set_payload(&amp;av_profile,number,const_pt);
-}
-//启动音频流
-int audio_stream_start(AudioStream *stream,char* SeverIp, int SeverPort, char (*localSessionID)[4], char (*remoteSessioID)[4]){
-
-
-        ms_mutex_init(&amp;stream_mutex,NULL);
-        ms_mutex_lock(&amp;stream_mutex);
-    if(stream==NULL)
-        {
-            ms_mutex_unlock(&amp;stream_mutex);
-            return -1;
-        }
-
-        stream-&gt;decoder=ms_filter_new(MS_AMR_DECODER_ID);
-        if(stream-&gt;decoder==NULL){
-                        return -1;
-        }
-
-        stream-&gt;encoder=ms_filter_new(MS_AMR_ENCODER_ID);
-        if(stream-&gt;encoder==NULL){
-                        return -2;
-        }
-
-        stream-&gt;tcpSend=ms_filter_new(MS_TCP_SEND_ID);
-        if(stream-&gt;tcpSend==NULL){
-                ms_mutex_unlock(&amp;stream_mutex);
-                return -9;
-        }
-
-        ms_filter_call_method(stream-&gt;tcpSend,MS_TCP_SEND_SET_LOCAL_FRAG,localSessionID[0]);
-        ms_filter_call_method(stream-&gt;tcpSend,MS_TCP_SEND_SET_REMOTE_FRAG,remoteSessioID[0]);
-        if(ms_filter_call_method(stream-&gt;tcpSend,MS_TCP_SEND_LOGIN,0)!=0){
-                printf(&quot;audiostream.c::audio_stream_start_call - TcpSendFilter fail to login\n&quot;);
-                ms_mutex_unlock(&amp;stream_mutex);
-                return -19;
-        }
-
-        stream-&gt;tcpRecv=ms_filter_new(MS_TCP_READ_ID);
-        if(stream-&gt;tcpRecv==NULL){
-                ms_mutex_unlock(&amp;stream_mutex);
-                return -10;
-        }
-        printf(&quot;audiostream.c::audio_stream_start_call - local:%02x%02x%02x%02x remote:%02x%02x%02x%02x&quot;,localSessionID[1][0]&amp;0xff,localSessionID[1][1]&amp;0xff,localSessionID[1][2]&amp;0xff,localSessionID[1][3]&amp;0xff,
-                  remoteSessioID[1][0]&amp;0xff,remoteSessioID[1][1]&amp;0xff,remoteSessioID[1][2]&amp;0xff,remoteSessioID[1][3]&amp;0xff);
-        ms_filter_call_method(stream-&gt;tcpRecv,MS_TCP_READ_SET_LOCAL_FRAG,localSessionID[1]);
-        ms_filter_call_method(stream-&gt;tcpRecv,MS_TCP_READ_SET_REMOTE_FRAG,remoteSessioID[1]);
-        if(ms_filter_call_method(stream-&gt;tcpRecv,MS_TCP_READ_LOGIN,0)!=0){
-                printf(&quot;audiostream.c::audiio_stream_start_call - TcpReadFilter fail to login\n&quot;);
-                ms_mutex_unlock(&amp;stream_mutex);
-                return -20;
-        }
-
-        stream-&gt;source=ms_filter_new(MS_LINUX_SOUND_READ_ID);
-        if(stream-&gt;source==NULL){
-                ms_mutex_unlock(&amp;stream_mutex);
-                return -2;
-        }
-
-        stream-&gt;dest=ms_filter_new(MS_LINUX_SOUND_WRITE_ID);
-        if(stream-&gt;dest==NULL){
-                ms_mutex_unlock(&amp;stream_mutex);
-                return -8;
-        }
-
-        ms_filter_link(stream-&gt;tcpRecv,0,stream-&gt;decoder,0);
-        ms_filter_link(stream-&gt;decoder,0,stream-&gt;dest, 0);
-        ms_filter_link(stream-&gt;source,0,stream-&gt;encoder,0);
-        ms_filter_link(stream-&gt;encoder,0,stream-&gt;tcpSend,0);
-
-        stream-&gt;ticker = ms_ticker_new();
-        if(stream-&gt;ticker==NULL){
-                ms_mutex_unlock(&amp;stream_mutex);
-                return -6;
-        }
-
-        ms_ticker_set_name(stream-&gt;ticker,&quot;Audio MSTicker&quot;);
-
-        ms_ticker_attach(stream-&gt;ticker, stream-&gt;source);
-
-        ms_ticker_attach(stream-&gt;ticker, stream-&gt;tcpRecv);
-
-        ms_mutex_unlock(&amp;stream_mutex);
-    return 0;
-}
-//关闭音频流
-void audio_stream_stop(AudioStream *stream) {
-        /* detach */
-
-        ms_mutex_lock(&amp;stream_mutex);
-
-        int i=0;
-
-        if(stream-&gt;ticker != NULL &amp;&amp; stream-&gt;source!=NULL)
-                ms_ticker_detach(stream-&gt;ticker, stream-&gt;source);
-
-        if(stream-&gt;ticker != NULL &amp;&amp; stream-&gt;tcpRecv!=NULL)
-                   ms_ticker_detach(stream-&gt;ticker,stream-&gt;tcpRecv);
-
-        if(stream-&gt;tcpRecv!=NULL &amp;&amp; stream-&gt;decoder!=NULL)
-                ms_filter_unlink(stream-&gt;tcpRecv, 0, stream-&gt;decoder, 0);
-
-
-        if(stream-&gt;decoder!=NULL &amp;&amp; stream-&gt;dest!=NULL)
-                ms_filter_unlink(stream-&gt;decoder, 0, stream-&gt;dest, 0);
-
-        if(stream-&gt;source!=NULL &amp;&amp; stream-&gt;encoder!=NULL)
-                ms_filter_unlink(stream-&gt;source, 0, stream-&gt;encoder, 0);
-
-        if(stream-&gt;encoder!=NULL &amp;&amp; stream-&gt;tcpSend!=NULL)
-        {
-                printf(&quot;ms_filter_unlink(stream-&gt;encoder, 0, stream-&gt;tcpSend, 0) \n\n&quot;);
-                ms_filter_unlink(stream-&gt;encoder, 0, stream-&gt;tcpSend, 0);
-        }
-
-        /* destroy filter */
-        ms_mutex_unlock(&amp;stream_mutex);
-        audio_stream_free(stream);
-        printf(&quot;audio_stream_stop 10\n&quot;);
-}
+        <p>##安基本包</p>
+<p>Ubuntu and Debian</p>
+<pre><code>$ sudo apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib \
+build-essential chrpath socat libsdl1.2-dev xterm
+</code></pre><p>Fedora</p>
+<pre><code>$ sudo dnf install gawk make wget tar bzip2 gzip python3 unzip perl patch \
+diffutils diffstat git cpp gcc gcc-c++ glibc-devel texinfo chrpath \
+ccache perl-Data-Dumper perl-Text-ParseWords perl-Thread-Queue perl-bignum socat \
+findutils which SDL-devel xterm
+</code></pre><p>OpenSUSE</p>
+<pre><code>$ sudo zypper install python gcc gcc-c++ git chrpath make wget python-xml \
+diffstat makeinfo python-curses patch socat libSDL-devel xterm
+</code></pre><p>CentOS</p>
+<pre><code>$ sudo yum install gawk make wget tar bzip2 gzip python unzip perl patch \
+diffutils diffstat git cpp gcc gcc-c++ glibc-devel texinfo chrpath socat \
+perl-Data-Dumper perl-Text-ParseWords perl-Thread-Queue SDL-devel xterm
+</code></pre><p>##同步poky源代码<br>    git clone <a href="https://git.yoctoproject.org/git/poky" target="_blank" rel="external">https://git.yoctoproject.org/git/poky</a><br>进入poky目录同步树莓派代码</p>
+<pre><code>git clone https://git.yoctoproject.org/git/meta-raspberrypi
+</code></pre><p>##初始化环境<br>    source oe-init-build-env raspberrypi</p>
+<p>说明：指定目录raspberrypi</p>
+<p>##编辑配置文件</p>
+<pre><code>vim ./conf/local.conf 
+</code></pre><p>将</p>
+<pre><code>MACHINE ??= &quot;raspberrypi2&quot;
+</code></pre><p>注释</p>
+<pre><code>#PACKAGECONFIG_append_pn-qemu-native = &quot; sdl&quot;
+#PACKAGECONFIG_append_pn-nativesdk-qemu = &quot; sdl&quot;
+#ASSUME_PROVIDED += &quot;libsdl-native&quot;
+</code></pre><p>文件末尾增加<br>    GPU_MEN = “16”</p>
+<p>说明：16为CPU核数</p>
+<pre><code>vim ./conf/bblayers.conf
+</code></pre><p>修改成以下</p>
+<pre><code>BBLAYERS ?= &quot; \
+  /home/gsta/liang/poky/meta \
+  /home/gsta/liang/poky/meta-yocto \
+  /home/gsta/liang/poky/meta-yocto-bsp \
+  /home/gsta/liang/poky/meta-raspberrypi \
+  &quot;
+##增加树莓派目录
+BBLAYERS_NON_REMOVABLE ?= &quot; \
+  /home/gsta/liang/poky/meta \
+  /home/gsta/liang/poky/meta-yocto \
+  &quot;
+</code></pre><p>##生成<br>    bitbake rpi-basic-image</p>
+<p>注意：同步过程很漫长，同步过程中一定要开启git代理和终端代理</p>
+<p>整个同步下来大概有18G</p>
+<p>##错误处理</p>
+<pre><code>bitbake complains if run as root
+
+root@eb4b9143265d:/work/build-test01# bitbake -k core-image-sato
+ERROR:  OE-core&apos;s config sanity checker detected a potential misconfiguration.
+    Either fix the cause of this error or at your own risk disable the checker (see sanity.conf).
+    Following is the list of potential problems / advisories:
+
+    Do not use Bitbake as root.
+ERROR: Execution of event handler &apos;check_sanity_eventhandler&apos; failed
+ERROR: Command execution failed: Exited with 1
+
+Summary: There were 3 ERROR messages shown, returning a non-zero exit code.
+root@eb4b9143265d:/work/build-test01#
+Workaround:
+
+$ touch conf/sanity.conf
 </code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-poky-raspbian教程" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/01/21/poky-raspbian教程/" class="article-date">
+      <time datetime="2017-01-21T09:09:05.000Z" itemprop="datePublished">2017-01-21</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/21/poky-raspbian教程/">poky raspbian教程</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="快速链接"><a href="#快速链接" class="headerlink" title="快速链接"></a>快速链接</h1><p>Git仓库web前端：<br>    <a href="http://git.yoctoproject.org/cgit/cgit.cgi/meta-raspberrypi/" target="_blank" rel="external">http://git.yoctoproject.org/cgit/cgit.cgi/meta-raspberrypi/</a><br>邮件列表（yocto邮件列表）：<br>    yocto@yoctoproject.org<br>问题管理（Github问题）：<br>    <a href="https://github.com/agherzan/meta-raspberrypi/issues" target="_blank" rel="external">https://github.com/agherzan/meta-raspberrypi/issues</a></p>
+<h1 id="内容："><a href="#内容：" class="headerlink" title="内容："></a>内容：</h1><p>1.说明<br>Yocto BSP层 - 树莓派<br>    2.A. 如何使用它<br>    2.B. 图片<br>3.可选构建配置<br>    3.A. 压缩的部署文件<br>    3.B. GPU内存<br>    3.C. 添加购买的许可编解码器<br>    3.D. 禁用过扫描<br>    3.E. 设置超频选项<br>    3.F. 视频摄像机支持V4L2驱动程序<br>    3.G. 启用离线合成支持<br>    3.H. 在控制台支持上启用kgdb<br>    3.I. 引导到U-Boot<br>    3.J. 图像与Initramfs<br>    3.K. 设备树支持<br>    3.L. 使能SPI总线<br>    3.M. 使能I2C<br>    3.N. 启用PiTFT支持<br>    3.O. 启用UART支持<br>4.额外的应用程序<br>    4.A. omxplayer<br>5.板卡配置<br>    5.A. 音频路由<br>源代码和镜像<br>7.贡献<br>    7.A. 邮件列表<br>    7.B. Github问题<br>8.维护人员</p>
+<h1 id="1-说明"><a href="#1-说明" class="headerlink" title="1.说明"></a>1.说明</h1><p>这是RaspberryPi设备的通用硬件特定BSP覆盖。</p>
+<p>更多信息，请访问：<br>                   <a href="http://www.raspberrypi.org/（官方网站）" target="_blank" rel="external">http://www.raspberrypi.org/（官方网站）</a></p>
+<p>meta-raspberrypi的核心BSP部分应该与不同的工作<br>OpenEmbedded / Yocto分布和层堆栈，例如：</p>
+<ul>
+<li>Distro-less（仅适用于OE-Core）。</li>
+<li>Angstrom。</li>
+<li>Yocto / Poky（测试的主要焦点）。</li>
+</ul>
+<h1 id="Yocto-BSP层-树莓派"><a href="#Yocto-BSP层-树莓派" class="headerlink" title="Yocto BSP层 - 树莓派"></a>Yocto BSP层 - 树莓派</h1><p>此图层取决于：</p>
+<p>URI：git：//git.yoctoproject.org/poky<br>branch：master<br>修订：HEAD</p>
+<p>URI：git：//git.openembedded.org/meta-openembedded<br>层：元 - 元，元多媒体<br>branch：master<br>修订：HEAD</p>
+<h1 id="2-A-如何使用它"><a href="#2-A-如何使用它" class="headerlink" title="2.A. 如何使用它"></a>2.A. 如何使用它</h1><p>一个。source poky / oe-init-build-env rpi-build<br>b。将所需的图层添加到bblayers.conf：</p>
+<pre><code>-  meta-raspberrypi
+</code></pre><p>C。将local.conf中的MACHINE设置为所支持的主板之一：</p>
+<pre><code>-  raspberrypi
+-  raspberrypi0
+-  raspberrypi2
+-  raspberrypi3
+</code></pre><p>d。bitbake rpi-hwup-image<br>e。dd到SD卡生成的sdimg文件（如果使用rpi-sdimg.xz，请使用xzcat）<br>F。启动RPI。</p>
+<p>2.B. 图片</p>
+<ul>
+<li>===========</li>
+</ul>
+<ul>
+<li>rpi-hwup-image<br>  硬件图像</li>
+<li>rpi-basic-image<br>  基于rpi-hwup-image和一些添加的功能（例如：splash）</li>
+<li>rpi-test-image<br>  基于rpi-basic-image的图像，其中包含了大部分的包<br>  层和一些媒体样本。</li>
+</ul>
+<h1 id="3-可选构建配置"><a href="#3-可选构建配置" class="headerlink" title="3.可选构建配置"></a>3.可选构建配置</h1><p>存在一组用户可以影响构建的不同参数的方式。<br>我们在这里列出与这个BSP密切相关或特定于它的那些。对于其余的<br>请检查：http：//www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html</p>
+<h1 id="3-A-压缩的部署文件"><a href="#3-A-压缩的部署文件" class="headerlink" title="3.A. 压缩的部署文件"></a>3.A. 压缩的部署文件</h1><p>1.在local.conf中覆盖IMAGE_FSTYPES<br>    IMAGE_FSTYPES =“tar.bz2 ext3.xz”<br>2.在local.conf中覆盖SDIMG_ROOTFS_TYPE<br>    SDIMG_ROOTFS_TYPE =“ext3.xz”<br>3.在local.conf中覆盖SDIMG_COMPRESSION<br>    SDIMG_COMPRESSION =“xz”<br>*容纳以上的值到您自己的需要（例如：ext3 / ext4）。</p>
+<h1 id="3-B-GPU内存"><a href="#3-B-GPU内存" class="headerlink" title="3.B. GPU内存"></a>3.B. GPU内存</h1><p>变量：详细信息<br>GPU_MEM：GPU内存（兆字节）。设置ARM和之间的内存分割<br>              GPU。ARM获取剩余的内存。最小16.默认64。<br>GPU_MEM_256：256MB Raspberry Pi的GPU内存（兆字节）。忽略了<br>              512MB RP。覆盖gpu_mem。Max 192.默认值未设置。<br>GPU_MEM_512：512MB Raspberry Pi的GPU内存（兆字节）。忽略了<br>              256MB RP。覆盖gpu_mem。默认值未设置。<br>GPU_MEM_1024：1024MB Raspberry Pi的GPU内存（兆字节）。忽略了<br>              256MB / 512MB RP。覆盖gpu_mem。最大944.默认值未设置。</p>
+<h1 id="3-C-添加购买的许可证编解码器"><a href="#3-C-添加购买的许可证编解码器" class="headerlink" title="3.C. 添加购买的许可证编解码器"></a>3.C. 添加购买的许可证编解码器</h1><p>要添加您自己的许可，请使用变量KEY_DECODE_MPG2和KEY_DECODE_WVC1<br>local.conf。例：<br>KEY_DECODE_MPG2 =“12345678”<br>KEY_DECODE_WVC1 =“12345678”<br>您可以提供更多许可证（以逗号分隔）。例：<br>KEY_DECODE_WVC1 =“0x12345678,0xabcdabcd，0x87654321”</p>
+<h1 id="3-D-禁用过扫描"><a href="#3-D-禁用过扫描" class="headerlink" title="3.D. 禁用过扫描"></a>3.D. 禁用过扫描</h1><p>默认情况下，GPU在视频输出周围添加一个黑色边框以补偿<br>切断图像的一部分的电视。要禁用此设置此变量<br>local.conf：<br>DISABLE_OVERSCAN =“1”</p>
+<h1 id="3-E-设置超频选项"><a href="#3-E-设置超频选项" class="headerlink" title="3.E. 设置超频选项"></a>3.E. 设置超频选项</h1><p>Raspberry PI可以超频。到现在超频到“涡轮<br>模式“由raspbery正式支持，不会失去保修。<br>检查config.txt有关选项和模式的详细描述。例：<br>＃Turbo模式<br>ARM_FREQ =“1000”<br>CORE_FREQ =“500”<br>SDRAM_FREQ =“500”<br>OVER_VOLTAGE =“6”</p>
+<h1 id="3-F-视频摄像机支持V4L2驱动程序"><a href="#3-F-视频摄像机支持V4L2驱动程序" class="headerlink" title="3.F. 视频摄像机支持V4L2驱动程序"></a>3.F. 视频摄像机支持V4L2驱动程序</h1><p>设置此变量以启用对摄像机的支持（需要Linux 3.12.4+）<br>VIDEO_CAMERA =“1”</p>
+<h1 id="3-G-启用离线合成支持"><a href="#3-G-启用离线合成支持" class="headerlink" title="3.G. 启用离线合成支持"></a>3.G. 启用离线合成支持</h1><p>设置此变量以启用对dispmanx脱机合成的支持<br>DISPMANX_OFFLINE =“1”</p>
+<p>这将使固件回退到离线合成<br>Dispmanx元素。通常，在扫描期间，在线完成合成，<br>但不能处理太多的元素。当离线启用时，屏幕外<br>缓冲区被分配用于合成。当场景复杂度（数量和大小<br>的元素）高，合成将发生离线进入缓冲区。</p>
+<p>大力推荐Wayland / Weston。</p>
+<p>参见：http：//wayland.freedesktop.org/raspberrypi.html</p>
+<h1 id="3-H-在控制台支持上启用kgdb"><a href="#3-H-在控制台支持上启用kgdb" class="headerlink" title="3.H. 在控制台支持上启用kgdb"></a>3.H. 在控制台支持上启用kgdb</h1><p>要将kdbg控制台（kgdboc）参数添加到内核命令行，<br>在local.conf中设置此变量：<br>ENABLE_KGDB =“1”</p>
+<h1 id="3-I-引导到U-Boot"><a href="#3-I-引导到U-Boot" class="headerlink" title="3.I. 引导到U-Boot"></a>3.I. 引导到U-Boot</h1><p>要使u-boot加载内核映像，请在local.conf中设置<br>KERNEL_IMAGETYPE =“uImage”</p>
+<p>这将使kernel.img是u-boot映像，这将加载uImage。<br>默认情况下，kernel.img是实际的内核映像（例如Image）。</p>
+<h1 id="3-J-图像与Initramfs"><a href="#3-J-图像与Initramfs" class="headerlink" title="3.J. 图像与Initramfs"></a>3.J. 图像与Initramfs</h1><p>要构建initramfs映像：<br>    *设置这3个内核变量（例如在linux-raspberrypi.inc中）</p>
+<pre><code>    -  kernel_configure_variable BLK_DEV_INITRD y
+    -  kernel_configure_variable INITRAMFS_SOURCE“”
+    -  kernel_configure_variable RD_GZIP y
+*设置yocto变量（例如在linux-raspberrypi.inc中）
+    - INITRAMFS_IMAGE =“ ”
+    -  INITRAMFS_IMAGE_BUNDLE =“1”
+*设置meta-rasberrypi变量（例如，在raspberrypi.conf中）
+    -  KERNEL_INITRAMFS =“-initramfs”
+</code></pre><h1 id="3-K-设备树支持"><a href="#3-K-设备树支持" class="headerlink" title="3.K. 设备树支持"></a>3.K. 设备树支持</h1><p>仅当使用linux-raspberrypi 3.18+时，才支持RPi的设备树<br>内核。</p>
+<pre><code>*设置KERNEL_DEVICETREE（在conf / machine / raspberrypi.conf中）
+    - 在内核安装任务之前将预告片添加到内核映像。
+      在创建SDCard映像时，将修改此内核
+      引导分区（作为kernel.img）以及DeviceTree blob（.dtb文件）。
+</code></pre><p>注意：对于内核&gt; = 3.18，始终禁用KERNEL_DEVICETREE<br>      较老的内核版本。</p>
+<h1 id="3-L-使能SPI总线"><a href="#3-L-使能SPI总线" class="headerlink" title="3.L. 使能SPI总线"></a>3.L. 使能SPI总线</h1><p>当使用设备树内核时，设置此变量以启用SPI总线<br>ENABLE_SPI_BUS =“1”</p>
+<h1 id="3-M-使能I2C"><a href="#3-M-使能I2C" class="headerlink" title="3.M. 使能I2C"></a>3.M. 使能I2C</h1><p>当使用设备树内核时，设置此变量以启用I2C<br>ENABLE_I2C =“1”</p>
+<h1 id="3-N-启用PiTFT支持"><a href="#3-N-启用PiTFT支持" class="headerlink" title="3.N. 启用PiTFT支持"></a>3.N. 启用PiTFT支持</h1><p>使用PiTFT屏幕的基本支持可以通过添加启用<br>下面在local.conf中：</p>
+<p>MACHINE_FEATURES + =“pitft”</p>
+<ul>
+<li>这将启用SPI总线和i2c设备树，它也将设置<br>控制台的framebuffer和PiTFT上的x服务器。</li>
+</ul>
+<p>注意：为了使这个工作，PiTFT模型的叠加必须构建，<br>      添加和指定（dtoverlay = 在config.txt）</p>
+<p>以下是在meta-raspberrypi中当前支持的PiTFT模型的列表，<br>模型名应该作为MACHINE_FEATURES在local.conf中添加，如下所示：</p>
+<pre><code>-  MACHINE_FEATURES + =“pitft “。
+</code></pre><p>当前支持的型号列表：</p>
+<pre><code>-  pitft22
+-  pitft28r
+</code></pre><h1 id="3-O-启用UART"><a href="#3-O-启用UART" class="headerlink" title="3.O. 启用UART"></a>3.O. 启用UART</h1><p>默认情况下，RaspberryPi 1，2和CM将启用UART控制台。</p>
+<p>RaspberryPi 3没有默认启用UART，因为这需要一个<br>固定核心频率和enable_uart将其设置为最小。某些<br>操作 -  60fps h264解码，高质量去隔行 - 这不是<br>在ARM上执行可能会受到影响，我们不想这样对用户<br>谁不想使用串口。需要串口控制台支持的用户<br>RaspberryPi3必须在local.conf中明确设置：ENABLE_UART =“1”。</p>
+<p>参考：https：//github.com/raspberrypi/firmware/issues/553<br>      <a href="https://github.com/RPi-Distro/repo/issues/22" target="_blank" rel="external">https://github.com/RPi-Distro/repo/issues/22</a></p>
+<h1 id="4-额外的应用程序"><a href="#4-额外的应用程序" class="headerlink" title="4.额外的应用程序"></a>4.额外的应用程序</h1><h1 id="4-A-omxplayer"><a href="#4-A-omxplayer" class="headerlink" title="4.A. omxplayer"></a>4.A. omxplayer</h1><p>omxplayer取决于具有商业许可证的libav。所以为了成为<br>能够编译omxplayer你将需要whiteflag商业许可证<br>添加到local.conf：<br>LICENSE_FLAGS_WHITELIST =“commercial”</p>
+<h1 id="5-板卡配置"><a href="#5-板卡配置" class="headerlink" title="5.板卡配置"></a>5.板卡配置</h1><h1 id="5-A-音频路由"><a href="#5-A-音频路由" class="headerlink" title="5.A. 音频路由"></a>5.A. 音频路由</h1><p>加载音频驱动程序</p>
+<pre><code>modprobe snd-bcm2835
+</code></pre><p>测试音频播放</p>
+<pre><code>例如aplay test.wav
+</code></pre><p>请注意，如果没有连接HDMI，则会从3.5英寸插孔连接器发出音频<br>如预期。但是，如果连接了HDMI显示器，则没有音频输出<br>插孔连接器。</p>
+<p>要通过3.5in插孔连接器强制音频路由</p>
+<pre><code>amixer cset numid = 3 1
+</code></pre><p>amixer cset的选项有：</p>
+<pre><code>0 =自动
+1 =耳机
+2 = hdmi
+</code></pre><h1 id="源代码和镜像"><a href="#源代码和镜像" class="headerlink" title="源代码和镜像"></a>源代码和镜像</h1><p>主要仓库：<br>    git：//git.yoctoproject.org/meta-raspberrypi<br>    <a href="http://git.yoctoproject.org/git/meta-raspberrypi" target="_blank" rel="external">http://git.yoctoproject.org/git/meta-raspberrypi</a></p>
+<p>Github镜像：<br>    <a href="https://github.com/agherzan/meta-raspberrypi" target="_blank" rel="external">https://github.com/agherzan/meta-raspberrypi</a></p>
+<p>Bitbucket镜子：<br>    <a href="https://bitbucket.org/agherzan/meta-raspberrypi" target="_blank" rel="external">https://bitbucket.org/agherzan/meta-raspberrypi</a></p>
+<h1 id="贡献"><a href="#贡献" class="headerlink" title="贡献"></a>贡献</h1><h1 id="7-A-邮件列表"><a href="#7-A-邮件列表" class="headerlink" title="7.A. 邮件列表"></a>7.A. 邮件列表</h1><p>我们使用的主要通信工具是邮件列表：<br>    yocto@yoctoproject.org<br>    <a href="https://lists.yoctoproject.org/listinfo/yocto" target="_blank" rel="external">https://lists.yoctoproject.org/listinfo/yocto</a></p>
+<p>随时提出任何问题，但总是在你的电子邮件主题<br>与“[meta-raspberrypi]”。这是因为我们使用“yocto”邮件列表和<br>不是一个perticular’meta-raspberrypi’邮件列表。</p>
+<p>要贡献这个层，你应该发送补丁以供审查<br>以上指定的邮件列表。<br>补丁应该符合开放补丁指南：<br><a href="http://www.openembedded.org/wiki/Commit_Patch_Message_Guidelines" target="_blank" rel="external">http://www.openembedded.org/wiki/Commit_Patch_Message_Guidelines</a></p>
+<p>创建修补程序时，请使用类似：</p>
+<pre><code>git format-patch -s --subject-prefix =&apos;meta-raspberrypi] [PATCH&apos;origin
+</code></pre><p>当发送补丁到邮件列表时，请使用类似：</p>
+<pre><code>git send-email --to yocto@yoctoproject.org 
+</code></pre><h1 id="7-B-Github的问题"><a href="#7-B-Github的问题" class="headerlink" title="7.B. Github的问题"></a>7.B. Github的问题</h1><p>为了管理和跟踪meta-raspberrypi问题，我们使用github问题：<br>    <a href="https://github.com/agherzan/meta-raspberrypi/issues" target="_blank" rel="external">https://github.com/agherzan/meta-raspberrypi/issues</a></p>
+<p>如果你推补丁有一个github问题相关联，请提供<br>发布号在提交日志就在“签署者”行之前。示例行<br>为一个错误：<br>    [问题＃13]</p>
+<h1 id="8-维护人员"><a href="#8-维护人员" class="headerlink" title="8.维护人员"></a>8.维护人员</h1><pre><code>安德烈Gherzan 
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-android键盘输入读取" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/01/21/android键盘输入读取/" class="article-date">
+      <time datetime="2017-01-21T09:07:41.000Z" itemprop="datePublished">2017-01-21</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/21/android键盘输入读取/">android键盘输入读取</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>##android键盘输入读取<br>&emsp;监控android键盘输入方式有两种，一种在java层实现，重写<code>onKeyDown</code>和<code>onKeyUp</code>方法。另一种是在jni层实现，监控<code>/dev/input/event0</code>键盘输入设备，获取输入数据。第一种方法缺陷是当有多个键盘设备时候无法区分是哪个键盘输入的，第二种方法是需要有该文件的读写权限。</p>
+<p>##调试方法<br>进入adb模式</p>
+<pre><code>adb shell
+</code></pre><p>输入以下指令监控键盘输入</p>
+<pre><code>getevent
+</code></pre><p><img src="http://ohjvpki1b.bkt.clouddn.com/getevent.png" alt="view"></p>
+<p>##方法1实现<br>代码实现</p>
+<pre><code> @Override
+public boolean onKeyDown(int keyCode,KeyEvent event){
+    switch(keyCode){
+        case KeyEvent.KEYCODE_0:
+            testview.setText(&quot;按下按键0&quot;);
+            break;
+        case KeyEvent.KEYCODE_1:
+            testview.setText(&quot;按下按键1&quot;);
+            break;
+        case KeyEvent.KEYCODE_2:
+            testview.setText(&quot;按下按键2&quot;);
+            break;
+        case KeyEvent.KEYCODE_3:
+            testview.setText(&quot;按下按键3&quot;);
+            break;
+        case KeyEvent.KEYCODE_4:
+            testview.setText(&quot;按下按键4&quot;);
+            break;
+        case KeyEvent.KEYCODE_5:
+            testview.setText(&quot;按下按键5&quot;);
+            break;
+        case KeyEvent.KEYCODE_6:
+            testview.setText(&quot;按下按键6&quot;);
+            break;
+        case KeyEvent.KEYCODE_7:
+            testview.setText(&quot;按下按键7&quot;);
+            break;
+        case KeyEvent.KEYCODE_8:
+            testview.setText(&quot;按下按键8&quot;);
+            break;
+        case KeyEvent.KEYCODE_9:
+            testview.setText(&quot;按下按键9&quot;);
+            break;
+        case KeyEvent.KEYCODE_DEL:
+            testview.setText(&quot;按下按键*&quot;);
+            break;
+        case KeyEvent.KEYCODE_ENTER:
+            testview.setText(&quot;按下按键#&quot;);
+            break;
+        default:
+            testview.setText(&quot;无法识别输入&quot;);
+            break;
+
+    }
+
+    return super.onKeyDown(keyCode, event);
+}
+/*释放按键事件*/
+@Override
+public boolean onKeyUp(int keyCode,KeyEvent event){
+    switch(keyCode){
+        case KeyEvent.KEYCODE_0:
+            testview.setText(&quot;放开按键0&quot;);
+            break;
+        case KeyEvent.KEYCODE_1:
+            testview.setText(&quot;放开按键1&quot;);
+            break;
+        case KeyEvent.KEYCODE_2:
+            testview.setText(&quot;放开按键2&quot;);
+            break;
+        case KeyEvent.KEYCODE_3:
+            testview.setText(&quot;放开按键3&quot;);
+            break;
+        case KeyEvent.KEYCODE_4:
+            testview.setText(&quot;放开按键4&quot;);
+            break;
+        case KeyEvent.KEYCODE_5:
+            testview.setText(&quot;放开按键5&quot;);
+            break;
+        case KeyEvent.KEYCODE_6:
+            testview.setText(&quot;放开按键6&quot;);
+            break;
+        case KeyEvent.KEYCODE_7:
+            testview.setText(&quot;放开按键7&quot;);
+            break;
+        case KeyEvent.KEYCODE_8:
+            testview.setText(&quot;放开按键8&quot;);
+            break;
+        case KeyEvent.KEYCODE_9:
+            testview.setText(&quot;放开按键9&quot;);
+            break;
+        case KeyEvent.KEYCODE_DEL:
+            testview.setText(&quot;放开按键*&quot;);
+            break;
+        case KeyEvent.KEYCODE_ENTER:
+
+            testview.setText(&quot;放开按键#&quot;);
+            break;
+        default:
+            testview.setText(&quot;无法识别输入&quot;);
+            break;
+    }
+
+    return super.onKeyUp(keyCode, event);
+}
+</code></pre><p>##方法2实现<br>赋予可读写权限</p>
+<pre><code>C:\Users\liang&gt;adb shell
+root@octopus-f1:/ # chmod 777 /dev/input/event6
+</code></pre><p>代码实现</p>
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;linux/input.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;sys/stat.h&gt;
+#include &lt;fcntl.h&gt;
+#include&quot;Logger.h&quot;
+#include&lt;pthread.h&gt;
+
+#include&quot;com_example_liang_myapplication_KeyBoard.h&quot;
+
+#define DEV_PATH &quot;/dev/input/event6&quot;   //difference is possible
+
+static void* pthread_read_keyboard(void*){
+    int keys_fd;
+    char ret[2];
+    struct input_event t;
+    keys_fd=open(DEV_PATH, O_RDONLY);
+    if(keys_fd &lt;= 0)
+    {
+        LOGE(&quot;%s device error!\n&quot;,DEV_PATH);
+    }
+    for(;;){
+        usleep(500);
+        if(read(keys_fd, &amp;t, sizeof(t)) == sizeof(t))
+        {
+            if(t.type==EV_KEY)
+                if(t.value==0 || t.value==1)
+                {
+                    LOGE(&quot;key %d %s\n&quot;, t.code, (t.value) ? &quot;Pressed&quot; : &quot;Released&quot;);
+                    if(t.code == KEY_ESC)
+                        break;
+                }
+        }
+
+
+    }
+    LOGE(&quot;pthread_read_keyboard exit\n&quot;);
+    close(keys_fd);
+} 
+</code></pre><p>自己写的<br><a href="https://github.com/QUSIR/Android_KeyBoard.git" target="_blank" rel="external">DEMO</a></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-android-gpio口控制" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/01/21/android-gpio口控制/" class="article-date">
+      <time datetime="2017-01-21T09:06:20.000Z" itemprop="datePublished">2017-01-21</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/21/android-gpio口控制/">android gpio口控制</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>##android gpio口控制</p>
+<p>&emsp;GPIO口控制方式是在jni层控制的方式实现高低电平输出,类似linux的控制句柄方式，在linux系统下将每个设备看作一个文件，android系统是基于linux内核的。</p>
+<p>##保证该文件有读写权限</p>
+<p><img src="http://ohjvpki1b.bkt.clouddn.com/android_gpio.png" alt="view"></p>
+<p>##用命令控制gpio输出<br>    输出高电平<br>    echo 1 &gt; /system/class/gpio_sw/data<br>    输出低电平<br>    echo 1 &gt; /system/class/gpio_sw/data</p>
+<p>##代码段</p>
+<pre><code>#include &lt;unistd.h&gt;
+#include&quot;Logger.h&quot;
+#include &lt;stdio.h&gt;
+#include &lt;linux/input.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;sys/stat.h&gt;
+#include &lt;fcntl.h&gt;
+
+#define DEV_PATH &quot;/sys/class/gpio_sw/PE12/data&quot;   //difference is possible
+
+
+JNIEXPORT jint JNICALL Java_com_example_liang_gpio_1demo_Gpio_Set_1GPIO
+        (JNIEnv *env,jobject){
+    int fd;
+
+    fd = open(DEV_PATH, O_WRONLY);
+    if(fd &lt; 0){
+        LOGE(&quot;fail in open file %s&quot;, DEV_PATH);
+        return -1;
+    }
+    write(fd, &quot;1&quot;, strlen(&quot;1&quot;));  //输出高电平
+    sleep(1);  //延时
+    write(fd, &quot;0&quot;, strlen(&quot;0&quot;));  //输出低电平
+    close(fd);
+    return 0;
+
+}
+</code></pre><p>##使用<br>&emsp;点击SetGpio按钮输出高低电平变化<br><img src="http://ohjvpki1b.bkt.clouddn.com/gpio_view.jpg" alt=""><br>自己编写<br><a href="https://github.com/QUSIR/Android_GPIO_DEMO" target="_blank" rel="external">DEMO</a></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Ubuntu16-04安装Screenlets" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/01/21/Ubuntu16-04安装Screenlets/" class="article-date">
+      <time datetime="2017-01-21T09:03:45.000Z" itemprop="datePublished">2017-01-21</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/21/Ubuntu16-04安装Screenlets/">Ubuntu16.04安装Screenlets</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>##通过添加软件源的方式安装装</p>
+<pre><code>sudo add-apt-repository ppa:screenlets/ppa
+sudo apt-get update
+sudo apt-get install screenlets
+</code></pre><p>以上方法在ubuntu16.04下不可行  </p>
+<p>##以源码的方式安装<br>    sudo apt install python-beautifulsoup python-wnck python-vte python-tz<br>    cd /tmp<br>    wget -O - <a href="https://launchpad.net/screenlets/trunk/0.1.6/+download/screenlets-0.1.6.tar.bz2" target="_blank" rel="external">https://launchpad.net/screenlets/trunk/0.1.6/+download/screenlets-0.1.6.tar.bz2</a> | bunzip2 -c - | tar xf -<br>    wget -O - <a href="https://launchpad.net/indiv-screenlets/trunk/0.1.6/+download/indiv-screenlets-0.1.6.tar.bz2" target="_blank" rel="external">https://launchpad.net/indiv-screenlets/trunk/0.1.6/+download/indiv-screenlets-0.1.6.tar.bz2</a> | bunzip2 -c - | tar xf -<br>    cd screenlets-0.1.6<br>    sudo setuo.py install<br>    cd ../indiv-screenlets-0.1.6<br>    sudo setup.py install<br>    screenlets &amp;</p>
+<p>##出错解决<br>在终端下执行screenlets指令在运行过程中会提示出错信息。发现缺少相关库，使用以下指令安装。</p>
+<pre><code>sudo apt-get install python-gconf
+sudo apt-get install libcanberra-gtk-module
+sudo apt-get install python-xdg
+</code></pre><p>##使用方法<br>打开screenlets双击相应的桌面控件，便会在桌面生成，相应的小程序，点击开始/停止也可以，或者点击登录时自启动，使桌面小程序，开机显示在桌面。</p>
+<p>##设置界面<br><img src="http://ohjvpki1b.bkt.clouddn.com/Screenlets1.png" alt=""></p>
+<p>##效果图</p>
+<p><img src="http://ohjvpki1b.bkt.clouddn.com/Screenlets2.png" alt=""></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-linux终端实现代理" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/19/linux终端实现代理/" class="article-date">
+      <time datetime="2016-12-19T13:31:41.000Z" itemprop="datePublished">2016-12-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/19/linux终端实现代理/">linux终端实现代理</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>##ubuntu 14.04安装Shadowsocks-Qt5</p>
+<pre><code>sudo add-apt-repository ppa:hzwhuang/ss-qt5
+sudo apt-get update
+sudo apt-get install shadowsocks-qt5
+</code></pre><p>##运行Shadowsocks-Qt5</p>
+<p><img src="http://ohjvpki1b.bkt.clouddn.com/Shadowsocks-Qt5config.png" alt="Shadowsocks-Qt5config"></p>
+<p>配置好账号和代理端口，代理端口为1080 socks5</p>
+<p>##安装Privoxy</p>
+<pre><code>sudo apt-get install privoxy
+</code></pre><p>##设置配置文件<br>找到<br>4.1. listen-address这一节，确认监听的端口号。</p>
+<pre><code>listen-address  localhost:8118
+</code></pre><p>找到5.2. forward-socks4, forward-socks4a, forward-socks5 and forward-socks5t</p>
+<pre><code>forward-socks5   /               127.0.0.1:1080 .
+</code></pre><p><a href="http://ohjvpki1b.bkt.clouddn.com/config" target="_blank" rel="external">我修改过后的配置文件</a></p>
+<p>##重启Privoxy</p>
+<pre><code>sudo /etc/init.d/privoxy restart
+</code></pre><p>##配置环境变量<br>    sudo vim /etc/profile<br>在文件末尾添加以下代码</p>
+<pre><code>export http_proxy=&quot;127.0.0.1:8118&quot;
+export https_proxy=&quot;127.0.0.1:8118&quot;
+</code></pre><p>使环境变量生效</p>
+<pre><code>source /etc/profile
+</code></pre><p>##设置privoxy开机启动<br>编辑启动项文件</p>
+<pre><code>sudo vim /etc/rc.local
+</code></pre><p>在exit0之前添加如下语句</p>
+<pre><code>sudo /etc/init.d/privoxy start
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-linux-git实现代理" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/19/linux-git实现代理/" class="article-date">
+      <time datetime="2016-12-19T13:30:53.000Z" itemprop="datePublished">2016-12-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/19/linux-git实现代理/">linux git实现代理</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>##说明<br>&emsp;Git 目前支持的三种协议 <code>git://</code>、<code>ssh://</code> 和 <code>http://</code>，使用<code>git://</code> 和 <code>http://</code>比较多,<code>ssh://</code>忽略，翻墙后可以直接加快同步google和github代码。</p>
+<p>方式是通过Shadowsocks实现翻墙再使用<a href="https://github.com/QUSIR/connect" target="_blank" rel="external">connect</a>工具实现代理转换。 </p>
+<p>##安装配置shadowsock-qt5</p>
+<p>###安装</p>
+<pre><code>sudo add-apt-repository ppa:hzwhuang/ss-qt5
+sudo apt-get update
+sudo apt-get install shadowsocks-qt5
+</code></pre><p>###配置</p>
+<p><img src="http://ohjvpki1b.bkt.clouddn.com/Shadowsocks-Qt5config.png" alt=""></p>
+<p>使用socks5的1080端口</p>
+<p>##安装connect-proxy</p>
+<p>在ubuntu 14.04 64位系统下</p>
+<pre><code>sudo apt-get install connect-proxy
+</code></pre><p>##<code>git://</code>协议代理</p>
+<p>###创建socks5proxywrapper文件添加如下语句</p>
+<pre><code>#!/bin/sh
+connect -S 127.0.0.1:1080 &quot;$@&quot;
+</code></pre><p>注意：是1080端口</p>
+<p>###赋予可执行权限</p>
+<pre><code>chmod +x socks5proxywrapper
+</code></pre><p>###配置git<br>打开git配置文件</p>
+<pre><code>vim .gitconfig
+</code></pre><p>添加以下语句</p>
+<pre><code>[core]
+    gitproxy = /path/to/socks5proxywrapper
+</code></pre><p>说明：也就是创建socks5proxywrapper文件存放目录。</p>
+<p>##<code>https://</code>代理</p>
+<p>###配置git执行以下语句</p>
+<pre><code>git config --global http.proxy &apos;socks5://127.0.0.1:1080&apos;
+git config --global https.proxy &apos;socks5://127.0.0.1:1080&apos;
+</code></pre><p>###查看配置查看里面是否有相关选项</p>
+<pre><code>cat ~.gitconfig
+</code></pre><p><a href="https://segmentfault.com/q/1010000000118837" target="_blank" rel="external">参考教程</a></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-使用ndk编译c可执行程序" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/12/19/使用ndk编译c可执行程序/" class="article-date">
+      <time datetime="2016-12-19T13:30:20.000Z" itemprop="datePublished">2016-12-19</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/19/使用ndk编译c可执行程序/">使用ndk编译c可执行程序</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>##1.创建工程目录</p>
+<p>&emsp;在ubuntu系统下搭建好ndk编译环境,创建test目录</p>
+<pre><code>mkdir test
+</code></pre><p>在test目录下创建jni目录<br>    cd test<br>    mkdir jni</p>
+<p>##2.编写源代码</p>
+<p>vim hello-exe.c</p>
+<pre><code>#include&lt;stdio.h&gt;
+
+int main(){
+ printf(&quot;hello\n&quot;);
+ return 0;
+}
+</code></pre><p>##3.创建android makefile文件</p>
+<p>创建Android.mk和Application.mk文件，在jni目录下</p>
+<p>Android.mk</p>
+<pre><code>LOCAL_PATH := $(call my-dir)
+
+include $(CLEAR_VARS)
+
+LOCAL_CFLAGS += -fPIE  
+LOCAL_LDFLAGS += -fPIE -pie
+
+
+LOCAL_MODULE    :=hello-exe
+
+LOCAL_SRC_FILES    :=hello-exe.c
+
+include $(BUILD_EXECUTABLE)  
+</code></pre><p>Application.mk</p>
+<pre><code>APP_ABI := all
+</code></pre><p>##说明：<br>&emsp;如果将程序拷到sd卡内会出现无法修改程序的可执行权限，可以拷贝到手机内部存储再修改。</p>
+<p>如果程序执行的时候提示PIE出错则要在android.mk里面添加以下两段字段</p>
+<pre><code>LOCAL_CFLAGS += -fPIE  
+LOCAL_LDFLAGS += -fPIE -pie
+</code></pre><p><a href="http://ohjvpki1b.bkt.clouddn.com/ndk%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91.7z" target="_blank" rel="external">源程序</a></p>
+
       
     </div>
     
@@ -874,7 +1254,7 @@ void audio_stream_stop(AudioStream *stream) {
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
     </nav>
   
 </div>
