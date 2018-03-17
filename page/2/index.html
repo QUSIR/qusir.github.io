@@ -193,6 +193,588 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-linux 系统下将pyqt打包成可执行文件" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/06/27/linux 系统下将pyqt打包成可执行文件/" class="article-date">
+      <time datetime="2017-06-27T09:06:20.000Z" itemprop="datePublished">2017-06-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/27/linux 系统下将pyqt打包成可执行文件/">linux 系统下将pyqt打包成可执行文件</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>##1.解压源码包，前提安装了setuptools</p>
+<p><a href="http://www.pyinstaller.org/" target="_blank" rel="external">官网http://www.pyinstaller.org/</a></p>
+<pre><code>unzip pyinstaller-python3.zip
+</code></pre><p>##2.安装<br>    cd pyinstaller-python3<br>    python setup.py build<br>    python setup.py install<br>安装完之后在/usr/local/bin 生成pyinstaller可执行文件</p>
+<p>##3.编译.py文件生成可执行文件<br>    pyinstaller test.py<br>在目录下生成 build和dist文件夹   可执行文件在dist目录下</p>
+<p><img src="http://ohjvpki1b.bkt.clouddn.com/clipboard.png" alt="clipboard"></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-mantisbt 2.5.0在nginx服务器上安装" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/06/15/mantisbt 2.5.0在nginx服务器上安装/" class="article-date">
+      <time datetime="2017-06-15T09:06:20.000Z" itemprop="datePublished">2017-06-15</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/15/mantisbt 2.5.0在nginx服务器上安装/">mantisbt 2.5.0在nginx服务器上安装</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>##说明<br>由于安装2.5.0.版本失败，检测配置没有错，但是无法生成<code>config_inc.php</code>文件所以考虑安装2.0.0版本然后再覆盖安装。</p>
+<p>##环境<br>ubuntu14.04  nginx  mysql</p>
+<p>##安装mantisbt-2.0.0</p>
+<pre><code>wget https://sourceforge.net/projects/mantisbt/files/mantis-stable/2.0.0/mantisbt-2.0.0.tar.gz/download -O mantisbt.tar.gz
+
+tar xzvf mantisbt.tar.gz
+
+cp mantisbt /var/www/
+
+http://你的网址/admin/install.php
+</code></pre><p><img src="http://ohjvpki1b.bkt.clouddn.com/mantisbt-pre-installation-check.jpg.jpg" alt="msm8909_gpio5.png"></p>
+<p>##安装过程视频教程</p>
+<p><a href="http://ohjvpki1b.bkt.clouddn.com/How%20to%20Install%20Mantis%20Bug%20Tracker%20v2%20with%20Nginx%20and%20PHP%207.mp4" target="_blank" rel="external">How to Install Mantis Bug Tracker v2 with Nginx and PHP 7</a></p>
+<p>##参考<br><a href="http://www.cnblogs.com/snooper/archive/2009/09/07/1561715.html" target="_blank" rel="external">http://www.cnblogs.com/snooper/archive/2009/09/07/1561715.html</a></p>
+<p><a href="https://tjosm.com/6226/install-mantisbt-v2-ubuntu-php7-nginx-virtualmin/" target="_blank" rel="external">https://tjosm.com/6226/install-mantisbt-v2-ubuntu-php7-nginx-virtualmin/</a></p>
+<p>##安装mantisbt-2.5.0</p>
+<p>直接覆盖2.0.0版本</p>
+<pre><code>tar xzvf mantisbt2.5.0.tar.gz
+cp -r mantisbt2.5.0 /var/www/mantisbt
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-高通MSM8909的gpio驱动编程" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/06/09/高通MSM8909的gpio驱动编程/" class="article-date">
+      <time datetime="2017-06-09T09:06:20.000Z" itemprop="datePublished">2017-06-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/09/高通MSM8909的gpio驱动编程/">高通MSM8909的gpio驱动编程</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>#接收gpio信号输入</p>
+<p>##1. 平台相关配置文件msm8909-mtp.dtsi文件中找到gpio_keys节，增加蓝字相关内容<br><img src="http://ohjvpki1b.bkt.clouddn.com/msm8909_gpio5.png" alt="msm8909_gpio5.png"></p>
+<p>##2. 引脚相关配置文件msm8909-pinctrl.dtsi文件中找到tlmm_gpio_key节，增加或更改红字相关内容<br><img src="http://ohjvpki1b.bkt.clouddn.com/msm8909_gpio6.png" alt="msm8909_gpio6.png"></p>
+<p>##3. device\qcom\msm8909\gpio-keys.kl中增加键盘扫描码对应的键盘码<br>键盘码是Android系统收到底层驱动提交的扫描码后，向App发送的键盘码，比如本例</p>
+<pre><code>key 77    F7  
+</code></pre><p>扫描码对应给App的键盘码是F7，F7对应的值在frameworks\base\core\java\android\view\KeyEvent.java有现成定义:<br> public static final int KEYCODE_F7 =137;<br>另外，在root过的Android设备上直接更改system\usr\keylayout\gpio-keys.kl文件，可以为设备的按键直接更改功能。</p>
+<p><code>议将整个源代码重新编译一下，在进行烧写。</code></p>
+<p>##gpio口对应关系<br>msm8909-mtp.dtsi文件<br><img src="http://ohjvpki1b.bkt.clouddn.com/msm8909_gpio1.png" alt="msm8909_gpio1"><br>msm8909-pinctrl.dtsi文件<br><img src="http://ohjvpki1b.bkt.clouddn.com/msm8909_gpio2.png" alt="msm8909_gpio2.png"><br>原理图上对应管脚<br><img src="http://ohjvpki1b.bkt.clouddn.com/msm8909_gpio3.png" alt="msm8909_gpio3.png"><br>硬件手册对应gpio口<br><img src="http://ohjvpki1b.bkt.clouddn.com/msm8909_gpio4.png" alt="msm8909_gpio4.png"></p>
+<p>##说明<br>配置好gpio后，重新编译源代码烧写系统，短接该gpio口就可以在java侧收到F7键盘消息，通过该消息监听该gpio口输入。</p>
+<p>监听键盘消息参照<br><a href="http://www.cnblogs.com/QUSIR/p/6245848.html" target="_blank" rel="external">http://www.cnblogs.com/QUSIR/p/6245848.html</a></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-nginx反向代理" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/06/08/nginx反向代理/" class="article-date">
+      <time datetime="2017-06-08T09:06:20.000Z" itemprop="datePublished">2017-06-08</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/08/nginx反向代理/">nginx反向代理</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h1 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h1><h4 id="什么是反向代理"><a href="#什么是反向代理" class="headerlink" title="什么是反向代理"></a>什么是反向代理</h4><p><strong>反向代理</strong>（Reverse Proxy）方式是指用代理服务器来接受 internet 上的连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给 internet 上请求连接的客户端，此时代理服务器对外就表现为一个反向代理服务器。</p>
+<p>举个例子，一个用户访问 <a href="http://www.example.com/readme" target="_blank" rel="external">http://www.example.com/readme</a>，但是 www.example.com 上并不存在 readme 页面，它是偷偷从另外一台服务器上取回来，然后作为自己的内容返回给用户。但是用户并不知情这个过程。对用户来说，就像是直接从 www.example.com 获取 readme 页面一样。这里所提到的 www.example.com 这个域名对应的服务器就设置了反向代理功能。</p>
+<p>反向代理服务器，对于客户端而言它就像是原始服务器，并且客户端不需要进行任何特别的设置。客户端向反向代理的命名空间(name-space)中的内容发送普通请求，接着反向代理将判断向何处(原始服务器)转交请求，并将获得的内容返回给客户端，就像这些内容原本就是它自己的一样。如下图所示：</p>
+<p><img src="http://ohjvpki1b.bkt.clouddn.com/proxy.png" alt="proxy"></p>
+<h4 id="反向代理典型应用场景"><a href="#反向代理典型应用场景" class="headerlink" title="反向代理典型应用场景"></a>反向代理典型应用场景</h4><p>反向代理的典型用途是将防火墙后面的服务器提供给 Internet 用户访问，加强安全防护。反向代理还可以为后端的多台服务器提供负载均衡，或为后端较慢的服务器提供 <strong>缓冲</strong> 服务。另外，反向代理还可以启用高级 URL 策略和管理技术，从而使处于不同 web 服务器系统的 web 页面同时存在于同一个 URL 空间下。</p>
+<p>Nginx 的其中一个用途是做 HTTP 反向代理，下面简单介绍 Nginx 作为反向代理服务器的方法。</p>
+<blockquote>
+<p>场景描述：访问本地服务器上的 README.md 文件 <a href="http://localhost/README.md" target="_blank" rel="external">http://localhost/README.md</a>，本地服务器进行反向代理，从 <a href="https://github.com/moonbingbing/openresty-best-practices/blob/master/README.md" target="_blank" rel="external">https://github.com/moonbingbing/openresty-best-practices/blob/master/README.md</a> 获取页面内容。</p>
+</blockquote>
+<p><code>nginx.conf</code> 配置示例：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">worker_processes</span> <span class="number">1</span>;</div><div class="line"></div><div class="line"><span class="attribute">pid</span> logs/nginx.pid;</div><div class="line"><span class="attribute">error_log</span> logs/error.log <span class="literal">warn</span>;</div><div class="line"></div><div class="line"><span class="section">events</span> &#123;</div><div class="line">    <span class="attribute">worker_connections</span> <span class="number">3000</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="section">http</span> &#123;</div><div class="line">    <span class="attribute">include</span> mime.types;</div><div class="line">    <span class="attribute">server_tokens</span> <span class="literal">off</span>;</div><div class="line"></div><div class="line">	<span class="comment">## 下面配置反向代理的参数</span></div><div class="line">    <span class="section">server</span> &#123;</div><div class="line">        <span class="attribute">listen</span>    <span class="number">80</span>;</div><div class="line"></div><div class="line">        <span class="comment">## 1. 用户访问 http://ip:port，则反向代理到 https://github.com</span></div><div class="line">        <span class="attribute">location</span> / &#123;</div><div class="line">            <span class="attribute">proxy_pass</span>  https://github.com;</div><div class="line">            <span class="attribute">proxy_redirect</span>     <span class="literal">off</span>;</div><div class="line">            <span class="attribute">proxy_set_header</span>   Host             <span class="variable">$host</span>;</div><div class="line">            <span class="attribute">proxy_set_header</span>   X-Real-IP        <span class="variable">$remote_addr</span>;</div><div class="line">            <span class="attribute">proxy_set_header</span>   X-Forwarded-For  <span class="variable">$proxy_add_x_forwarded_for</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">## 2.用户访问 http://ip:port/README.md，则反向代理到</span></div><div class="line">        <span class="comment">##   https://github.com/.../README.md</span></div><div class="line">        <span class="attribute">location</span> /README.md &#123;</div><div class="line">            <span class="attribute">proxy_set_header</span>  X-Real-IP  <span class="variable">$remote_addr</span>;</div><div class="line">            <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</div><div class="line">            <span class="attribute">proxy_pass</span> https://github.com/moonbingbing/openresty-best-practices/blob/master/README.md;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>成功启动 Nginx 后，我们打开浏览器，验证下反向代理的效果。在浏览器地址栏中输入 <code>localhost/README.md</code>，返回的结果是我们 GitHub 源代码的 README 页面。如下图：</p>
+<p><img src="http://ohjvpki1b.bkt.clouddn.com/proxy_example.png" alt="proxy_example"></p>
+<p>我们只需要配置一下 <code>nginx.conf</code> 文件，不用写任何 web 页面，就可以偷偷地从别的服务器上读取一个页面返回给用户。</p>
+<p>下面我们来看一下 <code>nginx.conf</code> 里用到的配置项：</p>
+<p>(1) location</p>
+<p>location 项对请求 URI 进行匹配，location 后面配置了匹配规则。例如上面的例子中，如果请求的 URI 是 <code>localhost/</code>，则会匹配 <code>location /</code> 这一项；如果请求的 URI 是 <code>localhost/README.md</code>，则会匹配 <code>location /README.md</code> 这项。</p>
+<p>上面这个例子只是针对一个确定的 URI 做了反向代理，有的读者会有疑惑：如果对每个页面都进行这样的配置，那将会大量重复，能否做 <strong>批量</strong> 配置呢？此时需要配合使用 location 的正则匹配功能。具体实现方法可参考本书的 <a href="../ngx/match_uri.md">URL 匹配章节</a>。</p>
+<p>(2) proxy_pass</p>
+<p>proxy_pass 后面跟着一个 URL，用来将请求反向代理到 URL 参数指定的服务器上。例如我们上面例子中的 <code>proxy_pass https://github.com</code>，则将匹配的请求反向代理到 <code>https://github.com</code>。</p>
+<p>(3) proxy_set_header</p>
+<p>默认情况下，反向代理不会转发原始请求中的 Host 头部，如果需要转发，就需要加上这句：<code>proxy_set_header Host $host;</code></p>
+<p>除了上面提到的常用配置项，还有 proxy_redirect、proxy_set_body、proxy_limit_rate 等参数，具体用法可以到<a href="http://nginx.org/en/docs/http/ngx_http_proxy_module.html" target="_blank" rel="external">Nginx 官网</a>查看。</p>
+<h4 id="正向代理"><a href="#正向代理" class="headerlink" title="正向代理"></a>正向代理</h4><p>既然有反向代理，自然也有正向代理。简单来说，正向代理就像一个跳板，例如一个用户访问不了某网站（例如 <code>www.google.com</code>），但是他能访问一个代理服务器，这个代理服务器能访问 <code>www.google.com</code>，于是用户可以先连上代理服务器，告诉它需要访问的内容，代理服务器去取回来返回给用户。例如一些常见的翻墙工具、游戏代理就是利用正向代理的原理工作的，我们需要在这些正向代理工具上配置服务器的 IP 地址等信息。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-haproxy代理搭建" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/06/08/haproxy代理搭建/" class="article-date">
+      <time datetime="2017-06-08T09:06:20.000Z" itemprop="datePublished">2017-06-08</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/08/haproxy代理搭建/">haproxy代理搭建</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>##1.编译安装<br>    cd /usr/local/src<br>    tar zxf haproxy-1.7.5.tar.gz<br>    cd haproxy-1.7.5<br>    make  TARGET=linux26 ARCH=x86_64 PREFIX=/usr/local/haproxy<br>    make install PREFIX=/usr/local/haproxy</p>
+<p>##2.设置haproxy</p>
+<pre><code>mkdir -p /usr/local/haproxy/conf  #创建配置文件目录
+mkdir -p /etc/haproxy #创建配置文件目录
+touch /usr/local/haproxy/conf/haproxy.cfg  #创建配置文件
+ln -s /usr/local/haproxy/conf/haproxy.cfg /etc/haproxy/haproxy.cfg
+</code></pre><p>###2.1添加配置语言的软链接<br>    cp -r /usr/local/src/haproxy-1.7.2/examples/errorfiles /usr/local/haproxy/errorfiles</p>
+<p>###2.2拷错误页面<br>    ln -s /usr/local/haproxy/errorfiles /etc/haproxy/errorfiles </p>
+<p>###2.3添加软连接<br>    mkdir -p /usr/local/haproxy/log</p>
+<p>###2.4创建日志文件目录<br>    touch /usr/local/haproxy/log/haprosy.log</p>
+<p>####2.5创建日志文<br>    ln -s /usr/local/haproxy/log/haproxy.log /var/log/haproxy.log</p>
+<p>###2.6添加软连接<br>    cp -r /usr/local/src/haproxy-1.7.2/examples/haproxy.init /etc/init.d/haproxy </p>
+<p>###2.7复制开机启动脚本文件<br>    chmod +x /etc/init.d/haproxy</p>
+<p>###2.8添加脚本执行权限<br>    ln -s /usr/local/haproxy/sbin/haproxy /usr/sbin </p>
+<p>##3.配置haproxy.cfg参数<br>vim /usr/local/haproxy/conf/haproxy.cfg</p>
+<pre><code>#---------------------------------------------------------------------
+# Global settings
+#---------------------------------------------------------------------
+global
+    log    127.0.0.1 local3          ###[err warning info debug] 
+    chroot  /usr/local/haproxy
+    pidfile  /var/run/haproxy.pid   ###haproxy的pid存放路径,启动进程的用户必须有权限访问此文件 
+    maxconn  4000                   ###最大连接数，默认4000
+    user   haproxy
+    group   haproxy
+    daemon                          ###创建1个进程进入deamon模式运行。此参数要求将运行模式设置为&quot;daemon&quot;
+
+#---------------------------------------------------------------------
+# common defaults that all the &apos;listen&apos; and &apos;backend&apos; sections will 
+# use if not designated in their block
+#---------------------------------------------------------------------
+defaults
+    mode   http             ###默认的模式mode { tcp|http|health }，tcp是4层，http是7层，health只会返回OK
+    log    global           ###采用全局定义的日志
+    option  dontlognull     ###不记录健康检查的日志信息
+    option  httpclose       ###每次请求完毕后主动关闭http通道 
+    option  httplog         ###日志类别http日志格式 
+    option  forwardfor      ###如果后端服务器需要获得客户端真实ip需要配置的参数，可以从Http Header中获得客户端ip  
+    option  redispatch      ###serverId对应的服务器挂掉后,强制定向到其他健康的服务器
+    timeout connect 10000   #default 10 second timeout if a backend is not found
+    timeout client 300000   ###客户端连接超时
+    timeout server 300000   ###服务器连接超时
+    maxconn     60000       ###最大连接数
+    retries     3           ###3次连接失败就认为服务不可用，也可以通过后面设置 
+####################################################################
+listen stats
+        bind 0.0.0.0:7766           #监听端口  
+        stats refresh 30s           #统计页面自动刷新时间  
+        stats uri /stats            #统计页面url  
+        stats realm Haproxy Manager #统计页面密码框上提示文本  
+        stats auth admin:admin      #统计页面用户名和密码设置  
+        #stats hide-version         #隐藏统计页面上HAProxy的版本信息
+#---------------------------------------------------------------------
+# main frontend which proxys to the backends
+#---------------------------------------------------------------------
+frontend main
+    bind 0.0.0.0:80
+    acl url_static path_beg    -i /static /images /javascript /stylesheets
+    acl url_static path_end    -i .jpg .gif .png .css .js
+
+    use_backend static if url_static     ###满足策略要求，则响应策略定义的backend页面
+    default_backend   dynamic            ###不满足则响应backend的默认页面
+
+#---------------------------------------------------------------------
+# static backend for serving up images, stylesheets and such
+#---------------------------------------------------------------------
+
+backend static
+    balance     roundrobin                 ###负载均衡模式轮询
+    server      static 127.0.0.1:80 check ###后端服务器定义
+
+backend dynamic
+    balance    roundrobin
+    server         websrv1 10.252.97.106:80 check maxconn 2000
+    server         websrv2 10.117.8.20:80 check maxconn 2000
+
+#---------------------------------------------------------------------
+# round robin balancing between the various backends
+#---------------------------------------------------------------------
+#errorloc  503  http://www.osyunwei.com/404.html
+errorfile 403 /etc/haproxy/errorfiles/403.http
+errorfile 500 /etc/haproxy/errorfiles/500.http
+errorfile 502 /etc/haproxy/errorfiles/502.http
+errorfile 503 /etc/haproxy/errorfiles/503.http
+errorfile 504 /etc/haproxy/errorfiles/504.http
+</code></pre><p>##4.启动haproxy<br>    sudo /usr/local/sbin/haproxy -f /usr/local/haproxy/conf/haproxy.cfg</p>
+<p>##5.设置haproxy日志<br>vim /etc/rsyslog.conf<br>添加</p>
+<pre><code>local7.*        /var/log/boot.log
+
+local3.*       /var/log/haproxy.log
+</code></pre><p>保存后重启服务<br>service rsyslog restart</p>
+<p>##6.浏览器打开haproxy的监控页面<br>输入<a href="http://192.168.141.188:7766/stats" target="_blank" rel="external">http://192.168.141.188:7766/stats</a></p>
+<p>说明：1080是haproxy配置文件中监听的端口，stats是配置文件中的监听名称<br>用户名密码是admin:admin也是配置文件中定义的</p>
+<p>##7.关闭haproxy</p>
+<pre><code>sudo ps -ef|grep haproxy
+sudo kill 进程pid
+</code></pre><p>查看端口</p>
+<pre><code>sudo netstat  -tnl 
+</code></pre><p>##8.用到源码和配置文件<br><a href="http://ohjvpki1b.bkt.clouddn.com/haproxy-1.7.5.tar.gz" target="_blank" rel="external">haproxy-1.7.5.tar.gz</a></p>
+<p><a href="http://ohjvpki1b.bkt.clouddn.com/haproxy.cfg" target="_blank" rel="external">haproxy.cfg</a></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-espeak编译安装" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/06/07/espeak编译安装/" class="article-date">
+      <time datetime="2017-06-07T09:06:20.000Z" itemprop="datePublished">2017-06-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/07/espeak编译安装/">espeak编译安装</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>##说明<br>&emsp;eSpeak是用于Linux和Windows的英文和其他语言的紧凑型开源软件语音合成器。eSpeak使用“共振峰综合”方法。这允许以小尺寸提供许多语言。讲话清晰，可以高速使用，但并不像基于人类语音记录的较大合成器那样自然或平滑。</p>
+<p>注意：在安装espeak之前必须安装portaudio框架，用于驱动声卡。</p>
+<p><a href="http://espeak.sourceforge.net/" target="_blank" rel="external">espeak官网</a></p>
+<p>##编译portaudio<br>    7z x portaudio.7z<br>    cd portaudio<br>    ./configure<br>    make<br>    sudo make install</p>
+<p>##编译espeak<br>    7z x espeak-1.48.01-source.7z<br>    cd espeak-1.48.01-source/<br>    cd src/<br>    make<br>    sudo make install</p>
+<p>##安装中文和粤语支持<br>在安装中文支持前，保证espeak编译安装成功</p>
+<p>进入<code>/espeak-1.48.01-source/dictsource$</code>目录<br>安装中文</p>
+<pre><code>espeak --compile=zh
+</code></pre><p>安装粤语</p>
+<pre><code>espeak --compile=zh-yue
+</code></pre><p>##测试</p>
+<p>默认</p>
+<pre><code>espeak  hello -w hello.wav
+</code></pre><p>粤语</p>
+<pre><code>espeak -vzhy 你好 -w test.wav
+</code></pre><p>中文</p>
+<pre><code>espeak -vzh 你好 -w test.wav
+</code></pre><p>##编译需要的源码</p>
+<p><a href="http://ohjvpki1b.bkt.clouddn.com/zhy_list.zip" target="_blank" rel="external">zhy_list.zip</a></p>
+<p><a href="http://ohjvpki1b.bkt.clouddn.com/zh_listx.zip" target="_blank" rel="external">zh_listx.zip</a></p>
+<p><a href="http://ohjvpki1b.bkt.clouddn.com/portaudio.7z" target="_blank" rel="external">portaudio.7z</a></p>
+<p><a href="http://ohjvpki1b.bkt.clouddn.com/espeak-1.48.01-source.7z" target="_blank" rel="external">espeak-1.48.01-source.7z</a></p>
+<p>##遇到问题</p>
+<p>###问题1<br>wavegen.o: In function <code>WavegenOpenSound() [clone .part.2]&#39;:
+wavegen.cpp:(.text+0x26c): undefined reference to</code>Pa_StreamActive’<br>wavegen.o: In function <code>WavegenCloseSound()&#39;:
+wavegen.cpp:(.text+0x58e): undefined reference to</code>Pa_StreamActive’<br>collect2: error: ld returned 1 exit status<br>Makefile:105: recipe for target ‘speak’ failed<br>make: <em>*</em> [speak] Error 1</p>
+<p>###解决<br>    cp portaudio19.h portaudio.h<br>    make clean<br>    make</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-使用docker搭建android源码编译环境" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/06/07/使用docker搭建android源码编译环境/" class="article-date">
+      <time datetime="2017-06-07T09:06:20.000Z" itemprop="datePublished">2017-06-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/07/使用docker搭建android源码编译环境/">使用docker搭建android源码编译环境</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>##说明<br>&emsp;由于工作原因要对android源码进行编译，用于修改底层驱动，对系统进行定制。但是编译过程中要使用特定ubuntu版本和gcc版本，所以会比较麻烦。当时第一反映是安装VMware虚拟机，装一个指定版本然后将源码拷贝进去再编译，该方法是可行的。后来才发现很麻烦，虚拟机很占用空间，于是决定使用docker试试，实验了一番，还真可以，方便占用存储小，启动起来快。</p>
+<p>##环境<br>主机：Ubuntu 16.04.2 LTS  64位  16G内存 500G硬盘  16个内核</p>
+<p>docker版本: 17.03.0-ce</p>
+<p>docke镜像：ubuntu12.04 64位</p>
+<p>##同步镜像</p>
+<pre><code>sudo docker pull registry.cn-shenzhen.aliyuncs.com/qusir/ubuntu12.04_msm8909:0.1
+</code></pre><p>以上镜像我已经定制好了的版本ubuntu12.04 64位，安装好了依赖项和gcc，可以直接使用msm8909高通平台编译。</p>
+<p>##修改后保存镜像</p>
+<p>###docker提交镜像<br>先查看运行镜像的ID，不要将镜像停止运行，然后用以下命令</p>
+<pre><code>速冻docker commit 61412230ae46 registry.cn-hangzhou.aliyuncs.com/qusir/liang
+</code></pre><p>###添加镜像<br>    sudo docker tag 70838701e83a registry.cn-hangzhou.aliyuncs.com/qusir/liang:0.1</p>
+<p>###推送镜像<br>    sudo docker push registry.cn-hangzhou.aliyuncs.com/qusir/liang:0.1</p>
+<p>##编译源码</p>
+<p>###启动镜像，映射目录</p>
+<pre><code>docker run -it --rm -v /home/liang/data:/data registry.cn-shenzhen.aliyuncs.com/qusir/ubuntu12.04_msm8909 bash
+</code></pre><p>将主机上的<code>/home/liang/data</code>的目录映射到docke的<code>/data</code>目录下</p>
+<p>###编译源码<br>初始化环境变量</p>
+<pre><code>source ./build/envsetup.sh 
+</code></pre><p>选择编译选项</p>
+<pre><code>lunch
+</code></pre><p>选择</p>
+<pre><code>34. msm8909-userdebug
+</code></pre><p>开始编译</p>
+<pre><code>make -j8
+</code></pre><p>###关闭镜像<br>    Ctrl+D退出镜像</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-xposed各种机型安装方法" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -241,71 +823,6 @@
 <p>###Xposed Installer<br>这是一个管理Xposed模块的官方应用。通过它，你可以随时禁用或者启用Xposed模块，然后重启手机。<br>对于Android 5.0以上的手机，请前往XDA论坛主题贴下载附件 XposedInstaller_3.0_alpha4.apk，并安装。<br>下载地址：<a href="http://forum.xda-developers.com/showthread.php?t=3034811" target="_blank" rel="external">http://forum.xda-developers.com/showthread.php?t=3034811</a><br>如果你看到以下界面，恭喜你，Xposed Framework安装完成。<br><img src="http://ohjvpki1b.bkt.clouddn.com/xposed.png" alt="view"></p>
 <p>##参考</p>
 <p><a href="http://www.snowdream.tech/2016/09/02/android-install-xposed-framework/" target="_blank" rel="external">http://www.snowdream.tech/2016/09/02/android-install-xposed-framework/</a></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-ndk编译pjsip" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/05/12/ndk编译pjsip/" class="article-date">
-      <time datetime="2017-05-12T09:06:20.000Z" itemprop="datePublished">2017-05-12</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/12/ndk编译pjsip/">ndk编译pjsip</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>#环境<br>pjsip版本<code>pjproject-2.5.5.tar.bz2</code></p>
-<p>ndk版本<code>android-ndk-r10e</code></p>
-<p>##配置ndk环境变量</p>
-<pre><code>export ANDROID_NDK_ROOT=/home/gsta/liang/android-ndk-r10e
-</code></pre><p>##修改配置文件</p>
-<p>vim ./pjlib/include/pj/config_site.h </p>
-<pre><code>#define PJ_CONFIG_ANDROID 1
-#include &lt;pj/config_site_sample.h&gt;
-</code></pre><p>##配置编译环境</p>
-<pre><code>./configure-android 
-</code></pre><p>##编译<br>    make dep &amp;&amp; make clean &amp;&amp; make</p>
-<p>##注意：整个编译过程是在linux系统下进行的</p>
 
       
     </div>
@@ -413,11 +930,11 @@ make
 
 
   
-    <article id="post-使用ngrok实现内网穿透" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-ndk编译pjsip" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/04/21/使用ngrok实现内网穿透/" class="article-date">
-      <time datetime="2017-04-21T09:06:20.000Z" itemprop="datePublished">2017-04-21</time>
+      <a href="/2017/05/12/ndk编译pjsip/" class="article-date">
+      <time datetime="2017-05-12T09:06:20.000Z" itemprop="datePublished">2017-05-12</time>
 </a>
     </div>
   
@@ -430,7 +947,7 @@ make
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/21/使用ngrok实现内网穿透/">使用ngrok实现内网穿透</a>
+      <a class="article-title" href="/2017/05/12/ndk编译pjsip/">ndk编译pjsip</a>
     </h1>
   
 
@@ -440,448 +957,18 @@ make
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>##安装依赖项</p>
-<pre><code>sudo apt-get install supervisor
-
-sudo apt-get install mercurial git gcc 
-</code></pre><p>##安装go<br>    tar -C /usr/local -xzf go1.8.1.linux-amd64.tar.gz<br>    echo “export PATH=$PATH:/usr/local/go/bin” &gt;&gt; ~/.bashrc</p>
-<pre><code>使环境变量生效
-
-source .bashrc 
-</code></pre><p>##同步代码<br>    git clone <a href="https://github.com/inconshreveable/ngrok.git" target="_blank" rel="external">https://github.com/inconshreveable/ngrok.git</a></p>
-<p>##生成密匙</p>
-<pre><code>openssl genrsa -out rootCA.key 2048
-openssl req -x509 -new -nodes -key rootCA.key -subj &quot;/CN=lianghuanhan.club&quot; -days 5000 -out rootCA.pem
-openssl genrsa -out device.key 2048
-openssl req -new -key device.key -subj &quot;/CN=lianghuanhan.club&quot; -out device.csr
-openssl x509 -req -in device.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out device.crt -days 5000
-</code></pre><p>##复制密匙</p>
-<pre><code>cp rootCA.pem assets/client/tls/ngrokroot.crt
-cp device.crt assets/server/tls/snakeoil.crt
-cp device.key assets/server/tls/snakeoil.key
-</code></pre><p>##编译源码<br>    make release-server</p>
-<pre><code>make release-client
-
-编译win7 64位客户端
-
-GOOS=windows GOARCH=amd64 make release-client
-</code></pre><p>##启动服务器端</p>
-<pre><code>./ngrokd -domain=&quot;lianghuanhan.club&quot; -httpAddr=&quot;:8088&quot; -httpsAddr=&quot;:8089&quot;
-</code></pre><p>##启动客户端<br>    编辑配置文件<br>     vim ngrok.cfg<br>     写入以下数据</p>
-<pre><code>server_addr: lianghuanhan:4443
-trust_host_root_certs: false
-</code></pre><p>###linux 64位客户端<br>    监听http 80端口<br>    ./ngrok -subdomain pub -proto=http -config=ngrok.cfg 80<br>    监听tcp 22端口<br>    ./ngrok -subdomain pub -proto=tcp -config=ngrok.cfg 22</p>
-<p>###windows 64位客户端<br>    监听远程桌面端口<br>    ngrok.exe -subdomain pub -proto=tcp -config=ngrok.cfg 3389</p>
-<p>##在浏览器中输入：localhost:4040 (在客户端上)</p>
-<p>可以查看所有的请求情况！</p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/ngrok-demo1.jpg" alt="view"></p>
-<p>##注意事项</p>
-<p>1.为lianghuanhan.club添加dns解析</p>
-<p>添加两条A记录：lianghuanhan.club和*.lianghuanhan.club，指向lianghuanhan.club所在的服务器ip。</p>
-<p>2.客户端ngrok.cfg中server_addr后的值必须严格与-domain以及证书中的<code>&quot;/CN=lianghuanhan.club&quot;</code>相同，必须先生成证书，拷贝到相应目录，再编译代码。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-mysql删除有空格字符名称的触发器" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/04/12/mysql删除有空格字符名称的触发器/" class="article-date">
-      <time datetime="2017-04-12T09:06:20.000Z" itemprop="datePublished">2017-04-12</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/12/mysql删除有空格字符名称的触发器/">mysql删除有空格字符名称的触发器</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>之前在mysq添加触发器的过程中，使用名称不规范使产生如下触发器名称：</p>
-<pre><code>door_machine_insert_ trigger
-</code></pre><p>中间存在空格字符</p>
-<p>使用以下删除语句时候提示出错</p>
-<pre><code>DROP TRIGGER door_machine_insert_ trigger；
-</code></pre><p>然后改为</p>
-<pre><code>DROP TRIGGER `door_machine_insert_ trigger`;
-</code></pre><p>删除成功</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-使用android studio查看andrdoid源码" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/04/12/使用android studio查看andrdoid源码/" class="article-date">
-      <time datetime="2017-04-12T09:06:20.000Z" itemprop="datePublished">2017-04-12</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/12/使用android studio查看andrdoid源码/">使用android studio查看andrdoid源码</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>#说明<br>为了查看android源码，之前使用Source Insight查看源码，然后发现使用android studio查看源码也挺方便的。</p>
-<p>##使环境变量生效<br>进入android源码目录执行以下指令</p>
-<pre><code>source ./build/envsetup.sh 
-</code></pre><p>编译完整个源码后执行以下指令编译idegen模</p>
-<pre><code>mmm development/tools/idegen/
-</code></pre><p>提示以下信息则编译成功</p>
-<pre><code>...... #### make completed successfully (7 seconds) ####
-</code></pre><p>接着执行以下脚本</p>
-<pre><code>development/tools/idegen/idegen.sh
-</code></pre><p>提示以下信息则编译成功</p>
-<pre><code>Read excludes: 21ms Traversed tree: 194799ms
-</code></pre><p>以上指令执行成功后会在源码目录下生成相应的工程文件<code>android.ipr</code>，然后打开android studio打开工程，使用<code>android.ipr</code>导入整个源码。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-mysql-udf插件开发" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/04/08/mysql-udf插件开发/" class="article-date">
-      <time datetime="2017-04-08T14:33:05.000Z" itemprop="datePublished">2017-04-08</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/08/mysql-udf插件开发/">mysql udf插件开发</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>#编写mysql插件</p>
-<p>##查看mysql插件so目录</p>
-<p>###进入mysql后执行如下指令<br>    SHOW VARIABLES LIKE ‘plugin_dir’;</p>
-<p>显示</p>
-<pre><code>plugin_dir =/usr/local/mysql/lib/plugin/
-</code></pre><p>编译</p>
-<pre><code>gcc $(mysql_config --cflags) -shared -fPIC -o calc_distance_udf.so calc_distance_udf.c
-</code></pre><p>将生成so拷到指定目录</p>
-<pre><code>cp calc_distance_udf.so /usr/local/mysql/lib/plugin/
-</code></pre><p>进入mysql创建funcation</p>
-<pre><code>CREATE FUNCTION calc_distance_udf 
-   RETURNS REAL
-   SONAME &quot;calc_distance_udf.so&quot;;
-</code></pre><p>##注意<br>    如果以上创建function出错的时候要检查下so文件的权限是否可读。<br>查看funcation<br>    USE mysql;<br>    SELECT * FROM func;</p>
-<p>测试</p>
-<pre><code>select calc_distance_udf(1.0, 2.0, 3.0, 4.0);
-</code></pre><p>参考教程</p>
-<p><a href="http://blog.loftdigital.com/blog/how-to-write-mysql-functions-in-c" target="_blank" rel="external">http://blog.loftdigital.com/blog/how-to-write-mysql-functions-in-c</a></p>
-<p>#注意：<br> <code>mysql udf</code>的执行方式是mysql程序启动的时候加载so文件到内存，有<code>FUNCATION</code>调用的时候，执行so里面的程序。所以更新so文件后要重启mysql服务。</p>
-<p>如果使用Ubuntu的apt直接安装mysql，编译的时候会出现找不到相应的头文件，执行以下命令</p>
-<pre><code>sudo apt-get install libmysql++-dev
-</code></pre><p>还有在不同的平台下要使用对应的编译器重新编译，32位对应32位，64位对应64位。</p>
-<p><a href="https://github.com/QUSIR/mysql_udf" target="_blank" rel="external">自己编写DEMO</a></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-docker使用代理" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/04/08/docker使用代理/" class="article-date">
-      <time datetime="2017-04-08T14:30:33.000Z" itemprop="datePublished">2017-04-08</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/08/docker使用代理/">docker使用代理</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>#说明<br>    由于docker官方原版镜像被墙，使用Shadowsocks翻墙，通过privoxy由socker转为http协议，实现docker代理。</p>
-<p>#创建目录<br>    mkdir -p /etc/systemd/system/docker.service.d</p>
-<p>#创建配置文件<br>    vim /etc/systemd/system/docker.service.d/http-proxy.conf<br>写入以下数据</p>
-<pre><code>[Service]
-Environment=&quot;HTTP_PROXY=http://proxy.example.com:80/&quot;
-</code></pre><p><code>http://proxy.example.com</code>为代理地址</p>
-<p>#更新配置<br>    sudo systemctl daemon-reload</p>
-<p>#检查配置<br>    systemctl show –property=Environment docker</p>
-<p>正常会输出以下信息</p>
-<pre><code>Environment=HTTP_PROXY=http://proxy.example.com:80/
-</code></pre><p>#重启docker<br>    sudo systemctl restart docker</p>
-<p>#测试<br>     docker pull ubuntu:14.04<br>     docker run -it –rm ubuntu:14.04 bash</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-CoreFreq-CPU监控软件" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/04/08/CoreFreq-CPU监控软件/" class="article-date">
-      <time datetime="2017-04-08T14:29:45.000Z" itemprop="datePublished">2017-04-08</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/08/CoreFreq-CPU监控软件/">CoreFreq CPU监控软件</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h1 id="CoreFreq说明"><a href="#CoreFreq说明" class="headerlink" title="CoreFreq说明"></a>CoreFreq说明</h1><p>CoreFreq是一款专为64位处理器设计的CPU监控软件，架构为英特尔Atom，Core2，Nehalem，SandyBridge和高级AMD系列0F</p>
-<p><img src="http://blog.cyring.free.fr/images/CoreFreq_Top.gif" alt="alt text" title="CoreFreq Top"></p>
-<p>#详细使用教程<br><a href="https://github.com/cyring/CoreFreq" target="_blank" rel="external">https://github.com/cyring/CoreFreq</a></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Ubuntu16-04安装Stacer工具" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/04/08/Ubuntu16-04安装Stacer工具/" class="article-date">
-      <time datetime="2017-04-08T14:28:11.000Z" itemprop="datePublished">2017-04-08</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/08/Ubuntu16-04安装Stacer工具/">Ubuntu16.04安装Stacer工具</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>##说明<br>Stacer工具可以显示系统资源使用情况，清除系统垃圾，卸载软件，关闭开启自启动服务。</p>
-<p>##安装</p>
-<p>###deb 包安装</p>
-<p>Debian Linux x86（Ubuntu）</p>
-<ol>
-<li>Download <code>Stacer_1.0.4_i386.deb</code> from the <a href="https://github.com/oguzhaninan/Stacer/releases" target="_blank" rel="external">Stacer releases page</a>.</li>
-<li>Run <code>sudo dpkg --install Stacer_1.0.4_i386.deb</code> on the downloaded package.</li>
-<li>Launch Stacer using the installed <code>Stacer</code> command.</li>
-</ol>
-<p>Debian Linux x64 (Ubuntu)</p>
-<ol>
-<li>Download <code>Stacer_1.0.4_amd64.deb</code> from the <a href="https://github.com/oguzhaninan/Stacer/releases" target="_blank" rel="external">Stacer releases page</a>.</li>
-<li>Run <code>sudo dpkg --install Stacer_1.0.4_amd64.deb</code> on the downloaded package.</li>
-<li>Launch Stacer using the installed <code>Stacer</code> command.</li>
-</ol>
-<p>###源码安装<br>    git clone <a href="https://github.com/oguzhaninan/Stacer.git" target="_blank" rel="external">https://github.com/oguzhaninan/Stacer.git</a><br>    cd Stacer<br>    npm install &amp;&amp; npm start</p>
-<p>##卸载</p>
-<p>运行<code>sudo dpkg -r Stacer</code></p>
-<p>#使用</p>
-<p>##仪表板</p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/Stacer.png" width="512" height="214" alt="Stacer" align="center"></p>
-<p>##系统清洁</p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/System_Cleaner.png" width="407" height="346" alt="System_Cleaner" align="center"></p>
-<p>##启动应用程序<br><img src="http://ohjvpki1b.bkt.clouddn.com/Startup_Apps.png" width="407" height="346" alt="Startup_Apps" align="center"></p>
-<p>##服务<br><img src="http://ohjvpki1b.bkt.clouddn.com/Services.png" width="407" height="346" alt="Services" align="center"></p>
-<p>##卸载程序</p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/Uninstaller.png" width="407" height="346" alt="Uninstaller" align="center"></p>
+        <p>#环境<br>pjsip版本<code>pjproject-2.5.5.tar.bz2</code></p>
+<p>ndk版本<code>android-ndk-r10e</code></p>
+<p>##配置ndk环境变量</p>
+<pre><code>export ANDROID_NDK_ROOT=/home/gsta/liang/android-ndk-r10e
+</code></pre><p>##修改配置文件</p>
+<p>vim ./pjlib/include/pj/config_site.h </p>
+<pre><code>#define PJ_CONFIG_ANDROID 1
+#include &lt;pj/config_site_sample.h&gt;
+</code></pre><p>##配置编译环境</p>
+<pre><code>./configure-android 
+</code></pre><p>##编译<br>    make dep &amp;&amp; make clean &amp;&amp; make</p>
+<p>##注意：整个编译过程是在linux系统下进行的</p>
 
       
     </div>
@@ -918,7 +1005,7 @@ Environment=&quot;HTTP_PROXY=http://proxy.example.com:80/&quot;
     <div class="outer">
         <div id="footer-info">
             <div class="footer-left">
-                &copy; 2017 我思，故我在！
+                &copy; 2018 我思，故我在！
             </div>
             <div class="footer-right">
                 <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman

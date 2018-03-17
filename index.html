@@ -193,6 +193,583 @@
 </nav>
       <div class="body-wrap">
   
+    <article id="post-googletest集成到jenkins" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/03/13/googletest集成到jenkins/" class="article-date">
+      <time datetime="2018-03-13T09:07:41.000Z" itemprop="datePublished">2018-03-13</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/13/googletest集成到jenkins/">googletest集成到jenkins</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>##使用环境<br>Ubuntu 16.04 </p>
+<p>googletest-release-1.8.0.tar.gz</p>
+<p>##安装jenkins的xUnit插件<br><img src="http://ohjvpki1b.bkt.clouddn.com/xUnit.png" alt="xUnit"></p>
+<p>##编写测试程序</p>
+<p>###自己使用的demo<br><a href="https://github.com/QUSIR/googletest_demo" target="_blank" rel="external">https://github.com/QUSIR/googletest_demo</a></p>
+<p>###运行测试程序输出xml<br>    ./Demo –gtest_output=xml:gtestreport.xml</p>
+<p><img src="http://ohjvpki1b.bkt.clouddn.com/Demo_out.png" alt="Demo_out"></p>
+<p>##设置插件<br><img src="http://ohjvpki1b.bkt.clouddn.com/xUnit_setting.png" alt="xUnit_setting"></p>
+<p>##测试结果输出<br><img src="http://ohjvpki1b.bkt.clouddn.com/Test_Result.png" alt="Test_Result"></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-jenkins搭建cc++自动化构建" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/03/12/jenkins搭建cc++自动化构建/" class="article-date">
+      <time datetime="2018-03-12T09:07:41.000Z" itemprop="datePublished">2018-03-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/12/jenkins搭建cc++自动化构建/">jenkins搭建cc++自动化构建</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>##设置git源码管理<br>内网搭建GitLab源码托管平台，如下设置，使用的是http方式，点击Add添加gitlab用户名和密码。<br><img src="http://ohjvpki1b.bkt.clouddn.com/jenkins_git.png" alt="jenkins_git"><br>立即执行构建会出现以下信息<br><img src="http://ohjvpki1b.bkt.clouddn.com/git_log.png" alt="git_log"><br>表示从gitlab拉取代码成功，clone路径是 /root/.jenkins/workspace/uart</p>
+<p>##cppcheck静态代码分析</p>
+<p>###在构建服务器上安装cppcheck</p>
+<pre><code>sudo apt install cppcheck
+</code></pre><p>###在构建输入以下指令<br><img src="http://ohjvpki1b.bkt.clouddn.com/cppcheck_Shell.png" alt="cppcheck_Shell"></p>
+<p>cppcheck –enable=all –xml-version=2 ./ 2&gt; cppcheck.xml</p>
+<p>以上./是指当前目录，将检查以xml形式输出到cppcheck.xml文件</p>
+<p>###安装cppcheck插件<br><img src="http://ohjvpki1b.bkt.clouddn.com/cppcheck_Plugin.png" alt="cppcheck_Plugin"></p>
+<p>####添加构建后cppcheck插件<br><img src="http://ohjvpki1b.bkt.clouddn.com/cppcheck_setting.png" alt="cppcheck_setting"></p>
+<p>####设置cppcheck插件<br><img src="http://ohjvpki1b.bkt.clouddn.com/cppcheck_setting2.png" alt="cppcheck_setting2"></p>
+<p>####输出结果<br><img src="http://ohjvpki1b.bkt.clouddn.com/cppcheck_buildout1.png" alt="cppcheck_buildout1"></p>
+<p><img src="http://ohjvpki1b.bkt.clouddn.com/cppcheck_buildout2.png" alt="cppcheck_buildout2"></p>
+<p>##gcovr代码覆盖率分析</p>
+<p>###安装gcovr<br>    sudo apt install gcovr</p>
+<p>###安装Cobertura插件<br><img src="http://ohjvpki1b.bkt.clouddn.com/Cobertura.png" alt="Cobertura"></p>
+<p>###修改Makefile文件<br>在Makefile文件添加 -fprofile-arcs -ftest-coverage -fPIC 编译选项</p>
+<p><pre><br>Target=epoll_key<br>HomeDir = .<br>Objects=$(HomeDir)/Epoller.o $(HomeDir)/HotKeyService.o $(HomeDir)/main.o</pre></p>
+<p>CC=g++<br>Compile=$(CC) -fprofile-arcs -ftest-coverage -fPIC<br>Link=$(CC) -lstdc++<br>INCLUDE = -O3 -D_LINUX -DLINUX -DDEBUG<br>INCLUDE += -I./<br>INCLUDE += -I$(ServiceDir)/</p>
+<p>LIB=-Wall -lz -lrt -ldl -lpthread -fprofile-arcs -ftest-coverage -fPIC </p>
+<p>main :  $(Objects)<br>    $(Link) $(Objects) $(LIB) -o $(Target)</p>
+<p>.cpp.o :<br>    $(Compile) -c -o $@ $&lt; $(INCLUDE)<br>.c.o :<br>    $(Compile) -c -o $@ $&lt; $(INCLUDE)<br>clean:<br>    rm $(Objects)</p>
+<p> </p>
+<p>###添加构建指令</p>
+<pre>
+
+<p>chmod +x epoll_key<br>./epoll_key<br>gcovr -x -r “./“ –output “./coverage.xml”</p>
+<p></p></pre><br><img src="http://ohjvpki1b.bkt.clouddn.com/gcovr_shell.png" alt="gcovr_shell"><br>执行./epoll_key会生成gcda和gcno文件，将覆盖检查输出到coverage.xml文件<p></p>
+<p><img src="http://ohjvpki1b.bkt.clouddn.com/gcovr_run.png" alt="gcovr_run"></p>
+<p>###配置Cobertura插件<br><img src="http://ohjvpki1b.bkt.clouddn.com/Cobertura_setting.png" alt="Cobertura_setting"></p>
+<p>###构建输出<br><img src="http://ohjvpki1b.bkt.clouddn.com/Code_Coverage.png" alt="Code_Coverage"></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-c++包管理工具conan使用" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/03/02/c++包管理工具conan使用/" class="article-date">
+      <time datetime="2018-03-02T09:07:41.000Z" itemprop="datePublished">2018-03-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/02/c++包管理工具conan使用/">c++包管理工具conan使用</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>##安装<br>    sudo pip install conan</p>
+<p>##参考官网的demo<br>    git clone <a href="https://github.com/memsharded/example-poco-timer.git" target="_blank" rel="external">https://github.com/memsharded/example-poco-timer.git</a> mytimer</p>
+<p>##命令<br>    查看本地库<br>    conan search<br>    安装库<br>    conan install zlib/1.2.8@lasote/stable<br>    删除库<br>    conan remove zlib/1.2.11@conan/stable</p>
+<p>##编写conanfile.txt文件<br>    [requires]<br>    Poco/1.8.0.1@pocoproject/stable</p>
+<pre><code>[generators]
+gcc
+</code></pre><p>##编写main.cpp源文件<br>    // $Id: //poco/1.4/Foundation/samples/Timer/src/Timer.cpp#1 $<br>    // This sample demonstrates the Timer and Stopwatch classes.<br>    // Copyright (c) 2004-2006, Applied Informatics Software Engineering GmbH.<br>    // and Contributors.<br>    // SPDX-License-Identifier:     BSL-1.0</p>
+<pre><code>#include &quot;Poco/Timer.h&quot;
+#include &quot;Poco/Thread.h&quot;
+#include &quot;Poco/Stopwatch.h&quot;
+#include &lt;iostream&gt;
+
+using Poco::Timer;
+using Poco::TimerCallback;
+using Poco::Thread;
+using Poco::Stopwatch;
+
+class TimerExample{
+public:
+        TimerExample(){ _sw.start();}
+
+        void onTimer(Timer&amp; timer){
+                std::cout &lt;&lt; &quot;Callback called after &quot; &lt;&lt; _sw.elapsed()/1000 &lt;&lt; &quot; milliseconds.&quot; &lt;&lt; std::endl;
+        }
+private:
+        Stopwatch _sw;
+};
+
+int main(int argc, char** argv){
+        TimerExample example;
+        Timer timer(250, 500);
+        timer.start(TimerCallback&lt;TimerExample&gt;(example, &amp;TimerExample::onTimer));
+
+        Thread::sleep(5000);
+        timer.stop();
+        return 0;
+}
+</code></pre><p>##根据conanfile.txt文件生成conanbuildinfo.gcc conanbuildinfo.txt conaninfo.txt文件<br>    conan install .</p>
+<p>##使用conanbuildinfo.gcc文件<br>    gcc main.cpp -o main -DBOOST_USE_STATIC_LIBS -DPOCO_STATIC=ON -DPOCO_NO_AUTOMATIC_LIBS -I/home/qusir/.conan/data/Poco/1.8.0.1/pocoproject/stable/package/8a67b44a092c0074e3cb946a9ddada338054b11e/include -I/home/qusir/.conan/data/boost/1.66.0/conan/stable/package/eacfdb5f448bfd89f0b2950fb6b7a79e44c7ea08/include -I/home/qusir/.conan/data/OpenSSL/1.0.2l/conan/stable/package/0abbb2ea17cdc92f4a2ac8a9e55de717e3b5a9d1/include -I/home/qusir/.conan/data/bzip2/1.0.6/conan/stable/package/76f87539fc90ff313e0b3182641a9bb558a717d2/include -I/home/qusir/.conan/data/zlib/1.2.11/conan/stable/package/d358fec34c04bcd89832a09158783c750a3304dc/include -m64 -s -DNDEBUG -Wl,-rpath=”/home/qusir/.conan/data/Poco/1.8.0.1/pocoproject/stable/package/8a67b44a092c0074e3cb946a9ddada338054b11e/lib” -Wl,-rpath=”/home/qusir/.conan/data/boost/1.66.0/conan/stable/package/eacfdb5f448bfd89f0b2950fb6b7a79e44c7ea08/lib” -Wl,-rpath=”/home/qusir/.conan/data/OpenSSL/1.0.2l/conan/stable/package/0abbb2ea17cdc92f4a2ac8a9e55de717e3b5a9d1/lib” -Wl,-rpath=”/home/qusir/.conan/data/bzip2/1.0.6/conan/stable/package/76f87539fc90ff313e0b3182641a9bb558a717d2/lib” -Wl,-rpath=”/home/qusir/.conan/data/zlib/1.2.11/conan/stable/package/d358fec34c04bcd89832a09158783c750a3304dc/lib” -L/home/qusir/.conan/data/Poco/1.8.0.1/pocoproject/stable/package/8a67b44a092c0074e3cb946a9ddada338054b11e/lib -L/home/qusir/.conan/data/boost/1.66.0/conan/stable/package/eacfdb5f448bfd89f0b2950fb6b7a79e44c7ea08/lib -L/home/qusir/.conan/data/OpenSSL/1.0.2l/conan/stable/package/0abbb2ea17cdc92f4a2ac8a9e55de717e3b5a9d1/lib -L/home/qusir/.conan/data/bzip2/1.0.6/conan/stable/package/76f87539fc90ff313e0b3182641a9bb558a717d2/lib -L/home/qusir/.conan/data/zlib/1.2.11/conan/stable/package/d358fec34c04bcd89832a09158783c750a3304dc/lib -lPocoUtil -lPocoMongoDB -lPocoNet -lPocoNetSSL -lPocoCrypto -lPocoData -lPocoDataSQLite -lPocoZip -lPocoXML -lPocoJSON -lPocoFoundation -lpthread -lrt -lboost_wave -lboost_container -lboost_exception -lboost_graph -lboost_iostreams -lboost_locale -lboost_log -lboost_program_options -lboost_random -lboost_regex -lboost_wserialization -lboost_serialization -lboost_signals -lboost_coroutine -lboost_context -lboost_timer -lboost_thread -lboost_chrono -lboost_date_time -lboost_atomic -lboost_filesystem -lboost_system -lboost_type_erasure -lboost_log_setup -lboost_stacktrace_backtrace -lboost_math_tr1l -lboost_math_tr1f -lboost_stacktrace_basic -lboost_stacktrace_addr2line -lboost_math_c99f -lboost_math_tr1 -lboost_stacktrace_noop -lboost_math_c99l -lboost_math_c99 -lboost_unit_test_framework -lssl -lcrypto -ldl -lbz2 -lz -D_GLIBCXX_USE_CXX11_ABI=0 -lstdc++</p>
+<p>其实就是将conanbuildinfo.gcc内容添加到gcc编译选项中</p>
+<p>##查找远程库<br>    conan remote add conan-transit <a href="https://conan-transit.bintray.com" target="_blank" rel="external">https://conan-transit.bintray.com</a><br>    conan search –remote conan-transit</p>
+<pre><code>conan remote add conan-center https://conan.bintray.com
+conan search --remote conan-center
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Android使用USB摄像头拍照yuy2转jpeg" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/02/01/Android使用USB摄像头拍照yuy2转jpeg/" class="article-date">
+      <time datetime="2018-02-01T09:07:41.000Z" itemprop="datePublished">2018-02-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/01/Android使用USB摄像头拍照yuy2转jpeg/">Android使用USB摄像头拍照yuy2转jpeg</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>#说明<br>由于项目需要，使用通用的usb摄像头进行拍照，这样成本低且比较通用，市面上一大堆支持yuv的usb摄像头。而且linux内核自带yuv的usb驱动，不用移植驱动之类的。由于有些摄像头不支持抓拍jpg格式图片，是因为里面没有哈夫曼编码器对yuv数据进行编码成jpg格式图片。移植了libjpeg库，可以将yuy2格式转为jpg格式，还压缩了一遍。</p>
+<p>#环境<br>Android 4.4，普通的yuv摄像头，不自带哈夫曼编码。</p>
+<p>#查看android系统是否识别了usb摄像头<br>    adb shll<br>    ls /dev/video*<br>说明：如果显示有<code>/dev/video</code>的控制句柄，那说明识别成功。</p>
+<p>#使用<br>说明：建议先查看下托管代码下面的README文件。</p>
+<p><code>libjpeg8d</code>为<code>libjpeg</code>库得源码，进入该目录使用<code>ndk-build</code>生成<code>.a</code>静态库文件文件。</p>
+<p>##模块使用说明<br>只要include encode_jpeg.h文件就可以了。</p>
+<pre><code>#define FILE_VIDEO     &quot;/dev/video1&quot;         //摄像头路径
+#define PHOTO_FOLDER &quot;/sdcard/androidDoor&quot;  // 图片存放路径
+int get_photo(int size,int filename);        //调用接口 第一个参数为设置
+                                            //图片大小，第二个参数为图片名称
+</code></pre><p>#模块托管地址<br><a href="https://github.com/QUSIR/yuy2_to_jpeg.git" target="_blank" rel="external">https://github.com/QUSIR/yuy2_to_jpeg.git</a></p>
+<p>#注<br>由于没有空，没有将该模块整合为一个Andoid Studio工程，但是可使用的的，从整个项目拆下来的子模块。详细请看代码，遇到问题请联系我。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-编译全志H3的linux源码" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/02/01/编译全志H3的linux源码/" class="article-date">
+      <time datetime="2018-02-01T09:07:41.000Z" itemprop="datePublished">2018-02-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/01/编译全志H3的linux源码/">编译全志H3的linux源码</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>#说明<br>&emsp;由于需要用到全志的芯片的orangepi_zero的开源板子做项目，需要定制linux系统，对系统添加内置程序，修改镜像大小和ubuntu系统版本。需要对源码编译生成ubuntu系统镜像。</p>
+<p>#使用编译环境<br>编译内核使用的是docke容器，比较方便。封装打包内核生成镜像使用实体机ubuntu16.04 64位。因为打包镜像在docker内运行会出错。</p>
+<p>##docker地址<br>    docker pull registry.cn-shenzhen.aliyuncs.com/qusir/orangepi_zero:0.2</p>
+<p>#源码地址<br>    <a href="https://github.com/QUSIR/orangepi_h2_linux" target="_blank" rel="external">https://github.com/QUSIR/orangepi_h2_linux</a></p>
+<p>#依赖项安装</p>
+<p>##设置dtc编译uboot<br>运行容器</p>
+<pre><code>docker run -it -v /home/orangepi_h2_linux:/data registry.cn-shenzhen.aliyuncs.com/qusir/orangepi_zero:0.2 bash
+</code></pre><p>说明：将orangepi_h2_linux源码目录映射到容器的data文件夹</p>
+<p>##编译dtc<br>dtc下载地址 链接：<a href="https://pan.baidu.com/s/1sndX30T" target="_blank" rel="external">https://pan.baidu.com/s/1sndX30T</a> 密码：c2mw</p>
+<pre><code>7z x dtc.7z
+cd dtc
+make 
+</code></pre><p>##设置dtc环境变量<br>    export PATH=/data/dtc/:$PATH</p>
+<p>##设置交叉编译器环境变量<br>    export PATH=”$PWD/brandy/gcc-linaro/bin”:”$PATH”</p>
+<p>#编译过程</p>
+<p>##编译uboot<br>     make CROSS_COMPILE=arm-linux-gnueabi- orangepi_zero_defconfig</p>
+<p>##编译内核<br>    make ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- sun8iw7p1smp_linux_defconfig<br>    make -j8 ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- uImage modules</p>
+<p>#编译文件生成文件拷贝<br>    cp -rf ./linux-3.4/output/lib/<em> ./build/lib<br>    cp -rf ./linux-3.4/arch/arm/boot/uImage ./build/uImage<br>    cp -rf ./u-boot-2016.7/u-boot-sunxi-with-spl.bin ./build/uboot<br>    cp -rf ./build/lib/</em> ../OrangePi-BuildLinux/orange/lib/<br>    cp -rf ./build/uImage ../OrangePi-BuildLinux/orange/<br>    cp -rf ./build/uboot/u-boot-sunxi-with-spl.bin ../OrangePi-BuildLinux/orange/<br>    cp -rf ./build/uboot/boot.scr ../OrangePi-BuildLinux/orange/</p>
+<p>#依赖项安装<br>实体机上</p>
+<pre><code>apt-get install debootstrap qemu-user-static chroot
+</code></pre><p>#生成镜像<br>    ./create_image<br>    ./image_from_dir linux-trusty orangepi ext4 zero</p>
+<p>说明：linux-trust为执行create_imge所生成系统目录，orangepi为生成镜像名称。</p>
+<p>#镜像定制说明<br>修改 params.sh文件</p>
+<pre><code># =====================================================
+# ==== P A R A M E T E R S ============================
+# =====================================================
+
+
+# *****************************************************
+# Set to &quot;yes&quot; to create realy minimal image          *
+# *****************************************************
+ONLY_BASE=&quot;no&quot;
+
+
+# *****************************************************
+# Set hostname, user to be created                    *
+# and root and user passwords                         *
+# *****************************************************
+HOSTNAME=&quot;OrangePizero&quot;  #主机名称
+USER=&quot;orangepi&quot;             #用户名
+ROOTPASS=&quot;orangepi&quot;         #root密码
+USERPASS=&quot;orangepi&quot;         #orangepi密码
+
+
+# *****************************************************
+# Set timezone, for default (HOST&apos;S) set _timezone=&quot;&quot; *
+# *****************************************************
+_timezone=&quot;Etc/UTC&quot;
+#_timezone=&quot;&quot;
+
+
+# *****************************************************
+# SET IF YOU WANT TO INSTALL SPECIFIC LANGUAGE,       *
+# COMMENT FOR DEFAULT (HOST) settings                 *
+# *****************************************************
+LANGUAGE=&quot;en&quot;
+LANG=&quot;en_US.UTF-8&quot;
+
+
+# *****************************************************
+# Set the base name of your image.                    *
+# Distro name is automaticaty appended, and the image *
+# will be &quot;image_name-distro.img&quot;                     *
+# --------------------------------------------------- *
+# IF image_name=&quot;&quot;, image file won&apos;t be created,      *
+# instalation will be created in local directories    *
+# linux-$distro &amp; boot-$distro                        *
+# YOU CAN CREATE THE IMAGE LATER RUNNING:             *
+# sudo ./image_from_dir &lt;directory&gt; &lt;DEVICE|IMAGE&gt;    *
+# === IT IS THE RECOMMENDED WAY OF IMAGE CREATION === *
+# --------------------------------------------------- *
+# IF image_name is BLOCK DEVICE (/dev/sdXn)           *
+# LINUX filesystem will be created directly on it     *
+# Partition must exist !                              *
+# IF _format=&quot;&quot; partition will NOT be formated        *
+# otherwyse it will be formated with specified format *
+# *****************************************************
+image_name=&quot;&quot;
+#image_name=&quot;minimal&quot;
+#image_name=&quot;/dev/sdg&quot;
+
+
+# *****************************************************
+# Filesystem type for linux partition                 *
+# If btrfs is selectet, partition will be mounted     *
+# &quot;compressed&quot; option, you can save some sdcard space *
+# --------------------------------------------------- *
+# Used when creating the system directly on SDCard or *
+# SDCard image file and in &quot;image_from_dir&quot; script    *
+# *****************************************************
+_format=&quot;ext4&quot;  #文件系统
+#_format=&quot;btrfs&quot;
+
+
+# *****************************************************
+# SD Card partitions sizes in MB (1024 * 1024 bytes)  *
+# --------------------------------------------------- *
+# If creating on physical sdcard (not image) you can  *
+# set &quot;linuxsize=0&quot; to use maximum sdcard size        *
+# --------------------------------------------------- *
+# When creating the image with &quot;image_from_dir&quot; script*
+# &quot;linuxsize&quot; is calculated from directory size       *
+# *****************************************************
+fatsize=64
+linuxsize=800  #生成镜像大小
+
+
+# *****************************************************
+#   Select ubuntu/debian distribution and repository  *
+#     === SELECT ONLY ONE distro AND ONE repo ===     *
+# *****************************************************
+
+# === Ubuntu ===
+#distro=&quot;precise&quot;
+#distro=&quot;xenial&quot;
+distro=&quot;trusty&quot;  #ubuntu版本
+#distro=&quot;utopic&quot;
+#distro=&quot;vivid&quot;
+#distro=&quot;wily&quot;
+#repo=&quot;http://ports.ubuntu.com/ubuntu-ports&quot;
+
+repo=&quot;http://mirrors.ustc.edu.cn/ubuntu-ports&quot;  #ubuntu镜像源
+
+# === Debian ===
+#distro=&quot;wheezy&quot;
+#distro=&quot;jessie&quot;
+#repo=&quot;http://ftp.hr.debian.org/debian&quot;
+#raspbian=&quot;no&quot;
+
+# === Raspbian ===
+#distro=&quot;wheezy&quot;
+#distro=&quot;jessie&quot;
+#repo=&quot;http://archive.raspbian.org/raspbian&quot;
+#raspbian=&quot;yes&quot;
+
+# ******************************************************
+# If creating the image, you can xz compress the image *
+# after creation and make the md5sum file              *
+# to do that automatically, set  _compress=&quot;yes&quot;       *
+# ******************************************************
+_compress=&quot;no&quot;
+
+
+# =====================================================
+# IF YOU WANT TO HAVE BOOT FILES ON EXT4 PARTITION    =
+# AND NOT ON SEPARATE FAT16 PARTITION                 =
+# set  _boot_on_ext4=&quot;yes&quot;  and                       =
+# FAT partitin won&apos;t be created                       =
+# --------------------------------------------------- =
+# DO NOT CHANGE FOR NOW !                             =
+# =====================================================
+_boot_on_ext4=&quot;no&quot;
+
+
+# ^^^^ P A R A M E T E R S ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+</code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-使用epoll方式监控键盘等设备输入" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/10/09/使用epoll方式监控键盘等设备输入/" class="article-date">
+      <time datetime="2017-10-09T09:07:41.000Z" itemprop="datePublished">2017-10-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/09/使用epoll方式监控键盘等设备输入/">使用epoll方式监控键盘等设备输入</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>##说明<br>&emsp;由于需要读取键盘和串口输入，之前都是用循环读取的方式进行读取数据的，采用主动方式而不是等有数据过来的时候通知读取。前一种方式很耗资源也不方便管理，于是就想到epoll，这种一般使用在socket网络编程上的的。对于epoll的说明可以参考以下文章。<br><a href="http://www.cnblogs.com/Anker/archive/2013/08/17/3263780.html" target="_blank" rel="external">http://www.cnblogs.com/Anker/archive/2013/08/17/3263780.html</a></p>
+<p>##原理</p>
+<p>&emsp;epoll方式是应用在数据流方面的，比如在socket网络数据传输时候，数据传递就是流，当有数据过来的时候会触发。以同样的方式对于键盘和串口数据输入也是一种流，所以也可以检测数据输入。方便管理，不用使用一直读的方式去读取数据，改为被动式方式读取。</p>
+<p>##自己写的demo</p>
+<p><a href="https://github.com/QUSIR/key_epoll" target="_blank" rel="external">https://github.com/QUSIR/key_epoll</a></p>
+<p>说明：</p>
+<pre><code>#define DEV_PATH1 &quot;/dev/input/event4&quot;
+#define UART_DEVICE_NAME &quot;/dev/ttyUSB1&quot;
+</code></pre><p>以上为键盘和串口控制句柄</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-orangepi zero gpio控制" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -249,6 +826,181 @@ int main(void)
 </code></pre><p>##执行程序</p>
 <pre><code>sudo ./test_gpio
 </code></pre>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-linux查找刷卡器输入设备" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/09/02/linux查找刷卡器输入设备/" class="article-date">
+      <time datetime="2017-09-02T09:07:41.000Z" itemprop="datePublished">2017-09-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/02/linux查找刷卡器输入设备/">linux查找刷卡器输入设备</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>##说明<br>由于每次插入刷卡器之后，控制句柄会发生改变。</p>
+<p>例如这次是<code>/dev/input/event1</code>,下次是<code>/dev/input/event0</code>。面对会有多个<code>event</code>，必须写个查找程序。</p>
+<p>##解决方法<br>linux系统里面的<code>/proc/bus/input/devices</code>文件存储了输入设备的信息，可以通过读取该文件判断输入设备。该文件信息如下：</p>
+<pre><code>qusir@qusir-HP-dx2818-MT:~$ cat /proc/bus/input/devices 
+I: Bus=0019 Vendor=0000 Product=0001 Version=0000
+N: Name=&quot;Power Button&quot;
+P: Phys=PNP0C0C/button/input0
+S: Sysfs=/devices/LNXSYSTM:00/LNXSYBUS:00/PNP0C0C:00/input/input0
+U: Uniq=
+H: Handlers=kbd event0 
+B: PROP=0
+B: EV=3
+B: KEY=10000000000000 0
+
+I: Bus=0019 Vendor=0000 Product=0001 Version=0000
+N: Name=&quot;Power Button&quot;
+P: Phys=LNXPWRBN/button/input0
+S: Sysfs=/devices/LNXSYSTM:00/LNXPWRBN:00/input/input1
+U: Uniq=
+H: Handlers=kbd event1 
+B: PROP=0
+B: EV=3
+B: KEY=10000000000000 0
+
+I: Bus=0003 Vendor=413c Product=2106 Version=0110
+N: Name=&quot;DELL Dell QuietKey Keyboard&quot;
+P: Phys=usb-0000:00:1d.1-1/input0
+S: Sysfs=/devices/pci0000:00/0000:00:1d.1/usb7/7-1/7-1:1.0/0003:413C:2106.0001/input/input5
+U: Uniq=
+H: Handlers=sysrq kbd event2 leds 
+B: PROP=0
+B: EV=120013
+B: KEY=1000000000007 ff9f207ac14057ff febeffdfffefffff fffffffffffffffe
+B: MSC=10
+B: LED=7
+
+I: Bus=0003 Vendor=093a Product=2510 Version=0111
+N: Name=&quot;PixArt USB Optical Mouse&quot;
+P: Phys=usb-0000:00:1d.1-2/input0
+S: Sysfs=/devices/pci0000:00/0000:00:1d.1/usb7/7-2/7-2:1.0/0003:093A:2510.0002/input/input6
+U: Uniq=
+H: Handlers=mouse0 event3 
+B: PROP=0
+B: EV=17
+B: KEY=70000 0 0 0 0
+B: REL=103
+B: MSC=10
+
+I: Bus=0003 Vendor=ffff Product=0035 Version=0110
+N: Name=&quot;Sycreader RFID Technology Co., Ltd SYC ID&amp;IC USB Reader&quot;
+P: Phys=usb-0000:00:1d.2-1/input0
+S: Sysfs=/devices/pci0000:00/0000:00:1d.2/usb8/8-1/8-1:1.0/0003:FFFF:0035.0003/input/input7
+U: Uniq=08FF20140315
+H: Handlers=sysrq kbd event4 leds 
+B: PROP=0
+B: EV=120013
+B: KEY=e080ffdf01cfffff fffffffffffffffe
+B: MSC=10
+B: LED=1f
+
+I: Bus=0003 Vendor=e806 Product=6001 Version=0040
+N: Name=&quot;USB 2.0 Camera&quot;
+P: Phys=usb-0000:00:1d.7-6/button
+S: Sysfs=/devices/pci0000:00/0000:00:1d.7/usb2/2-6/2-6:1.0/input/input8
+U: Uniq=
+H: Handlers=kbd event5 
+B: PROP=0
+B: EV=3
+B: KEY=100000 0 0 0
+
+I: Bus=0000 Vendor=0000 Product=0000 Version=0000
+N: Name=&quot;HDA Intel Front Mic&quot;
+P: Phys=ALSA
+S: Sysfs=/devices/pci0000:00/0000:00:1b.0/sound/card0/input9
+U: Uniq=
+H: Handlers=event6 
+B: PROP=0
+B: EV=21
+B: SW=10
+
+I: Bus=0000 Vendor=0000 Product=0000 Version=0000
+N: Name=&quot;HDA Intel Rear Mic&quot;
+P: Phys=ALSA
+S: Sysfs=/devices/pci0000:00/0000:00:1b.0/sound/card0/input10
+U: Uniq=
+H: Handlers=event7 
+B: PROP=0
+B: EV=21
+B: SW=10
+
+I: Bus=0000 Vendor=0000 Product=0000 Version=0000
+N: Name=&quot;HDA Intel Line&quot;
+P: Phys=ALSA
+S: Sysfs=/devices/pci0000:00/0000:00:1b.0/sound/card0/input11
+U: Uniq=
+H: Handlers=event8 
+B: PROP=0
+B: EV=21
+B: SW=2000
+
+I: Bus=0000 Vendor=0000 Product=0000 Version=0000
+N: Name=&quot;HDA Intel Line Out&quot;
+P: Phys=ALSA
+S: Sysfs=/devices/pci0000:00/0000:00:1b.0/sound/card0/input12
+U: Uniq=
+H: Handlers=event9 
+B: PROP=0
+B: EV=21
+B: SW=40
+
+I: Bus=0000 Vendor=0000 Product=0000 Version=0000
+N: Name=&quot;HDA Intel Front Headphone&quot;
+P: Phys=ALSA
+S: Sysfs=/devices/pci0000:00/0000:00:1b.0/sound/card0/input13
+U: Uniq=
+H: Handlers=event10 
+B: PROP=0
+B: EV=21
+B: SW=4
+</code></pre><p>可以看到以上信息中有<code>&quot;Sycreader RFID Technology Co., Ltd SYC ID&amp;IC USB Reader&quot;</code>关键字，通过该关键字可以判断刷卡器的控制句柄为<code>event4</code></p>
+<p>##程序说明</p>
+<p><a href="https://gist.github.com/QUSIR/414c1beee423049cf92820f1f7e047d9" target="_blank" rel="external">代码段查看链接</a></p>
+
       
     </div>
     
@@ -407,588 +1159,6 @@ printf(&quot;The timeout was set to %d seconds\n&quot;, timeout);
 
 
   
-    <article id="post-linux 系统下将pyqt打包成可执行文件" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/06/27/linux 系统下将pyqt打包成可执行文件/" class="article-date">
-      <time datetime="2017-06-27T09:06:20.000Z" itemprop="datePublished">2017-06-27</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/27/linux 系统下将pyqt打包成可执行文件/">linux 系统下将pyqt打包成可执行文件</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>##1.解压源码包，前提安装了setuptools</p>
-<p><a href="http://www.pyinstaller.org/" target="_blank" rel="external">官网http://www.pyinstaller.org/</a></p>
-<pre><code>unzip pyinstaller-python3.zip
-</code></pre><p>##2.安装<br>    cd pyinstaller-python3<br>    python setup.py build<br>    python setup.py install<br>安装完之后在/usr/local/bin 生成pyinstaller可执行文件</p>
-<p>##3.编译.py文件生成可执行文件<br>    pyinstaller test.py<br>在目录下生成 build和dist文件夹   可执行文件在dist目录下</p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/clipboard.png" alt="clipboard"></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-mantisbt 2.5.0在nginx服务器上安装" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/06/15/mantisbt 2.5.0在nginx服务器上安装/" class="article-date">
-      <time datetime="2017-06-15T09:06:20.000Z" itemprop="datePublished">2017-06-15</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/15/mantisbt 2.5.0在nginx服务器上安装/">mantisbt 2.5.0在nginx服务器上安装</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>##说明<br>由于安装2.5.0.版本失败，检测配置没有错，但是无法生成<code>config_inc.php</code>文件所以考虑安装2.0.0版本然后再覆盖安装。</p>
-<p>##环境<br>ubuntu14.04  nginx  mysql</p>
-<p>##安装mantisbt-2.0.0</p>
-<pre><code>wget https://sourceforge.net/projects/mantisbt/files/mantis-stable/2.0.0/mantisbt-2.0.0.tar.gz/download -O mantisbt.tar.gz
-
-tar xzvf mantisbt.tar.gz
-
-cp mantisbt /var/www/
-
-http://你的网址/admin/install.php
-</code></pre><p><img src="http://ohjvpki1b.bkt.clouddn.com/mantisbt-pre-installation-check.jpg.jpg" alt="msm8909_gpio5.png"></p>
-<p>##安装过程视频教程</p>
-<p><a href="http://ohjvpki1b.bkt.clouddn.com/How%20to%20Install%20Mantis%20Bug%20Tracker%20v2%20with%20Nginx%20and%20PHP%207.mp4" target="_blank" rel="external">How to Install Mantis Bug Tracker v2 with Nginx and PHP 7</a></p>
-<p>##参考<br><a href="http://www.cnblogs.com/snooper/archive/2009/09/07/1561715.html" target="_blank" rel="external">http://www.cnblogs.com/snooper/archive/2009/09/07/1561715.html</a></p>
-<p><a href="https://tjosm.com/6226/install-mantisbt-v2-ubuntu-php7-nginx-virtualmin/" target="_blank" rel="external">https://tjosm.com/6226/install-mantisbt-v2-ubuntu-php7-nginx-virtualmin/</a></p>
-<p>##安装mantisbt-2.5.0</p>
-<p>直接覆盖2.0.0版本</p>
-<pre><code>tar xzvf mantisbt2.5.0.tar.gz
-cp -r mantisbt2.5.0 /var/www/mantisbt
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-高通MSM8909的gpio驱动编程" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/06/09/高通MSM8909的gpio驱动编程/" class="article-date">
-      <time datetime="2017-06-09T09:06:20.000Z" itemprop="datePublished">2017-06-09</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/09/高通MSM8909的gpio驱动编程/">高通MSM8909的gpio驱动编程</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>#接收gpio信号输入</p>
-<p>##1. 平台相关配置文件msm8909-mtp.dtsi文件中找到gpio_keys节，增加蓝字相关内容<br><img src="http://ohjvpki1b.bkt.clouddn.com/msm8909_gpio5.png" alt="msm8909_gpio5.png"></p>
-<p>##2. 引脚相关配置文件msm8909-pinctrl.dtsi文件中找到tlmm_gpio_key节，增加或更改红字相关内容<br><img src="http://ohjvpki1b.bkt.clouddn.com/msm8909_gpio6.png" alt="msm8909_gpio6.png"></p>
-<p>##3. device\qcom\msm8909\gpio-keys.kl中增加键盘扫描码对应的键盘码<br>键盘码是Android系统收到底层驱动提交的扫描码后，向App发送的键盘码，比如本例</p>
-<pre><code>key 77    F7  
-</code></pre><p>扫描码对应给App的键盘码是F7，F7对应的值在frameworks\base\core\java\android\view\KeyEvent.java有现成定义:<br> public static final int KEYCODE_F7 =137;<br>另外，在root过的Android设备上直接更改system\usr\keylayout\gpio-keys.kl文件，可以为设备的按键直接更改功能。</p>
-<p><code>议将整个源代码重新编译一下，在进行烧写。</code></p>
-<p>##gpio口对应关系<br>msm8909-mtp.dtsi文件<br><img src="http://ohjvpki1b.bkt.clouddn.com/msm8909_gpio1.png" alt="msm8909_gpio1"><br>msm8909-pinctrl.dtsi文件<br><img src="http://ohjvpki1b.bkt.clouddn.com/msm8909_gpio2.png" alt="msm8909_gpio2.png"><br>原理图上对应管脚<br><img src="http://ohjvpki1b.bkt.clouddn.com/msm8909_gpio3.png" alt="msm8909_gpio3.png"><br>硬件手册对应gpio口<br><img src="http://ohjvpki1b.bkt.clouddn.com/msm8909_gpio4.png" alt="msm8909_gpio4.png"></p>
-<p>##说明<br>配置好gpio后，重新编译源代码烧写系统，短接该gpio口就可以在java侧收到F7键盘消息，通过该消息监听该gpio口输入。</p>
-<p>监听键盘消息参照<br><a href="http://www.cnblogs.com/QUSIR/p/6245848.html" target="_blank" rel="external">http://www.cnblogs.com/QUSIR/p/6245848.html</a></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-nginx反向代理" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/06/08/nginx反向代理/" class="article-date">
-      <time datetime="2017-06-08T09:06:20.000Z" itemprop="datePublished">2017-06-08</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/08/nginx反向代理/">nginx反向代理</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h1 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h1><h4 id="什么是反向代理"><a href="#什么是反向代理" class="headerlink" title="什么是反向代理"></a>什么是反向代理</h4><p><strong>反向代理</strong>（Reverse Proxy）方式是指用代理服务器来接受 internet 上的连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给 internet 上请求连接的客户端，此时代理服务器对外就表现为一个反向代理服务器。</p>
-<p>举个例子，一个用户访问 <a href="http://www.example.com/readme" target="_blank" rel="external">http://www.example.com/readme</a>，但是 www.example.com 上并不存在 readme 页面，它是偷偷从另外一台服务器上取回来，然后作为自己的内容返回给用户。但是用户并不知情这个过程。对用户来说，就像是直接从 www.example.com 获取 readme 页面一样。这里所提到的 www.example.com 这个域名对应的服务器就设置了反向代理功能。</p>
-<p>反向代理服务器，对于客户端而言它就像是原始服务器，并且客户端不需要进行任何特别的设置。客户端向反向代理的命名空间(name-space)中的内容发送普通请求，接着反向代理将判断向何处(原始服务器)转交请求，并将获得的内容返回给客户端，就像这些内容原本就是它自己的一样。如下图所示：</p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/proxy.png" alt="proxy"></p>
-<h4 id="反向代理典型应用场景"><a href="#反向代理典型应用场景" class="headerlink" title="反向代理典型应用场景"></a>反向代理典型应用场景</h4><p>反向代理的典型用途是将防火墙后面的服务器提供给 Internet 用户访问，加强安全防护。反向代理还可以为后端的多台服务器提供负载均衡，或为后端较慢的服务器提供 <strong>缓冲</strong> 服务。另外，反向代理还可以启用高级 URL 策略和管理技术，从而使处于不同 web 服务器系统的 web 页面同时存在于同一个 URL 空间下。</p>
-<p>Nginx 的其中一个用途是做 HTTP 反向代理，下面简单介绍 Nginx 作为反向代理服务器的方法。</p>
-<blockquote>
-<p>场景描述：访问本地服务器上的 README.md 文件 <a href="http://localhost/README.md" target="_blank" rel="external">http://localhost/README.md</a>，本地服务器进行反向代理，从 <a href="https://github.com/moonbingbing/openresty-best-practices/blob/master/README.md" target="_blank" rel="external">https://github.com/moonbingbing/openresty-best-practices/blob/master/README.md</a> 获取页面内容。</p>
-</blockquote>
-<p><code>nginx.conf</code> 配置示例：</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">worker_processes</span> <span class="number">1</span>;</div><div class="line"></div><div class="line"><span class="attribute">pid</span> logs/nginx.pid;</div><div class="line"><span class="attribute">error_log</span> logs/error.log <span class="literal">warn</span>;</div><div class="line"></div><div class="line"><span class="section">events</span> &#123;</div><div class="line">    <span class="attribute">worker_connections</span> <span class="number">3000</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="section">http</span> &#123;</div><div class="line">    <span class="attribute">include</span> mime.types;</div><div class="line">    <span class="attribute">server_tokens</span> <span class="literal">off</span>;</div><div class="line"></div><div class="line">	<span class="comment">## 下面配置反向代理的参数</span></div><div class="line">    <span class="section">server</span> &#123;</div><div class="line">        <span class="attribute">listen</span>    <span class="number">80</span>;</div><div class="line"></div><div class="line">        <span class="comment">## 1. 用户访问 http://ip:port，则反向代理到 https://github.com</span></div><div class="line">        <span class="attribute">location</span> / &#123;</div><div class="line">            <span class="attribute">proxy_pass</span>  https://github.com;</div><div class="line">            <span class="attribute">proxy_redirect</span>     <span class="literal">off</span>;</div><div class="line">            <span class="attribute">proxy_set_header</span>   Host             <span class="variable">$host</span>;</div><div class="line">            <span class="attribute">proxy_set_header</span>   X-Real-IP        <span class="variable">$remote_addr</span>;</div><div class="line">            <span class="attribute">proxy_set_header</span>   X-Forwarded-For  <span class="variable">$proxy_add_x_forwarded_for</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">## 2.用户访问 http://ip:port/README.md，则反向代理到</span></div><div class="line">        <span class="comment">##   https://github.com/.../README.md</span></div><div class="line">        <span class="attribute">location</span> /README.md &#123;</div><div class="line">            <span class="attribute">proxy_set_header</span>  X-Real-IP  <span class="variable">$remote_addr</span>;</div><div class="line">            <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</div><div class="line">            <span class="attribute">proxy_pass</span> https://github.com/moonbingbing/openresty-best-practices/blob/master/README.md;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>成功启动 Nginx 后，我们打开浏览器，验证下反向代理的效果。在浏览器地址栏中输入 <code>localhost/README.md</code>，返回的结果是我们 GitHub 源代码的 README 页面。如下图：</p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/proxy_example.png" alt="proxy_example"></p>
-<p>我们只需要配置一下 <code>nginx.conf</code> 文件，不用写任何 web 页面，就可以偷偷地从别的服务器上读取一个页面返回给用户。</p>
-<p>下面我们来看一下 <code>nginx.conf</code> 里用到的配置项：</p>
-<p>(1) location</p>
-<p>location 项对请求 URI 进行匹配，location 后面配置了匹配规则。例如上面的例子中，如果请求的 URI 是 <code>localhost/</code>，则会匹配 <code>location /</code> 这一项；如果请求的 URI 是 <code>localhost/README.md</code>，则会匹配 <code>location /README.md</code> 这项。</p>
-<p>上面这个例子只是针对一个确定的 URI 做了反向代理，有的读者会有疑惑：如果对每个页面都进行这样的配置，那将会大量重复，能否做 <strong>批量</strong> 配置呢？此时需要配合使用 location 的正则匹配功能。具体实现方法可参考本书的 <a href="../ngx/match_uri.md">URL 匹配章节</a>。</p>
-<p>(2) proxy_pass</p>
-<p>proxy_pass 后面跟着一个 URL，用来将请求反向代理到 URL 参数指定的服务器上。例如我们上面例子中的 <code>proxy_pass https://github.com</code>，则将匹配的请求反向代理到 <code>https://github.com</code>。</p>
-<p>(3) proxy_set_header</p>
-<p>默认情况下，反向代理不会转发原始请求中的 Host 头部，如果需要转发，就需要加上这句：<code>proxy_set_header Host $host;</code></p>
-<p>除了上面提到的常用配置项，还有 proxy_redirect、proxy_set_body、proxy_limit_rate 等参数，具体用法可以到<a href="http://nginx.org/en/docs/http/ngx_http_proxy_module.html" target="_blank" rel="external">Nginx 官网</a>查看。</p>
-<h4 id="正向代理"><a href="#正向代理" class="headerlink" title="正向代理"></a>正向代理</h4><p>既然有反向代理，自然也有正向代理。简单来说，正向代理就像一个跳板，例如一个用户访问不了某网站（例如 <code>www.google.com</code>），但是他能访问一个代理服务器，这个代理服务器能访问 <code>www.google.com</code>，于是用户可以先连上代理服务器，告诉它需要访问的内容，代理服务器去取回来返回给用户。例如一些常见的翻墙工具、游戏代理就是利用正向代理的原理工作的，我们需要在这些正向代理工具上配置服务器的 IP 地址等信息。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-haproxy代理搭建" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/06/08/haproxy代理搭建/" class="article-date">
-      <time datetime="2017-06-08T09:06:20.000Z" itemprop="datePublished">2017-06-08</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/08/haproxy代理搭建/">haproxy代理搭建</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>##1.编译安装<br>    cd /usr/local/src<br>    tar zxf haproxy-1.7.5.tar.gz<br>    cd haproxy-1.7.5<br>    make  TARGET=linux26 ARCH=x86_64 PREFIX=/usr/local/haproxy<br>    make install PREFIX=/usr/local/haproxy</p>
-<p>##2.设置haproxy</p>
-<pre><code>mkdir -p /usr/local/haproxy/conf  #创建配置文件目录
-mkdir -p /etc/haproxy #创建配置文件目录
-touch /usr/local/haproxy/conf/haproxy.cfg  #创建配置文件
-ln -s /usr/local/haproxy/conf/haproxy.cfg /etc/haproxy/haproxy.cfg
-</code></pre><p>###2.1添加配置语言的软链接<br>    cp -r /usr/local/src/haproxy-1.7.2/examples/errorfiles /usr/local/haproxy/errorfiles</p>
-<p>###2.2拷错误页面<br>    ln -s /usr/local/haproxy/errorfiles /etc/haproxy/errorfiles </p>
-<p>###2.3添加软连接<br>    mkdir -p /usr/local/haproxy/log</p>
-<p>###2.4创建日志文件目录<br>    touch /usr/local/haproxy/log/haprosy.log</p>
-<p>####2.5创建日志文<br>    ln -s /usr/local/haproxy/log/haproxy.log /var/log/haproxy.log</p>
-<p>###2.6添加软连接<br>    cp -r /usr/local/src/haproxy-1.7.2/examples/haproxy.init /etc/init.d/haproxy </p>
-<p>###2.7复制开机启动脚本文件<br>    chmod +x /etc/init.d/haproxy</p>
-<p>###2.8添加脚本执行权限<br>    ln -s /usr/local/haproxy/sbin/haproxy /usr/sbin </p>
-<p>##3.配置haproxy.cfg参数<br>vim /usr/local/haproxy/conf/haproxy.cfg</p>
-<pre><code>#---------------------------------------------------------------------
-# Global settings
-#---------------------------------------------------------------------
-global
-    log    127.0.0.1 local3          ###[err warning info debug] 
-    chroot  /usr/local/haproxy
-    pidfile  /var/run/haproxy.pid   ###haproxy的pid存放路径,启动进程的用户必须有权限访问此文件 
-    maxconn  4000                   ###最大连接数，默认4000
-    user   haproxy
-    group   haproxy
-    daemon                          ###创建1个进程进入deamon模式运行。此参数要求将运行模式设置为&quot;daemon&quot;
-
-#---------------------------------------------------------------------
-# common defaults that all the &apos;listen&apos; and &apos;backend&apos; sections will 
-# use if not designated in their block
-#---------------------------------------------------------------------
-defaults
-    mode   http             ###默认的模式mode { tcp|http|health }，tcp是4层，http是7层，health只会返回OK
-    log    global           ###采用全局定义的日志
-    option  dontlognull     ###不记录健康检查的日志信息
-    option  httpclose       ###每次请求完毕后主动关闭http通道 
-    option  httplog         ###日志类别http日志格式 
-    option  forwardfor      ###如果后端服务器需要获得客户端真实ip需要配置的参数，可以从Http Header中获得客户端ip  
-    option  redispatch      ###serverId对应的服务器挂掉后,强制定向到其他健康的服务器
-    timeout connect 10000   #default 10 second timeout if a backend is not found
-    timeout client 300000   ###客户端连接超时
-    timeout server 300000   ###服务器连接超时
-    maxconn     60000       ###最大连接数
-    retries     3           ###3次连接失败就认为服务不可用，也可以通过后面设置 
-####################################################################
-listen stats
-        bind 0.0.0.0:7766           #监听端口  
-        stats refresh 30s           #统计页面自动刷新时间  
-        stats uri /stats            #统计页面url  
-        stats realm Haproxy Manager #统计页面密码框上提示文本  
-        stats auth admin:admin      #统计页面用户名和密码设置  
-        #stats hide-version         #隐藏统计页面上HAProxy的版本信息
-#---------------------------------------------------------------------
-# main frontend which proxys to the backends
-#---------------------------------------------------------------------
-frontend main
-    bind 0.0.0.0:80
-    acl url_static path_beg    -i /static /images /javascript /stylesheets
-    acl url_static path_end    -i .jpg .gif .png .css .js
-
-    use_backend static if url_static     ###满足策略要求，则响应策略定义的backend页面
-    default_backend   dynamic            ###不满足则响应backend的默认页面
-
-#---------------------------------------------------------------------
-# static backend for serving up images, stylesheets and such
-#---------------------------------------------------------------------
-
-backend static
-    balance     roundrobin                 ###负载均衡模式轮询
-    server      static 127.0.0.1:80 check ###后端服务器定义
-
-backend dynamic
-    balance    roundrobin
-    server         websrv1 10.252.97.106:80 check maxconn 2000
-    server         websrv2 10.117.8.20:80 check maxconn 2000
-
-#---------------------------------------------------------------------
-# round robin balancing between the various backends
-#---------------------------------------------------------------------
-#errorloc  503  http://www.osyunwei.com/404.html
-errorfile 403 /etc/haproxy/errorfiles/403.http
-errorfile 500 /etc/haproxy/errorfiles/500.http
-errorfile 502 /etc/haproxy/errorfiles/502.http
-errorfile 503 /etc/haproxy/errorfiles/503.http
-errorfile 504 /etc/haproxy/errorfiles/504.http
-</code></pre><p>##4.启动haproxy<br>    sudo /usr/local/sbin/haproxy -f /usr/local/haproxy/conf/haproxy.cfg</p>
-<p>##5.设置haproxy日志<br>vim /etc/rsyslog.conf<br>添加</p>
-<pre><code>local7.*        /var/log/boot.log
-
-local3.*       /var/log/haproxy.log
-</code></pre><p>保存后重启服务<br>service rsyslog restart</p>
-<p>##6.浏览器打开haproxy的监控页面<br>输入<a href="http://192.168.141.188:7766/stats" target="_blank" rel="external">http://192.168.141.188:7766/stats</a></p>
-<p>说明：1080是haproxy配置文件中监听的端口，stats是配置文件中的监听名称<br>用户名密码是admin:admin也是配置文件中定义的</p>
-<p>##7.关闭haproxy</p>
-<pre><code>sudo ps -ef|grep haproxy
-sudo kill 进程pid
-</code></pre><p>查看端口</p>
-<pre><code>sudo netstat  -tnl 
-</code></pre><p>##8.用到源码和配置文件<br><a href="http://ohjvpki1b.bkt.clouddn.com/haproxy-1.7.5.tar.gz" target="_blank" rel="external">haproxy-1.7.5.tar.gz</a></p>
-<p><a href="http://ohjvpki1b.bkt.clouddn.com/haproxy.cfg" target="_blank" rel="external">haproxy.cfg</a></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-使用docker搭建android源码编译环境" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/06/07/使用docker搭建android源码编译环境/" class="article-date">
-      <time datetime="2017-06-07T09:06:20.000Z" itemprop="datePublished">2017-06-07</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/07/使用docker搭建android源码编译环境/">使用docker搭建android源码编译环境</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>##说明<br>&emsp;由于工作原因要对android源码进行编译，用于修改底层驱动，对系统进行定制。但是编译过程中要使用特定ubuntu版本和gcc版本，所以会比较麻烦。当时第一反映是安装VMware虚拟机，装一个指定版本然后将源码拷贝进去再编译，该方法是可行的。后来才发现很麻烦，虚拟机很占用空间，于是决定使用docker试试，实验了一番，还真可以，方便占用存储小，启动起来快。</p>
-<p>##环境<br>主机：Ubuntu 16.04.2 LTS  64位  16G内存 500G硬盘  16个内核</p>
-<p>docker版本: 17.03.0-ce</p>
-<p>docke镜像：ubuntu12.04 64位</p>
-<p>##同步镜像</p>
-<pre><code>sudo docker pull registry.cn-shenzhen.aliyuncs.com/qusir/ubuntu12.04_msm8909:0.1
-</code></pre><p>以上镜像我已经定制好了的版本ubuntu12.04 64位，安装好了依赖项和gcc，可以直接使用msm8909高通平台编译。</p>
-<p>##修改后保存镜像</p>
-<p>###docker提交镜像<br>先查看运行镜像的ID，不要将镜像停止运行，然后用以下命令</p>
-<pre><code>速冻docker commit 61412230ae46 registry.cn-hangzhou.aliyuncs.com/qusir/liang
-</code></pre><p>###添加镜像<br>    sudo docker tag 70838701e83a registry.cn-hangzhou.aliyuncs.com/qusir/liang:0.1</p>
-<p>###推送镜像<br>    sudo docker push registry.cn-hangzhou.aliyuncs.com/qusir/liang:0.1</p>
-<p>##编译源码</p>
-<p>###启动镜像，映射目录</p>
-<pre><code>docker run -it --rm -v /home/liang/data:/data registry.cn-shenzhen.aliyuncs.com/qusir/ubuntu12.04_msm8909 bash
-</code></pre><p>将主机上的<code>/home/liang/data</code>的目录映射到docke的<code>/data</code>目录下</p>
-<p>###编译源码<br>初始化环境变量</p>
-<pre><code>source ./build/envsetup.sh 
-</code></pre><p>选择编译选项</p>
-<pre><code>lunch
-</code></pre><p>选择</p>
-<pre><code>34. msm8909-userdebug
-</code></pre><p>开始编译</p>
-<pre><code>make -j8
-</code></pre><p>###关闭镜像<br>    Ctrl+D退出镜像</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-espeak编译安装" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/06/07/espeak编译安装/" class="article-date">
-      <time datetime="2017-06-07T09:06:20.000Z" itemprop="datePublished">2017-06-07</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/07/espeak编译安装/">espeak编译安装</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>##说明<br>&emsp;eSpeak是用于Linux和Windows的英文和其他语言的紧凑型开源软件语音合成器。eSpeak使用“共振峰综合”方法。这允许以小尺寸提供许多语言。讲话清晰，可以高速使用，但并不像基于人类语音记录的较大合成器那样自然或平滑。</p>
-<p>注意：在安装espeak之前必须安装portaudio框架，用于驱动声卡。</p>
-<p><a href="http://espeak.sourceforge.net/" target="_blank" rel="external">espeak官网</a></p>
-<p>##编译portaudio<br>    7z x portaudio.7z<br>    cd portaudio<br>    ./configure<br>    make<br>    sudo make install</p>
-<p>##编译espeak<br>    7z x espeak-1.48.01-source.7z<br>    cd espeak-1.48.01-source/<br>    cd src/<br>    make<br>    sudo make install</p>
-<p>##安装中文和粤语支持<br>在安装中文支持前，保证espeak编译安装成功</p>
-<p>进入<code>/espeak-1.48.01-source/dictsource$</code>目录<br>安装中文</p>
-<pre><code>espeak --compile=zh
-</code></pre><p>安装粤语</p>
-<pre><code>espeak --compile=zh-yue
-</code></pre><p>##测试</p>
-<p>默认</p>
-<pre><code>espeak  hello -w hello.wav
-</code></pre><p>粤语</p>
-<pre><code>espeak -vzhy 你好 -w test.wav
-</code></pre><p>中文</p>
-<pre><code>espeak -vzh 你好 -w test.wav
-</code></pre><p>##编译需要的源码</p>
-<p><a href="http://ohjvpki1b.bkt.clouddn.com/zhy_list.zip" target="_blank" rel="external">zhy_list.zip</a></p>
-<p><a href="http://ohjvpki1b.bkt.clouddn.com/zh_listx.zip" target="_blank" rel="external">zh_listx.zip</a></p>
-<p><a href="http://ohjvpki1b.bkt.clouddn.com/portaudio.7z" target="_blank" rel="external">portaudio.7z</a></p>
-<p><a href="http://ohjvpki1b.bkt.clouddn.com/espeak-1.48.01-source.7z" target="_blank" rel="external">espeak-1.48.01-source.7z</a></p>
-<p>##遇到问题</p>
-<p>###问题1<br>wavegen.o: In function <code>WavegenOpenSound() [clone .part.2]&#39;:
-wavegen.cpp:(.text+0x26c): undefined reference to</code>Pa_StreamActive’<br>wavegen.o: In function <code>WavegenCloseSound()&#39;:
-wavegen.cpp:(.text+0x58e): undefined reference to</code>Pa_StreamActive’<br>collect2: error: ld returned 1 exit status<br>Makefile:105: recipe for target ‘speak’ failed<br>make: <em>*</em> [speak] Error 1</p>
-<p>###解决<br>    cp portaudio19.h portaudio.h<br>    make clean<br>    make</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -999,7 +1169,7 @@ wavegen.cpp:(.text+0x58e): undefined reference to</code>Pa_StreamActive’<br>co
     <div class="outer">
         <div id="footer-info">
             <div class="footer-left">
-                &copy; 2017 我思，故我在！
+                &copy; 2018 我思，故我在！
             </div>
             <div class="footer-right">
                 <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
