@@ -285,6 +285,67 @@ trust_host_root_certs: false
 
 
   
+    <article id="post-mysql删除有空格字符名称的触发器" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/04/12/mysql删除有空格字符名称的触发器/" class="article-date">
+      <time datetime="2017-04-12T09:06:20.000Z" itemprop="datePublished">2017-04-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/12/mysql删除有空格字符名称的触发器/">mysql删除有空格字符名称的触发器</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>之前在mysq添加触发器的过程中，使用名称不规范使产生如下触发器名称：</p>
+<pre><code>door_machine_insert_ trigger
+</code></pre><p>中间存在空格字符</p>
+<p>使用以下删除语句时候提示出错</p>
+<pre><code>DROP TRIGGER door_machine_insert_ trigger；
+</code></pre><p>然后改为</p>
+<pre><code>DROP TRIGGER `door_machine_insert_ trigger`;
+</code></pre><p>删除成功</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-使用android studio查看andrdoid源码" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -324,67 +385,6 @@ trust_host_root_certs: false
 </code></pre><p>提示以下信息则编译成功</p>
 <pre><code>Read excludes: 21ms Traversed tree: 194799ms
 </code></pre><p>以上指令执行成功后会在源码目录下生成相应的工程文件<code>android.ipr</code>，然后打开android studio打开工程，使用<code>android.ipr</code>导入整个源码。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-mysql删除有空格字符名称的触发器" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/04/12/mysql删除有空格字符名称的触发器/" class="article-date">
-      <time datetime="2017-04-12T09:06:20.000Z" itemprop="datePublished">2017-04-12</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/12/mysql删除有空格字符名称的触发器/">mysql删除有空格字符名称的触发器</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>之前在mysq添加触发器的过程中，使用名称不规范使产生如下触发器名称：</p>
-<pre><code>door_machine_insert_ trigger
-</code></pre><p>中间存在空格字符</p>
-<p>使用以下删除语句时候提示出错</p>
-<pre><code>DROP TRIGGER door_machine_insert_ trigger；
-</code></pre><p>然后改为</p>
-<pre><code>DROP TRIGGER `door_machine_insert_ trigger`;
-</code></pre><p>删除成功</p>
 
       
     </div>
