@@ -387,83 +387,6 @@ cp -r mantisbt2.5.0 /var/www/mantisbt
 
 
   
-    <article id="post-nginx反向代理" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/06/08/nginx反向代理/" class="article-date">
-      <time datetime="2017-06-08T09:06:20.000Z" itemprop="datePublished">2017-06-08</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/08/nginx反向代理/">nginx反向代理</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <h1 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h1><h4 id="什么是反向代理"><a href="#什么是反向代理" class="headerlink" title="什么是反向代理"></a>什么是反向代理</h4><p><strong>反向代理</strong>（Reverse Proxy）方式是指用代理服务器来接受 internet 上的连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给 internet 上请求连接的客户端，此时代理服务器对外就表现为一个反向代理服务器。</p>
-<p>举个例子，一个用户访问 <a href="http://www.example.com/readme" target="_blank" rel="external">http://www.example.com/readme</a>，但是 www.example.com 上并不存在 readme 页面，它是偷偷从另外一台服务器上取回来，然后作为自己的内容返回给用户。但是用户并不知情这个过程。对用户来说，就像是直接从 www.example.com 获取 readme 页面一样。这里所提到的 www.example.com 这个域名对应的服务器就设置了反向代理功能。</p>
-<p>反向代理服务器，对于客户端而言它就像是原始服务器，并且客户端不需要进行任何特别的设置。客户端向反向代理的命名空间(name-space)中的内容发送普通请求，接着反向代理将判断向何处(原始服务器)转交请求，并将获得的内容返回给客户端，就像这些内容原本就是它自己的一样。如下图所示：</p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/proxy.png" alt="proxy"></p>
-<h4 id="反向代理典型应用场景"><a href="#反向代理典型应用场景" class="headerlink" title="反向代理典型应用场景"></a>反向代理典型应用场景</h4><p>反向代理的典型用途是将防火墙后面的服务器提供给 Internet 用户访问，加强安全防护。反向代理还可以为后端的多台服务器提供负载均衡，或为后端较慢的服务器提供 <strong>缓冲</strong> 服务。另外，反向代理还可以启用高级 URL 策略和管理技术，从而使处于不同 web 服务器系统的 web 页面同时存在于同一个 URL 空间下。</p>
-<p>Nginx 的其中一个用途是做 HTTP 反向代理，下面简单介绍 Nginx 作为反向代理服务器的方法。</p>
-<blockquote>
-<p>场景描述：访问本地服务器上的 README.md 文件 <a href="http://localhost/README.md" target="_blank" rel="external">http://localhost/README.md</a>，本地服务器进行反向代理，从 <a href="https://github.com/moonbingbing/openresty-best-practices/blob/master/README.md" target="_blank" rel="external">https://github.com/moonbingbing/openresty-best-practices/blob/master/README.md</a> 获取页面内容。</p>
-</blockquote>
-<p><code>nginx.conf</code> 配置示例：</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">worker_processes</span> <span class="number">1</span>;</div><div class="line"></div><div class="line"><span class="attribute">pid</span> logs/nginx.pid;</div><div class="line"><span class="attribute">error_log</span> logs/error.log <span class="literal">warn</span>;</div><div class="line"></div><div class="line"><span class="section">events</span> &#123;</div><div class="line">    <span class="attribute">worker_connections</span> <span class="number">3000</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="section">http</span> &#123;</div><div class="line">    <span class="attribute">include</span> mime.types;</div><div class="line">    <span class="attribute">server_tokens</span> <span class="literal">off</span>;</div><div class="line"></div><div class="line">	<span class="comment">## 下面配置反向代理的参数</span></div><div class="line">    <span class="section">server</span> &#123;</div><div class="line">        <span class="attribute">listen</span>    <span class="number">80</span>;</div><div class="line"></div><div class="line">        <span class="comment">## 1. 用户访问 http://ip:port，则反向代理到 https://github.com</span></div><div class="line">        <span class="attribute">location</span> / &#123;</div><div class="line">            <span class="attribute">proxy_pass</span>  https://github.com;</div><div class="line">            <span class="attribute">proxy_redirect</span>     <span class="literal">off</span>;</div><div class="line">            <span class="attribute">proxy_set_header</span>   Host             <span class="variable">$host</span>;</div><div class="line">            <span class="attribute">proxy_set_header</span>   X-Real-IP        <span class="variable">$remote_addr</span>;</div><div class="line">            <span class="attribute">proxy_set_header</span>   X-Forwarded-For  <span class="variable">$proxy_add_x_forwarded_for</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">## 2.用户访问 http://ip:port/README.md，则反向代理到</span></div><div class="line">        <span class="comment">##   https://github.com/.../README.md</span></div><div class="line">        <span class="attribute">location</span> /README.md &#123;</div><div class="line">            <span class="attribute">proxy_set_header</span>  X-Real-IP  <span class="variable">$remote_addr</span>;</div><div class="line">            <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</div><div class="line">            <span class="attribute">proxy_pass</span> https://github.com/moonbingbing/openresty-best-practices/blob/master/README.md;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>成功启动 Nginx 后，我们打开浏览器，验证下反向代理的效果。在浏览器地址栏中输入 <code>localhost/README.md</code>，返回的结果是我们 GitHub 源代码的 README 页面。如下图：</p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/proxy_example.png" alt="proxy_example"></p>
-<p>我们只需要配置一下 <code>nginx.conf</code> 文件，不用写任何 web 页面，就可以偷偷地从别的服务器上读取一个页面返回给用户。</p>
-<p>下面我们来看一下 <code>nginx.conf</code> 里用到的配置项：</p>
-<p>(1) location</p>
-<p>location 项对请求 URI 进行匹配，location 后面配置了匹配规则。例如上面的例子中，如果请求的 URI 是 <code>localhost/</code>，则会匹配 <code>location /</code> 这一项；如果请求的 URI 是 <code>localhost/README.md</code>，则会匹配 <code>location /README.md</code> 这项。</p>
-<p>上面这个例子只是针对一个确定的 URI 做了反向代理，有的读者会有疑惑：如果对每个页面都进行这样的配置，那将会大量重复，能否做 <strong>批量</strong> 配置呢？此时需要配合使用 location 的正则匹配功能。具体实现方法可参考本书的 <a href="../ngx/match_uri.md">URL 匹配章节</a>。</p>
-<p>(2) proxy_pass</p>
-<p>proxy_pass 后面跟着一个 URL，用来将请求反向代理到 URL 参数指定的服务器上。例如我们上面例子中的 <code>proxy_pass https://github.com</code>，则将匹配的请求反向代理到 <code>https://github.com</code>。</p>
-<p>(3) proxy_set_header</p>
-<p>默认情况下，反向代理不会转发原始请求中的 Host 头部，如果需要转发，就需要加上这句：<code>proxy_set_header Host $host;</code></p>
-<p>除了上面提到的常用配置项，还有 proxy_redirect、proxy_set_body、proxy_limit_rate 等参数，具体用法可以到<a href="http://nginx.org/en/docs/http/ngx_http_proxy_module.html" target="_blank" rel="external">Nginx 官网</a>查看。</p>
-<h4 id="正向代理"><a href="#正向代理" class="headerlink" title="正向代理"></a>正向代理</h4><p>既然有反向代理，自然也有正向代理。简单来说，正向代理就像一个跳板，例如一个用户访问不了某网站（例如 <code>www.google.com</code>），但是他能访问一个代理服务器，这个代理服务器能访问 <code>www.google.com</code>，于是用户可以先连上代理服务器，告诉它需要访问的内容，代理服务器去取回来返回给用户。例如一些常见的翻墙工具、游戏代理就是利用正向代理的原理工作的，我们需要在这些正向代理工具上配置服务器的 IP 地址等信息。</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
     <article id="post-haproxy代理搭建" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -617,11 +540,11 @@ sudo kill 进程pid
 
 
   
-    <article id="post-espeak编译安装" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-nginx反向代理" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/06/07/espeak编译安装/" class="article-date">
-      <time datetime="2017-06-07T09:06:20.000Z" itemprop="datePublished">2017-06-07</time>
+      <a href="/2017/06/08/nginx反向代理/" class="article-date">
+      <time datetime="2017-06-08T09:06:20.000Z" itemprop="datePublished">2017-06-08</time>
 </a>
     </div>
   
@@ -634,7 +557,7 @@ sudo kill 进程pid
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/07/espeak编译安装/">espeak编译安装</a>
+      <a class="article-title" href="/2017/06/08/nginx反向代理/">nginx反向代理</a>
     </h1>
   
 
@@ -644,33 +567,30 @@ sudo kill 进程pid
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>##说明<br>&emsp;eSpeak是用于Linux和Windows的英文和其他语言的紧凑型开源软件语音合成器。eSpeak使用“共振峰综合”方法。这允许以小尺寸提供许多语言。讲话清晰，可以高速使用，但并不像基于人类语音记录的较大合成器那样自然或平滑。</p>
-<p>注意：在安装espeak之前必须安装portaudio框架，用于驱动声卡。</p>
-<p><a href="http://espeak.sourceforge.net/" target="_blank" rel="external">espeak官网</a></p>
-<p>##编译portaudio<br>    7z x portaudio.7z<br>    cd portaudio<br>    ./configure<br>    make<br>    sudo make install</p>
-<p>##编译espeak<br>    7z x espeak-1.48.01-source.7z<br>    cd espeak-1.48.01-source/<br>    cd src/<br>    make<br>    sudo make install</p>
-<p>##安装中文和粤语支持<br>在安装中文支持前，保证espeak编译安装成功</p>
-<p>进入<code>/espeak-1.48.01-source/dictsource$</code>目录<br>安装中文</p>
-<pre><code>espeak --compile=zh
-</code></pre><p>安装粤语</p>
-<pre><code>espeak --compile=zh-yue
-</code></pre><p>##测试</p>
-<p>默认</p>
-<pre><code>espeak  hello -w hello.wav
-</code></pre><p>粤语</p>
-<pre><code>espeak -vzhy 你好 -w test.wav
-</code></pre><p>中文</p>
-<pre><code>espeak -vzh 你好 -w test.wav
-</code></pre><p>##编译需要的源码</p>
-<p><a href="http://ohjvpki1b.bkt.clouddn.com/zhy_list.zip" target="_blank" rel="external">zhy_list.zip</a></p>
-<p><a href="http://ohjvpki1b.bkt.clouddn.com/zh_listx.zip" target="_blank" rel="external">zh_listx.zip</a></p>
-<p><a href="http://ohjvpki1b.bkt.clouddn.com/portaudio.7z" target="_blank" rel="external">portaudio.7z</a></p>
-<p><a href="http://ohjvpki1b.bkt.clouddn.com/espeak-1.48.01-source.7z" target="_blank" rel="external">espeak-1.48.01-source.7z</a></p>
-<p>##遇到问题</p>
-<p>###问题1<br>wavegen.o: In function <code>WavegenOpenSound() [clone .part.2]&#39;:
-wavegen.cpp:(.text+0x26c): undefined reference to</code>Pa_StreamActive’<br>wavegen.o: In function <code>WavegenCloseSound()&#39;:
-wavegen.cpp:(.text+0x58e): undefined reference to</code>Pa_StreamActive’<br>collect2: error: ld returned 1 exit status<br>Makefile:105: recipe for target ‘speak’ failed<br>make: <em>*</em> [speak] Error 1</p>
-<p>###解决<br>    cp portaudio19.h portaudio.h<br>    make clean<br>    make</p>
+        <h1 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h1><h4 id="什么是反向代理"><a href="#什么是反向代理" class="headerlink" title="什么是反向代理"></a>什么是反向代理</h4><p><strong>反向代理</strong>（Reverse Proxy）方式是指用代理服务器来接受 internet 上的连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给 internet 上请求连接的客户端，此时代理服务器对外就表现为一个反向代理服务器。</p>
+<p>举个例子，一个用户访问 <a href="http://www.example.com/readme" target="_blank" rel="external">http://www.example.com/readme</a>，但是 www.example.com 上并不存在 readme 页面，它是偷偷从另外一台服务器上取回来，然后作为自己的内容返回给用户。但是用户并不知情这个过程。对用户来说，就像是直接从 www.example.com 获取 readme 页面一样。这里所提到的 www.example.com 这个域名对应的服务器就设置了反向代理功能。</p>
+<p>反向代理服务器，对于客户端而言它就像是原始服务器，并且客户端不需要进行任何特别的设置。客户端向反向代理的命名空间(name-space)中的内容发送普通请求，接着反向代理将判断向何处(原始服务器)转交请求，并将获得的内容返回给客户端，就像这些内容原本就是它自己的一样。如下图所示：</p>
+<p><img src="http://ohjvpki1b.bkt.clouddn.com/proxy.png" alt="proxy"></p>
+<h4 id="反向代理典型应用场景"><a href="#反向代理典型应用场景" class="headerlink" title="反向代理典型应用场景"></a>反向代理典型应用场景</h4><p>反向代理的典型用途是将防火墙后面的服务器提供给 Internet 用户访问，加强安全防护。反向代理还可以为后端的多台服务器提供负载均衡，或为后端较慢的服务器提供 <strong>缓冲</strong> 服务。另外，反向代理还可以启用高级 URL 策略和管理技术，从而使处于不同 web 服务器系统的 web 页面同时存在于同一个 URL 空间下。</p>
+<p>Nginx 的其中一个用途是做 HTTP 反向代理，下面简单介绍 Nginx 作为反向代理服务器的方法。</p>
+<blockquote>
+<p>场景描述：访问本地服务器上的 README.md 文件 <a href="http://localhost/README.md" target="_blank" rel="external">http://localhost/README.md</a>，本地服务器进行反向代理，从 <a href="https://github.com/moonbingbing/openresty-best-practices/blob/master/README.md" target="_blank" rel="external">https://github.com/moonbingbing/openresty-best-practices/blob/master/README.md</a> 获取页面内容。</p>
+</blockquote>
+<p><code>nginx.conf</code> 配置示例：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">worker_processes</span> <span class="number">1</span>;</div><div class="line"></div><div class="line"><span class="attribute">pid</span> logs/nginx.pid;</div><div class="line"><span class="attribute">error_log</span> logs/error.log <span class="literal">warn</span>;</div><div class="line"></div><div class="line"><span class="section">events</span> &#123;</div><div class="line">    <span class="attribute">worker_connections</span> <span class="number">3000</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="section">http</span> &#123;</div><div class="line">    <span class="attribute">include</span> mime.types;</div><div class="line">    <span class="attribute">server_tokens</span> <span class="literal">off</span>;</div><div class="line"></div><div class="line">	<span class="comment">## 下面配置反向代理的参数</span></div><div class="line">    <span class="section">server</span> &#123;</div><div class="line">        <span class="attribute">listen</span>    <span class="number">80</span>;</div><div class="line"></div><div class="line">        <span class="comment">## 1. 用户访问 http://ip:port，则反向代理到 https://github.com</span></div><div class="line">        <span class="attribute">location</span> / &#123;</div><div class="line">            <span class="attribute">proxy_pass</span>  https://github.com;</div><div class="line">            <span class="attribute">proxy_redirect</span>     <span class="literal">off</span>;</div><div class="line">            <span class="attribute">proxy_set_header</span>   Host             <span class="variable">$host</span>;</div><div class="line">            <span class="attribute">proxy_set_header</span>   X-Real-IP        <span class="variable">$remote_addr</span>;</div><div class="line">            <span class="attribute">proxy_set_header</span>   X-Forwarded-For  <span class="variable">$proxy_add_x_forwarded_for</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">## 2.用户访问 http://ip:port/README.md，则反向代理到</span></div><div class="line">        <span class="comment">##   https://github.com/.../README.md</span></div><div class="line">        <span class="attribute">location</span> /README.md &#123;</div><div class="line">            <span class="attribute">proxy_set_header</span>  X-Real-IP  <span class="variable">$remote_addr</span>;</div><div class="line">            <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</div><div class="line">            <span class="attribute">proxy_pass</span> https://github.com/moonbingbing/openresty-best-practices/blob/master/README.md;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>成功启动 Nginx 后，我们打开浏览器，验证下反向代理的效果。在浏览器地址栏中输入 <code>localhost/README.md</code>，返回的结果是我们 GitHub 源代码的 README 页面。如下图：</p>
+<p><img src="http://ohjvpki1b.bkt.clouddn.com/proxy_example.png" alt="proxy_example"></p>
+<p>我们只需要配置一下 <code>nginx.conf</code> 文件，不用写任何 web 页面，就可以偷偷地从别的服务器上读取一个页面返回给用户。</p>
+<p>下面我们来看一下 <code>nginx.conf</code> 里用到的配置项：</p>
+<p>(1) location</p>
+<p>location 项对请求 URI 进行匹配，location 后面配置了匹配规则。例如上面的例子中，如果请求的 URI 是 <code>localhost/</code>，则会匹配 <code>location /</code> 这一项；如果请求的 URI 是 <code>localhost/README.md</code>，则会匹配 <code>location /README.md</code> 这项。</p>
+<p>上面这个例子只是针对一个确定的 URI 做了反向代理，有的读者会有疑惑：如果对每个页面都进行这样的配置，那将会大量重复，能否做 <strong>批量</strong> 配置呢？此时需要配合使用 location 的正则匹配功能。具体实现方法可参考本书的 <a href="../ngx/match_uri.md">URL 匹配章节</a>。</p>
+<p>(2) proxy_pass</p>
+<p>proxy_pass 后面跟着一个 URL，用来将请求反向代理到 URL 参数指定的服务器上。例如我们上面例子中的 <code>proxy_pass https://github.com</code>，则将匹配的请求反向代理到 <code>https://github.com</code>。</p>
+<p>(3) proxy_set_header</p>
+<p>默认情况下，反向代理不会转发原始请求中的 Host 头部，如果需要转发，就需要加上这句：<code>proxy_set_header Host $host;</code></p>
+<p>除了上面提到的常用配置项，还有 proxy_redirect、proxy_set_body、proxy_limit_rate 等参数，具体用法可以到<a href="http://nginx.org/en/docs/http/ngx_http_proxy_module.html" target="_blank" rel="external">Nginx 官网</a>查看。</p>
+<h4 id="正向代理"><a href="#正向代理" class="headerlink" title="正向代理"></a>正向代理</h4><p>既然有反向代理，自然也有正向代理。简单来说，正向代理就像一个跳板，例如一个用户访问不了某网站（例如 <code>www.google.com</code>），但是他能访问一个代理服务器，这个代理服务器能访问 <code>www.google.com</code>，于是用户可以先连上代理服务器，告诉它需要访问的内容，代理服务器去取回来返回给用户。例如一些常见的翻墙工具、游戏代理就是利用正向代理的原理工作的，我们需要在这些正向代理工具上配置服务器的 IP 地址等信息。</p>
 
       
     </div>
@@ -749,6 +669,86 @@ wavegen.cpp:(.text+0x58e): undefined reference to</code>Pa_StreamActive’<br>co
 </code></pre><p>开始编译</p>
 <pre><code>make -j8
 </code></pre><p>###关闭镜像<br>    Ctrl+D退出镜像</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-espeak编译安装" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/06/07/espeak编译安装/" class="article-date">
+      <time datetime="2017-06-07T09:06:20.000Z" itemprop="datePublished">2017-06-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/07/espeak编译安装/">espeak编译安装</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>##说明<br>&emsp;eSpeak是用于Linux和Windows的英文和其他语言的紧凑型开源软件语音合成器。eSpeak使用“共振峰综合”方法。这允许以小尺寸提供许多语言。讲话清晰，可以高速使用，但并不像基于人类语音记录的较大合成器那样自然或平滑。</p>
+<p>注意：在安装espeak之前必须安装portaudio框架，用于驱动声卡。</p>
+<p><a href="http://espeak.sourceforge.net/" target="_blank" rel="external">espeak官网</a></p>
+<p>##编译portaudio<br>    7z x portaudio.7z<br>    cd portaudio<br>    ./configure<br>    make<br>    sudo make install</p>
+<p>##编译espeak<br>    7z x espeak-1.48.01-source.7z<br>    cd espeak-1.48.01-source/<br>    cd src/<br>    make<br>    sudo make install</p>
+<p>##安装中文和粤语支持<br>在安装中文支持前，保证espeak编译安装成功</p>
+<p>进入<code>/espeak-1.48.01-source/dictsource$</code>目录<br>安装中文</p>
+<pre><code>espeak --compile=zh
+</code></pre><p>安装粤语</p>
+<pre><code>espeak --compile=zh-yue
+</code></pre><p>##测试</p>
+<p>默认</p>
+<pre><code>espeak  hello -w hello.wav
+</code></pre><p>粤语</p>
+<pre><code>espeak -vzhy 你好 -w test.wav
+</code></pre><p>中文</p>
+<pre><code>espeak -vzh 你好 -w test.wav
+</code></pre><p>##编译需要的源码</p>
+<p><a href="http://ohjvpki1b.bkt.clouddn.com/zhy_list.zip" target="_blank" rel="external">zhy_list.zip</a></p>
+<p><a href="http://ohjvpki1b.bkt.clouddn.com/zh_listx.zip" target="_blank" rel="external">zh_listx.zip</a></p>
+<p><a href="http://ohjvpki1b.bkt.clouddn.com/portaudio.7z" target="_blank" rel="external">portaudio.7z</a></p>
+<p><a href="http://ohjvpki1b.bkt.clouddn.com/espeak-1.48.01-source.7z" target="_blank" rel="external">espeak-1.48.01-source.7z</a></p>
+<p>##遇到问题</p>
+<p>###问题1<br>wavegen.o: In function <code>WavegenOpenSound() [clone .part.2]&#39;:
+wavegen.cpp:(.text+0x26c): undefined reference to</code>Pa_StreamActive’<br>wavegen.o: In function <code>WavegenCloseSound()&#39;:
+wavegen.cpp:(.text+0x58e): undefined reference to</code>Pa_StreamActive’<br>collect2: error: ld returned 1 exit status<br>Makefile:105: recipe for target ‘speak’ failed<br>make: <em>*</em> [speak] Error 1</p>
+<p>###解决<br>    cp portaudio19.h portaudio.h<br>    make clean<br>    make</p>
 
       
     </div>

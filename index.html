@@ -1026,70 +1026,6 @@ B: SW=4
 
 
   
-    <article id="post-orangepi开启yuv摄像头驱动" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/08/30/orangepi开启yuv摄像头驱动/" class="article-date">
-      <time datetime="2017-08-30T09:06:20.000Z" itemprop="datePublished">2017-08-30</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/30/orangepi开启yuv摄像头驱动/">orangepi开启yuv摄像头驱动</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>##说明<br>&ensp;使用orangepi外接USB摄像头进行拍照，发现没有<code>/dev/video0</code>，可能没哟将yuv驱动编译进内核，需要外部加载进去。</p>
-<p>##添加驱动</p>
-<p>&emsp;一开始没有发现<code>/lib/modules/3.4.39/</code>目录下<code>uvcvideo.ko</code>，害得自己找来orangepi内核重新编译了一遍。</p>
-<p>1.插入驱动模块</p>
-<pre><code>sudo insmod /lib/modules/3.4.39/uvcvideo.ko
-</code></pre><p>2.查看是否识别了驱动</p>
-<pre><code>ls /dev/video0
-</code></pre><p>3.添加系统启动时候加载驱动</p>
-<pre><code>sudo vim /etc/rc.local 
-</code></pre><p>添加以下语句</p>
-<pre><code>sudo insmod /lib/modules/3.4.39/uvcvideo.ko
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
     <article id="post-linux watchdog看门狗编程" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -1134,6 +1070,70 @@ printf(&quot;The timeout was set to %d seconds\n&quot;, timeout);
 </code></pre><p>##喂狗<br>    ioctl(this-&gt;fd, WDIOC_KEEPALIVE);</p>
 <p>使用定时的方式运行以上语句，延时时间必须小于超时时间。</p>
 
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+
+      
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-orangepi开启yuv摄像头驱动" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/08/30/orangepi开启yuv摄像头驱动/" class="article-date">
+      <time datetime="2017-08-30T09:06:20.000Z" itemprop="datePublished">2017-08-30</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/30/orangepi开启yuv摄像头驱动/">orangepi开启yuv摄像头驱动</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>##说明<br>&ensp;使用orangepi外接USB摄像头进行拍照，发现没有<code>/dev/video0</code>，可能没哟将yuv驱动编译进内核，需要外部加载进去。</p>
+<p>##添加驱动</p>
+<p>&emsp;一开始没有发现<code>/lib/modules/3.4.39/</code>目录下<code>uvcvideo.ko</code>，害得自己找来orangepi内核重新编译了一遍。</p>
+<p>1.插入驱动模块</p>
+<pre><code>sudo insmod /lib/modules/3.4.39/uvcvideo.ko
+</code></pre><p>2.查看是否识别了驱动</p>
+<pre><code>ls /dev/video0
+</code></pre><p>3.添加系统启动时候加载驱动</p>
+<pre><code>sudo vim /etc/rc.local 
+</code></pre><p>添加以下语句</p>
+<pre><code>sudo insmod /lib/modules/3.4.39/uvcvideo.ko
+</code></pre>
       
     </div>
     
