@@ -1,15 +1,89 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
+
+
+
   
-  <title>Android使用USB摄像头拍照yuy2转jpeg | QUSIR</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="#说明由于项目需要，使用通用的usb摄像头进行拍照，这样成本低且比较通用，市面上一大堆支持yuv的usb摄像头。而且linux内核自带yuv的usb驱动，不用移植驱动之类的。由于有些摄像头不支持抓拍jpg格式图片，是因为里面没有哈夫曼编码器对yuv数据进行编码成jpg格式图片。移植了libjpeg库，可以将yuy2格式转为jpg格式，还压缩了一遍。
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="#说明由于项目需要，使用通用的usb摄像头进行拍照，这样成本低且比较通用，市面上一大堆支持yuv的usb摄像头。而且linux内核自带yuv的usb驱动，不用移植驱动之类的。由于有些摄像头不支持抓拍jpg格式图片，是因为里面没有哈夫曼编码器对yuv数据进行编码成jpg格式图片。移植了libjpeg库，可以将yuy2格式转为jpg格式，还压缩了一遍。
 #环境Android 4.4，普通的yuv摄像头">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android使用USB摄像头拍照yuy2转jpeg">
-<meta property="og:url" content="http://yoursite.com/2018/02/01/Android使用USB摄像头拍照yuy2转jpeg/index.html">
+<meta property="og:url" content="http://192.168.86.104/public/2018/02/01/Android使用USB摄像头拍照yuy2转jpeg/index.html">
 <meta property="og:site_name" content="QUSIR">
 <meta property="og:description" content="#说明由于项目需要，使用通用的usb摄像头进行拍照，这样成本低且比较通用，市面上一大堆支持yuv的usb摄像头。而且linux内核自带yuv的usb驱动，不用移植驱动之类的。由于有些摄像头不支持抓拍jpg格式图片，是因为里面没有哈夫曼编码器对yuv数据进行编码成jpg格式图片。移植了libjpeg库，可以将yuy2格式转为jpg格式，还压缩了一遍。
 #环境Android 4.4，普通的yuv摄像头">
@@ -18,217 +92,215 @@
 <meta name="twitter:title" content="Android使用USB摄像头拍照yuy2转jpeg">
 <meta name="twitter:description" content="#说明由于项目需要，使用通用的usb摄像头进行拍照，这样成本低且比较通用，市面上一大堆支持yuv的usb摄像头。而且linux内核自带yuv的usb驱动，不用移植驱动之类的。由于有些摄像头不支持抓拍jpg格式图片，是因为里面没有哈夫曼编码器对yuv数据进行编码成jpg格式图片。移植了libjpeg库，可以将yuy2格式转为jpg格式，还压缩了一遍。
 #环境Android 4.4，普通的yuv摄像头">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://192.168.86.104/public/2018/02/01/Android使用USB摄像头拍照yuy2转jpeg/"/>
+
+
+
+
+
+  <title>Android使用USB摄像头拍照yuy2转jpeg | QUSIR</title>
   
-    <link rel="alternative" href="/atom.xml" title="QUSIR" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/img/Head_portrait.png">
-  
-  
-      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
-  
-  <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  
-  
-      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  
-  <!-- 加载特效 -->
-    <script src="/js/pace.js"></script>
-    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
-  <script>
-      var yiliaConfig = {
-          rootUrl: '/',
-          fancybox: true,
-          animate: true,
-          isHome: false,
-          isPost: true,
-          isArchive: false,
-          isTag: false,
-          isCategory: false,
-          open_in_new: false
-      }
-  </script>
+
+
+
+
+
+
+
+
 </head>
-<body>
-  <div id="container">
-    <div class="left-col">
-    <div class="overlay"></div>
-<div class="intrude-less">
-    <header id="header" class="inner">
-        <a href="/" class="profilepic">
-            
-            <img lazy-src="/img/me_head.png" class="js-avatar">
-            
-        </a>
 
-        <hgroup>
-          <h1 class="header-author"><a href="/" title="Hi Mate">我思，故我在！</a></h1>
-        </hgroup>
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
 
-        
-        
-        
-            <div id="switch-btn" class="switch-btn">
-                <div class="icon">
-                    <div class="icon-ctn">
-                        <div class="icon-wrap icon-house" data-idx="0">
-                            <div class="birdhouse"></div>
-                            <div class="birdhouse_holes"></div>
-                        </div>
-                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
-                            <div class="ribbon"></div>
-                        </div>
-                        
-                        <div class="icon-wrap icon-link hide" data-idx="2">
-                            <div class="loopback_l"></div>
-                            <div class="loopback_r"></div>
-                        </div>
-                        
-                        
-                        <div class="icon-wrap icon-me hide" data-idx="3">
-                            <div class="user"></div>
-                            <div class="shoulder"></div>
-                        </div>
-                        
-                    </div>
-                    
-                </div>
-                <div class="tips-box hide">
-                    <div class="tips-arrow"></div>
-                    <ul class="tips-inner">
-                        <li>菜单</li>
-                        <li>标签</li>
-                        
-                        <li>友情链接</li>
-                        
-                        
-                        <li>关于我</li>
-                        
-                    </ul>
-                </div>
-            </div>
-        
+  
+  
+    
+  
 
-        <div id="switch-area" class="switch-area">
-            <div class="switch-wrap">
-                <section class="switch-part switch-part1">
-                    <nav class="header-menu">
-                        <ul>
-                        
-                            <li><a href="http://qusir.club/">博客首页</a></li>
-                        
-                        </ul>
-                    </nav>
-                    <nav class="header-nav">
-                        <ul class="social">
-                            
-                                <a class="fl github" target="_blank" href="https://github.com/QUSIR" title="github">github</a>
-                            
-                        </ul>
-                    </nav>
-                </section>
-                
-                
-                <section class="switch-part switch-part2">
-                    <div class="widget tagcloud" id="js-tagcloud">
-                        
-                    </div>
-                </section>
-                
-                
-                
-                <section class="switch-part switch-part3">
-                    <div id="js-friends">
-                    
-                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://qusir.github.io/">qusir</a>
-                    
-                    </div>
-                </section>
-                
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
 
-                
-                
-                <section class="switch-part switch-part4">
-                
-                    <div id="js-aboutme">关于我，其实我也不是很了解，也不想贴标签，如果对我这个人感兴趣的话，跟我聊吧！</div>
-                </section>
-                
-            </div>
-        </div>
-    </header>                
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">QUSIR</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
-    </div>
-    <div class="mid-col">
-      <nav id="mobile-nav">
-      <div class="overlay">
-          <div class="slider-trigger"></div>
-          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">我思，故我在！</a></h1>
-      </div>
-    <div class="intrude-less">
-        <header id="header" class="inner">
-            <a href="/" class="profilepic">
-                
-                    <img lazy-src="/img/me_head.png" class="js-avatar">
-                
-            </a>
-            <hgroup>
-              <h1 class="header-author"><a href="/" title="Me">我思，故我在！</a></h1>
-            </hgroup>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
             
-            <nav class="header-menu">
-                <ul>
-                
-                    <li><a href="http://qusir.club/">博客首页</a></li>
-                
-                <div class="clearfix"></div>
-                </ul>
-            </nav>
-            <nav class="header-nav">
-                <div class="social">
-                    
-                        <a class="github" target="_blank" href="https://github.com/QUSIR" title="github">github</a>
-                    
-                </div>
-            </nav>
-        </header>                
-    </div>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
 </nav>
-      <div class="body-wrap"><article id="post-Android使用USB摄像头拍照yuy2转jpeg" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2018/02/01/Android使用USB摄像头拍照yuy2转jpeg/" class="article-date">
-      <time datetime="2018-02-01T09:07:41.000Z" itemprop="datePublished">2018-02-01</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
     
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Android使用USB摄像头拍照yuy2转jpeg
-    </h1>
+
   
 
-      </header>
-      
-      <div class="article-info article-info-post">
-        
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://192.168.86.104/public/2018/02/01/Android使用USB摄像头拍照yuy2转jpeg/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="我思，故我在！">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="QUSIR">
+    </span>
+
+    
+      <header class="post-header">
 
         
-        <div class="clearfix"></div>
-      </div>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
+        
+          <h1 class="post-title" itemprop="name headline">Android使用USB摄像头拍照yuy2转jpeg</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-01T17:07:41+08:00">
+                2018-02-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
         <p>#说明<br>由于项目需要，使用通用的usb摄像头进行拍照，这样成本低且比较通用，市面上一大堆支持yuv的usb摄像头。而且linux内核自带yuv的usb驱动，不用移植驱动之类的。由于有些摄像头不支持抓拍jpg格式图片，是因为里面没有哈夫曼编码器对yuv数据进行编码成jpg格式图片。移植了libjpeg库，可以将yuy2格式转为jpg格式，还压缩了一遍。</p>
 <p>#环境<br>Android 4.4，普通的yuv摄像头，不自带哈夫曼编码。</p>
 <p>#查看android系统是否识别了usb摄像头<br>    adb shll<br>    ls /dev/video*<br>说明：如果显示有<code>/dev/video</code>的控制句柄，那说明识别成功。</p>
@@ -245,253 +317,331 @@ int get_photo(int size,int filename);        //调用接口 第一个参数为�
       
     </div>
     
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/01/编译全志H3的linux源码/" rel="next" title="编译全志H3的linux源码">
+                <i class="fa fa-chevron-left"></i> 编译全志H3的linux源码
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/02/c++包管理工具conan使用/" rel="prev" title="c++包管理工具conan使用">
+                c++包管理工具conan使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
-    
-    <div class="copyright">
-        <p><span>本文标题:</span><a href="/2018/02/01/Android使用USB摄像头拍照yuy2转jpeg/">Android使用USB摄像头拍照yuy2转jpeg</a></p>
-        <p><span>文章作者:</span><a href="/" title="访问 我思，故我在！ 的个人博客">我思，故我在！</a></p>
-        <p><span>发布时间:</span>2018年02月01日 - 17时07分</p>
-        <p><span>最后更新:</span>2018年03月17日 - 21时48分</p>
-        <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/02/01/Android使用USB摄像头拍照yuy2转jpeg/" title="Android使用USB摄像头拍照yuy2转jpeg">http://yoursite.com/2018/02/01/Android使用USB摄像头拍照yuy2转jpeg/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2018/02/01/Android使用USB摄像头拍照yuy2转jpeg/　　作者: 我思，故我在！" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
-            <script src="/js/clipboard.min.js"></script>
-            <script> var clipboard = new Clipboard('.copy-path'); </script>
-        </p>
-        <p>
-            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
-        </p>
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
     </div>
+  </div>
 
 
+          </div>
+          
 
-<nav id="article-nav">
-  
-    <a href="/2018/03/02/c++包管理工具conan使用/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          c++包管理工具conan使用
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2018/02/01/编译全志H3的linux源码/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">编译全志H3的linux源码</div>
-      <strong class="article-nav-caption">></strong>
-    </a>
-  
-</nav>
+
+          
 
   
-</article>
-
-    <div id="toc" class="toc-article">
-    <strong class="toc-title">文章目录</strong>
-    
-</div>
-<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
-
-<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
-<script>
-    var valueHide = "隐藏目录";
-    var valueShow = "显示目录";
-
-    if ($(".left-col").is(":hidden")) {
-        $("#tocButton").attr("value", valueShow);
-    }
-    $("#tocButton").click(function() {
-        if ($("#toc").is(":hidden")) {
-            $("#tocButton").attr("value", valueHide);
-            $("#toc").slideDown(320);
-        }
-        else {
-            $("#tocButton").attr("value", valueShow);
-            $("#toc").slideUp(350);
-        }
-    })
-    if ($(".toc").length < 1) {
-        $("#toc, #tocButton").hide();
-    }
-</script>
 
 
 
-
-
-<div class="bdsharebuttonbox">
-	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
-	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
-	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
-	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
-	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
-	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
-	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
-</div>
-<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
-
-
-
-
-    
-      <div class="duoshuo" id="comments">
-    <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="2018/02/01/Android使用USB摄像头拍照yuy2转jpeg/" data-title="Android使用USB摄像头拍照yuy2转jpeg" data-url="http://yoursite.com/2018/02/01/Android使用USB摄像头拍照yuy2转jpeg/"></div>
-    <!-- 多说评论框 end -->
-    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-    <script type="text/javascript">
-    var duoshuoQuery = {short_name:"null"};
-    (function() {
-        var ds = document.createElement('script');
-        ds.type = 'text/javascript';ds.async = true;
-        ds.src = '/js/embed.js';
-        ds.charset = 'UTF-8';
-        (document.getElementsByTagName('head')[0] 
-         || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-    </script>
-    <!-- 多说公共JS代码 end -->
-</div>
-
-    
-
-
-
-    <div class="scroll" id="post-nav-button">
-        
-            <a href="/2018/03/02/c++包管理工具conan使用/" title="上一篇: c++包管理工具conan使用">
-                <i class="fa fa-angle-left"></i>
-            </a>
-        
-        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
-        
-            <a href="/2018/02/01/编译全志H3的linux源码/" title="下一篇: 编译全志H3的linux源码">
-                <i class="fa fa-angle-right"></i>
-            </a>
-        
-    </div>
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/03/13/googletest集成到jenkins/">googletest集成到jenkins</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/12/jenkins搭建cc++自动化构建/">jenkins搭建cc++自动化构建</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/03/02/c++包管理工具conan使用/">c++包管理工具conan使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/01/Android使用USB摄像头拍照yuy2转jpeg/">Android使用USB摄像头拍照yuy2转jpeg</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/01/编译全志H3的linux源码/">编译全志H3的linux源码</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/09/使用epoll方式监控键盘等设备输入/">使用epoll方式监控键盘等设备输入</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/20/orangepi zero gpio控制/">orangepi zero gpio控制</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/02/linux查找刷卡器输入设备/">linux查找刷卡器输入设备</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/30/linux watchdog看门狗编程/">linux watchdog看门狗编程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/30/orangepi开启yuv摄像头驱动/">orangepi开启yuv摄像头驱动</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/27/linux 系统下将pyqt打包成可执行文件/">linux 系统下将pyqt打包成可执行文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/15/mantisbt 2.5.0在nginx服务器上安装/">mantisbt 2.5.0在nginx服务器上安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/09/高通MSM8909的gpio驱动编程/">高通MSM8909的gpio驱动编程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/08/nginx反向代理/">nginx反向代理</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/08/haproxy代理搭建/">haproxy代理搭建</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/07/espeak编译安装/">espeak编译安装</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/06/07/使用docker搭建android源码编译环境/">使用docker搭建android源码编译环境</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/27/xposed各种机型安装方法/">xposed各种机型安装方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/12/交叉编译pjsip/">交叉编译pjsip</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/05/12/ndk编译pjsip/">ndk编译pjsip</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/21/使用ngrok实现内网穿透/">使用ngrok实现内网穿透</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/12/mysql删除有空格字符名称的触发器/">mysql删除有空格字符名称的触发器</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/12/使用android studio查看andrdoid源码/">使用android studio查看andrdoid源码</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/08/mysql-udf插件开发/">mysql udf插件开发</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/08/docker使用代理/">docker使用代理</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/08/CoreFreq-CPU监控软件/">CoreFreq CPU监控软件</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/04/08/Ubuntu16-04安装Stacer工具/">Ubuntu16.04安装Stacer工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/12/ubuntu16-04搭建xrdp远程桌面链接/">ubuntu16.04搭建xrdp远程桌面链接</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/12/Mediostream框架filter使用说明/">Mediostream框架filter使用说明</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/12/同步webrtc-android源码/">同步webrtc_android源码</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/12/我对灯光的各种印象/">我对灯光的各种印象</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/14/armbian定制教程/">armbian定制教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/02/14/orangePi源码编译教程/">orangePi源码编译教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/21/编译hikey-bootloader/">编译hikey bootloader</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/21/hikey替换android内核/">hikey替换android内核</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/21/hikey-android源码编译/">hikey android源码编译</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/21/同步codeaurora-Android源码/">同步codeaurora Android源码</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/21/烧写poky生成镜像/">烧写poky生成镜像</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/21/raspbian更新内核/">raspbian更新内核</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/21/poky-raspbian开发/">poky raspbian开发</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/21/poky-raspbian教程/">poky raspbian教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/21/android键盘输入读取/">android键盘输入读取</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/21/android-gpio口控制/">android gpio口控制</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/01/21/Ubuntu16-04安装Screenlets/">Ubuntu16.04安装Screenlets</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/linux终端实现代理/">linux终端实现代理</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/linux-git实现代理/">linux git实现代理</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/使用ndk编译c可执行程序/">使用ndk编译c可执行程序</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/编译Android源码/">编译Android源码</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/提取刷机包内system-new-dat文件/">提取刷机包内system.new.dat文件</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/加速android源码编译/">加速android源码编译</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/安装切换openjdk/">安装切换openjdk</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/android手机解锁引导程序/">android手机解锁引导程序</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/用open-gapps安装google-play/">用open_gapps安装google play</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/各种开源Android-系统定制/">各种开源Android 系统定制</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/各种Android手机Root方法/">各种Android手机Root方法</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/FileZillaFTP使用教程/">FileZillaFTP使用教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/Android手机刷recovery/">Android手机刷recovery</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/12/19/mediastreamer/">mediastreamer使用教程</a></li></ul>
-    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
-    <script>
-        $(".post-list").addClass("toc-article");
-        $(".post-list-item a").attr("target","_blank");
-        $("#post-nav-button > a:nth-child(2)").click(function() {
-            $(".fa-bars, .fa-times").toggle();
-            $(".post-list").toggle(300);
-            if ($(".toc").length > 0) {
-                $("#toc, #tocButton").toggle(200, function() {
-                    if ($(".switch-area").is(":visible")) {
-                        $("#tocButton").attr("value", valueHide);
-                        }
-                    })
-            }
-            else {
-            }
-        })
-    </script>
-
-
-
-    <script>
-        
-    </script>
-</div>
-      <footer id="footer">
-    <div class="outer">
-        <div id="footer-info">
-            <div class="footer-left">
-                &copy; 2018 我思，故我在！
-            </div>
-            <div class="footer-right">
-                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
-            </div>
         </div>
         
-            <div class="visit">
-                
-                    <span id="busuanzi_container_site_pv" style='display:none'>
-                        <span id="site-visit" >到访人数: 
-                            <span id="busuanzi_value_site_uv"></span>
-                        </span>
-                    </span>
-                
-                
-                    <span>, </span>
-                
-                
-                    <span id="busuanzi_container_page_pv" style='display:none'>
-                        <span id="page-visit">本页阅读量: 
-                            <span id="busuanzi_value_page_pv"></span>
-                        </span>
-                    </span>
-                
-            </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">我思，故我在！</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">Artikel</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
         
-    </div>
-</footer>
+      </div>
+    </main>
 
-    </div>
-    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
-<script src="/js/main.js"></script>
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">我思，故我在！</span>
 
-    <script>
-        $(document).ready(function() {
-            var backgroundnum = 24;
-            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
-            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
-            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
-        })
-    </script>
-
-
-
-
-
-<div class="scroll" id="scroll">
-    <a href="#"><i class="fa fa-arrow-up"></i></a>
-    <a href="#comments"><i class="fa fa-comments-o"></i></a>
-    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+  
 </div>
-<script>
-    $(document).ready(function() {
-        if ($("#comments").length < 1) {
-            $("#scroll > a:nth-child(2)").hide();
-        };
-    })
-</script>
 
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
 
-  <script language="javascript">
-    $(function() {
-        $("a[title]").each(function() {
-            var a = $(this);
-            var title = a.attr('title');
-            if (title == undefined || title == "") return;
-            a.data('title', title).removeAttr('title').hover(
+  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
-            function() {
-                var offset = a.offset();
-                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
-                    top: offset.top - a.outerHeight() - 15,
-                    left: offset.left + a.outerWidth()/2 + 1
-                }).fadeIn(function() {
-                    var pop = $(this);
-                    setTimeout(function() {
-                        pop.remove();
-                    }, pop.text().length * 800);
-                });
-            }, function() {
-                $("#anchortitlecontainer").remove();
-            });
-        });
-    });
-</script>
 
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
 
   </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>
