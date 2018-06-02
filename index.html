@@ -301,13 +301,13 @@
           
             <p>##使用环境<br>Ubuntu 16.04 </p>
 <p>googletest-release-1.8.0.tar.gz</p>
-<p>##安装jenkins的xUnit插件<br><img src="http://ohjvpki1b.bkt.clouddn.com/xUnit.png" alt="xUnit"></p>
+<p>##安装jenkins的xUnit插件<br><img src="https://lianghuanhan.club/images/xUnit.png" alt="xUnit"></p>
 <p>##编写测试程序</p>
 <p>###自己使用的demo<br><a href="https://github.com/QUSIR/googletest_demo" target="_blank" rel="external">https://github.com/QUSIR/googletest_demo</a></p>
 <p>###运行测试程序输出xml<br>    ./Demo –gtest_output=xml:gtestreport.xml</p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/Demo_out.png" alt="Demo_out"></p>
-<p>##设置插件<br><img src="http://ohjvpki1b.bkt.clouddn.com/xUnit_setting.png" alt="xUnit_setting"></p>
-<p>##测试结果输出<br><img src="http://ohjvpki1b.bkt.clouddn.com/Test_Result.png" alt="Test_Result"></p>
+<p><img src="https://lianghuanhan.club/images/Demo_out.png" alt="Demo_out"></p>
+<p>##设置插件<br><img src="https://lianghuanhan.club/images/xUnit_setting.png" alt="xUnit_setting"></p>
+<p>##测试结果输出<br><img src="https://lianghuanhan.club/images/Test_Result.png" alt="Test_Result"></p>
 
           
         
@@ -427,21 +427,21 @@
       
         
           
-            <p>##设置git源码管理<br>内网搭建GitLab源码托管平台，如下设置，使用的是http方式，点击Add添加gitlab用户名和密码。<br><img src="http://ohjvpki1b.bkt.clouddn.com/jenkins_git.png" alt="jenkins_git"><br>立即执行构建会出现以下信息<br><img src="http://ohjvpki1b.bkt.clouddn.com/git_log.png" alt="git_log"><br>表示从gitlab拉取代码成功，clone路径是 /root/.jenkins/workspace/uart</p>
+            <p>##设置git源码管理<br>内网搭建GitLab源码托管平台，如下设置，使用的是http方式，点击Add添加gitlab用户名和密码。<br><img src="https://lianghuanhan.club/images/jenkins_git.png" alt="jenkins_git"><br>立即执行构建会出现以下信息<br><img src="https://lianghuanhan.club/images/git_log.png" alt="git_log"><br>表示从gitlab拉取代码成功，clone路径是 /root/.jenkins/workspace/uart</p>
 <p>##cppcheck静态代码分析</p>
 <p>###在构建服务器上安装cppcheck</p>
 <pre><code>sudo apt install cppcheck
-</code></pre><p>###在构建输入以下指令<br><img src="http://ohjvpki1b.bkt.clouddn.com/cppcheck_Shell.png" alt="cppcheck_Shell"></p>
+</code></pre><p>###在构建输入以下指令<br><img src="https://lianghuanhan.club/images/cppcheck_Shell.png" alt="cppcheck_Shell"></p>
 <p>cppcheck –enable=all –xml-version=2 ./ 2&gt; cppcheck.xml</p>
 <p>以上./是指当前目录，将检查以xml形式输出到cppcheck.xml文件</p>
-<p>###安装cppcheck插件<br><img src="http://ohjvpki1b.bkt.clouddn.com/cppcheck_Plugin.png" alt="cppcheck_Plugin"></p>
-<p>####添加构建后cppcheck插件<br><img src="http://ohjvpki1b.bkt.clouddn.com/cppcheck_setting.png" alt="cppcheck_setting"></p>
-<p>####设置cppcheck插件<br><img src="http://ohjvpki1b.bkt.clouddn.com/cppcheck_setting2.png" alt="cppcheck_setting2"></p>
-<p>####输出结果<br><img src="http://ohjvpki1b.bkt.clouddn.com/cppcheck_buildout1.png" alt="cppcheck_buildout1"></p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/cppcheck_buildout2.png" alt="cppcheck_buildout2"></p>
+<p>###安装cppcheck插件<br><img src="https://lianghuanhan.club/images/cppcheck_Plugin.png" alt="cppcheck_Plugin"></p>
+<p>####添加构建后cppcheck插件<br><img src="https://lianghuanhan.club/images/cppcheck_setting.png" alt="cppcheck_setting"></p>
+<p>####设置cppcheck插件<br><img src="https://lianghuanhan.club/images/cppcheck_setting2.png" alt="cppcheck_setting2"></p>
+<p>####输出结果<br><img src="https://lianghuanhan.club/images/cppcheck_buildout1.png" alt="cppcheck_buildout1"></p>
+<p><img src="https://lianghuanhan.club/images/cppcheck_buildout2.png" alt="cppcheck_buildout2"></p>
 <p>##gcovr代码覆盖率分析</p>
 <p>###安装gcovr<br>    sudo apt install gcovr</p>
-<p>###安装Cobertura插件<br><img src="http://ohjvpki1b.bkt.clouddn.com/Cobertura.png" alt="Cobertura"></p>
+<p>###安装Cobertura插件<br><img src="https://lianghuanhan.club/images/Cobertura.png" alt="Cobertura"></p>
 <p>###修改Makefile文件<br>在Makefile文件添加 -fprofile-arcs -ftest-coverage -fPIC 编译选项</p>
 <p><pre><br>Target=epoll_key<br>HomeDir = .<br>Objects=$(HomeDir)/Epoller.o $(HomeDir)/HotKeyService.o $(HomeDir)/main.o</pre></p>
 <p>CC=g++<br>Compile=$(CC) -fprofile-arcs -ftest-coverage -fPIC<br>Link=$(CC) -lstdc++<br>INCLUDE = -O3 -D_LINUX -DLINUX -DDEBUG<br>INCLUDE += -I./<br>INCLUDE += -I$(ServiceDir)/</p>
@@ -453,10 +453,10 @@
 <pre>
 
 <p>chmod +x epoll_key<br>./epoll_key<br>gcovr -x -r “./“ –output “./coverage.xml”</p>
-<p></p></pre><br><img src="http://ohjvpki1b.bkt.clouddn.com/gcovr_shell.png" alt="gcovr_shell"><br>执行./epoll_key会生成gcda和gcno文件，将覆盖检查输出到coverage.xml文件<p></p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/gcovr_run.png" alt="gcovr_run"></p>
-<p>###配置Cobertura插件<br><img src="http://ohjvpki1b.bkt.clouddn.com/Cobertura_setting.png" alt="Cobertura_setting"></p>
-<p>###构建输出<br><img src="http://ohjvpki1b.bkt.clouddn.com/Code_Coverage.png" alt="Code_Coverage"></p>
+<p></p></pre><br><img src="https://lianghuanhan.club/images/gcovr_shell.png" alt="gcovr_shell"><br>执行./epoll_key会生成gcda和gcno文件，将覆盖检查输出到coverage.xml文件<p></p>
+<p><img src="https://lianghuanhan.club/images/gcovr_run.png" alt="gcovr_run"></p>
+<p>###配置Cobertura插件<br><img src="https://lianghuanhan.club/images/Cobertura_setting.png" alt="Cobertura_setting"></p>
+<p>###构建输出<br><img src="https://lianghuanhan.club/images/Code_Coverage.png" alt="Code_Coverage"></p>
 
           
         
@@ -1272,8 +1272,8 @@ _boot_on_ext4=&quot;no&quot;
       
         
           
-            <p>#orangepi zero接口图<br><img src="http://ohjvpki1b.bkt.clouddn.com/opiz-pins-26-0.jpg" alt=""></p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/orangepi_pin.png" alt=""></p>
+            <p>#orangepi zero接口图<br><img src="https://lianghuanhan.club/images/opiz-pins-26-0.jpg" alt=""></p>
+<p><img src="https://lianghuanhan.club/images/orangepi_pin.png" alt=""></p>
 <p>#编译安装WiringOP<br>源码<br><a href="http://ohjvpki1b.bkt.clouddn.com/WiringOP-zero.zip" target="_blank" rel="external">WiringOP-zero.zip</a></p>
 <p>解压</p>
 <pre><code>unzip WingOP-zero.zip

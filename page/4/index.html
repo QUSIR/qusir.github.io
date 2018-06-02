@@ -423,7 +423,7 @@
 <p>##官方网站</p>
 <p><a href="https://www.armbian.com/" target="_blank" rel="external">https://www.armbian.com/</a></p>
 <p>可以下载相应板子对应的镜像</p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/armbian_download.png" alt="view"></p>
+<p><img src="https://lianghuanhan.club/images/armbian_download.png" alt="view"></p>
 <p>###下载源码，定制系统生成相对应镜像</p>
 <pre><code>mkdir armbian
 apt-get -y install git
@@ -565,7 +565,7 @@ cp lib/compile.sh .
 <p>此时系统会提示平台的选择，对于 OrangePi PC，选择 dragonboard</p>
 <p>此时系统会调试板子的选择，对于 OrangePi PC，选择 dolphin-p1</p>
 <p>编译成功后会如下显示</p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/orangepi_PC_build_OK.png" alt="view"></p>
+<p><img src="https://lianghuanhan.club/images/orangepi_PC_build_OK.png" alt="view"></p>
 <p>###内核镜像文件和库的替换<br>编译完成之后，将会目录下生成如下文件：</p>
 <p>boot： /lichee/tools/pack/chips/sun8iw7p1/bin/boot0_sdcard_sun8iw7p1.bin</p>
 <p>uboot： /lichee/tools/pack/chips/sun8iw7p1/bin/u-boot-sun8iw7p1.bin</p>
@@ -584,9 +584,9 @@ cp lib/compile.sh .
 </code></pre><p>###lichee源码编译</p>
 <pre><code>$ cd lichee
 $ ./build.sh lunch
-</code></pre><p><img src="http://ohjvpki1b.bkt.clouddn.com/build_lichee.png" alt="view"></p>
+</code></pre><p><img src="https://lianghuanhan.club/images/build_lichee.png" alt="view"></p>
 <p>编译成功后打印信息</p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/build_lichee_ok.png" alt="view"></p>
+<p><img src="https://lianghuanhan.club/images/build_lichee_ok.png" alt="view"></p>
 <p>###android代码编译</p>
 <pre><code>$ cd android
 $ source ./build/envsetup.sh
@@ -595,7 +595,7 @@ $ extract-bsp #拷贝内核及驱动模块
 </code></pre><p>由于源码解压出来没有makefile文件，需要将makefile文件拷到目录下才能执行make命令</p>
 <pre><code>$ make –j8 #后面的数值为同时编译的进程，依赖于主机的配置
 $ pack #打包生成固件
-</code></pre><p><img src="http://ohjvpki1b.bkt.clouddn.com/OrangePi_build_android_pack.png" alt="view"></p>
+</code></pre><p><img src="https://lianghuanhan.club/images/OrangePi_build_android_pack.png" alt="view"></p>
 
           
         

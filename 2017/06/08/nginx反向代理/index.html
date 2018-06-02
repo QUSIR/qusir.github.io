@@ -87,14 +87,14 @@
 <meta property="og:site_name" content="QUSIR">
 <meta property="og:description" content="反向代理什么是反向代理反向代理（Reverse Proxy）方式是指用代理服务器来接受 internet 上的连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给 internet 上请求连接的客户端，此时代理服务器对外就表现为一个反向代理服务器。
 举个例子，一个用户访问 http://www.example.com/readme，但是 www.example.com 上并">
-<meta property="og:image" content="http://ohjvpki1b.bkt.clouddn.com/proxy.png">
-<meta property="og:image" content="http://ohjvpki1b.bkt.clouddn.com/proxy_example.png">
-<meta property="og:updated_time" content="2017-09-21T02:58:34.287Z">
+<meta property="og:image" content="https://lianghuanhan.club/images/proxy.png">
+<meta property="og:image" content="https://lianghuanhan.club/images/proxy_example.png">
+<meta property="og:updated_time" content="2018-05-31T10:47:26.319Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="nginx反向代理">
 <meta name="twitter:description" content="反向代理什么是反向代理反向代理（Reverse Proxy）方式是指用代理服务器来接受 internet 上的连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给 internet 上请求连接的客户端，此时代理服务器对外就表现为一个反向代理服务器。
 举个例子，一个用户访问 http://www.example.com/readme，但是 www.example.com 上并">
-<meta name="twitter:image" content="http://ohjvpki1b.bkt.clouddn.com/proxy.png">
+<meta name="twitter:image" content="https://lianghuanhan.club/images/proxy.png">
 
 
 
@@ -307,7 +307,7 @@
         <h1 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h1><h4 id="什么是反向代理"><a href="#什么是反向代理" class="headerlink" title="什么是反向代理"></a>什么是反向代理</h4><p><strong>反向代理</strong>（Reverse Proxy）方式是指用代理服务器来接受 internet 上的连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给 internet 上请求连接的客户端，此时代理服务器对外就表现为一个反向代理服务器。</p>
 <p>举个例子，一个用户访问 <a href="http://www.example.com/readme" target="_blank" rel="external">http://www.example.com/readme</a>，但是 www.example.com 上并不存在 readme 页面，它是偷偷从另外一台服务器上取回来，然后作为自己的内容返回给用户。但是用户并不知情这个过程。对用户来说，就像是直接从 www.example.com 获取 readme 页面一样。这里所提到的 www.example.com 这个域名对应的服务器就设置了反向代理功能。</p>
 <p>反向代理服务器，对于客户端而言它就像是原始服务器，并且客户端不需要进行任何特别的设置。客户端向反向代理的命名空间(name-space)中的内容发送普通请求，接着反向代理将判断向何处(原始服务器)转交请求，并将获得的内容返回给客户端，就像这些内容原本就是它自己的一样。如下图所示：</p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/proxy.png" alt="proxy"></p>
+<p><img src="https://lianghuanhan.club/images/proxy.png" alt="proxy"></p>
 <h4 id="反向代理典型应用场景"><a href="#反向代理典型应用场景" class="headerlink" title="反向代理典型应用场景"></a>反向代理典型应用场景</h4><p>反向代理的典型用途是将防火墙后面的服务器提供给 Internet 用户访问，加强安全防护。反向代理还可以为后端的多台服务器提供负载均衡，或为后端较慢的服务器提供 <strong>缓冲</strong> 服务。另外，反向代理还可以启用高级 URL 策略和管理技术，从而使处于不同 web 服务器系统的 web 页面同时存在于同一个 URL 空间下。</p>
 <p>Nginx 的其中一个用途是做 HTTP 反向代理，下面简单介绍 Nginx 作为反向代理服务器的方法。</p>
 <blockquote>
@@ -316,7 +316,7 @@
 <p><code>nginx.conf</code> 配置示例：</p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">worker_processes</span> <span class="number">1</span>;</div><div class="line"></div><div class="line"><span class="attribute">pid</span> logs/nginx.pid;</div><div class="line"><span class="attribute">error_log</span> logs/error.log <span class="literal">warn</span>;</div><div class="line"></div><div class="line"><span class="section">events</span> &#123;</div><div class="line">    <span class="attribute">worker_connections</span> <span class="number">3000</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="section">http</span> &#123;</div><div class="line">    <span class="attribute">include</span> mime.types;</div><div class="line">    <span class="attribute">server_tokens</span> <span class="literal">off</span>;</div><div class="line"></div><div class="line">	<span class="comment">## 下面配置反向代理的参数</span></div><div class="line">    <span class="section">server</span> &#123;</div><div class="line">        <span class="attribute">listen</span>    <span class="number">80</span>;</div><div class="line"></div><div class="line">        <span class="comment">## 1. 用户访问 http://ip:port，则反向代理到 https://github.com</span></div><div class="line">        <span class="attribute">location</span> / &#123;</div><div class="line">            <span class="attribute">proxy_pass</span>  https://github.com;</div><div class="line">            <span class="attribute">proxy_redirect</span>     <span class="literal">off</span>;</div><div class="line">            <span class="attribute">proxy_set_header</span>   Host             <span class="variable">$host</span>;</div><div class="line">            <span class="attribute">proxy_set_header</span>   X-Real-IP        <span class="variable">$remote_addr</span>;</div><div class="line">            <span class="attribute">proxy_set_header</span>   X-Forwarded-For  <span class="variable">$proxy_add_x_forwarded_for</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">## 2.用户访问 http://ip:port/README.md，则反向代理到</span></div><div class="line">        <span class="comment">##   https://github.com/.../README.md</span></div><div class="line">        <span class="attribute">location</span> /README.md &#123;</div><div class="line">            <span class="attribute">proxy_set_header</span>  X-Real-IP  <span class="variable">$remote_addr</span>;</div><div class="line">            <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</div><div class="line">            <span class="attribute">proxy_pass</span> https://github.com/moonbingbing/openresty-best-practices/blob/master/README.md;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>成功启动 Nginx 后，我们打开浏览器，验证下反向代理的效果。在浏览器地址栏中输入 <code>localhost/README.md</code>，返回的结果是我们 GitHub 源代码的 README 页面。如下图：</p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/proxy_example.png" alt="proxy_example"></p>
+<p><img src="https://lianghuanhan.club/images/proxy_example.png" alt="proxy_example"></p>
 <p>我们只需要配置一下 <code>nginx.conf</code> 文件，不用写任何 web 页面，就可以偷偷地从别的服务器上读取一个页面返回给用户。</p>
 <p>下面我们来看一下 <code>nginx.conf</code> 里用到的配置项：</p>
 <p>(1) location</p>

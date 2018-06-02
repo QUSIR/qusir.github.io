@@ -523,7 +523,7 @@
 <pre><code>adb shell
 </code></pre><p>输入以下指令监控键盘输入</p>
 <pre><code>getevent
-</code></pre><p><img src="http://ohjvpki1b.bkt.clouddn.com/getevent.png" alt="view"></p>
+</code></pre><p><img src="https://lianghuanhan.club/images/getevent.png" alt="view"></p>
 <p>##方法1实现<br>代码实现</p>
 <pre><code> @Override
 public boolean onKeyDown(int keyCode,KeyEvent event){
@@ -787,7 +787,7 @@ static void* pthread_read_keyboard(void*){
             <p>##android gpio口控制</p>
 <p>&emsp;GPIO口控制方式是在jni层控制的方式实现高低电平输出,类似linux的控制句柄方式，在linux系统下将每个设备看作一个文件，android系统是基于linux内核的。</p>
 <p>##保证该文件有读写权限</p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/android_gpio.png" alt="view"></p>
+<p><img src="https://lianghuanhan.club/images/android_gpio.png" alt="view"></p>
 <p>##用命令控制gpio输出<br>    输出高电平<br>    echo 1 &gt; /system/class/gpio_sw/data<br>    输出低电平<br>    echo 1 &gt; /system/class/gpio_sw/data</p>
 <p>##代码段</p>
 <pre><code>#include &lt;unistd.h&gt;
@@ -818,7 +818,7 @@ JNIEXPORT jint JNICALL Java_com_example_liang_gpio_1demo_Gpio_Set_1GPIO
     return 0;
 
 }
-</code></pre><p>##使用<br>&emsp;点击SetGpio按钮输出高低电平变化<br><img src="http://ohjvpki1b.bkt.clouddn.com/gpio_view.jpg" alt=""><br>自己编写<br><a href="https://github.com/QUSIR/Android_GPIO_DEMO" target="_blank" rel="external">DEMO</a></p>
+</code></pre><p>##使用<br>&emsp;点击SetGpio按钮输出高低电平变化<br><img src="https://lianghuanhan.club/images/gpio_view.jpg" alt=""><br>自己编写<br><a href="https://github.com/QUSIR/Android_GPIO_DEMO" target="_blank" rel="external">DEMO</a></p>
 
           
         
@@ -949,9 +949,9 @@ sudo apt-get install screenlets
 sudo apt-get install libcanberra-gtk-module
 sudo apt-get install python-xdg
 </code></pre><p>##使用方法<br>打开screenlets双击相应的桌面控件，便会在桌面生成，相应的小程序，点击开始/停止也可以，或者点击登录时自启动，使桌面小程序，开机显示在桌面。</p>
-<p>##设置界面<br><img src="http://ohjvpki1b.bkt.clouddn.com/Screenlets1.png" alt=""></p>
+<p>##设置界面<br><img src="https://lianghuanhan.club/images/Screenlets1.png" alt=""></p>
 <p>##效果图</p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/Screenlets2.png" alt=""></p>
+<p><img src="https://lianghuanhan.club/images/Screenlets2.png" alt=""></p>
 
           
         
@@ -1076,7 +1076,7 @@ sudo apt-get install python-xdg
 sudo apt-get update
 sudo apt-get install shadowsocks-qt5
 </code></pre><p>##运行Shadowsocks-Qt5</p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/Shadowsocks-Qt5config.png" alt="Shadowsocks-Qt5config"></p>
+<p><img src="https://lianghuanhan.club/images/Shadowsocks-Qt5config.png" alt="Shadowsocks-Qt5config"></p>
 <p>配置好账号和代理端口，代理端口为1080 socks5</p>
 <p>##安装Privoxy</p>
 <pre><code>sudo apt-get install privoxy
@@ -1223,7 +1223,7 @@ export https_proxy=&quot;127.0.0.1:8118&quot;
 sudo apt-get update
 sudo apt-get install shadowsocks-qt5
 </code></pre><p>###配置</p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/Shadowsocks-Qt5config.png" alt=""></p>
+<p><img src="https://lianghuanhan.club/images/Shadowsocks-Qt5config.png" alt=""></p>
 <p>使用socks5的1080端口</p>
 <p>##安装connect-proxy</p>
 <p>在ubuntu 14.04 64位系统下</p>
@@ -1522,7 +1522,7 @@ LOCAL_LDFLAGS += -fPIE -pie
         
           
             <p>##编译版本要求</p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/%E7%BC%96%E8%AF%91%E7%89%88%E6%9C%AC%E8%A6%81%E6%B1%82.png" alt=""></p>
+<p><img src="https://lianghuanhan.club/images/%E7%BC%96%E8%AF%91%E7%89%88%E6%9C%AC%E8%A6%81%E6%B1%82.png" alt=""></p>
 <p>##基本安装环境</p>
 <p>###ubuntu 14.04 64</p>
 <pre><code>sudo apt-get install git-core gnupg flex bison gperf build-essential \

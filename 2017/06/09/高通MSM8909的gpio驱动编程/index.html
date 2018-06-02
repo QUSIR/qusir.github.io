@@ -91,20 +91,20 @@
 ##1. 平台相关配置文件msm8909-mtp.dtsi文件中找到gpio_keys节，增加蓝字相关内容
 ##2. 引脚相关配置文件msm8909-pinctrl.dtsi文件中找到tlmm_gpio_key节，增加或更改红字相关内容
 ##3. device\qcom\msm8909\gpio-keys.kl中增加键盘扫描码对应的键盘码键盘码是Android系统收到底层驱">
-<meta property="og:image" content="http://ohjvpki1b.bkt.clouddn.com/msm8909_gpio5.png">
-<meta property="og:image" content="http://ohjvpki1b.bkt.clouddn.com/msm8909_gpio6.png">
-<meta property="og:image" content="http://ohjvpki1b.bkt.clouddn.com/msm8909_gpio1.png">
-<meta property="og:image" content="http://ohjvpki1b.bkt.clouddn.com/msm8909_gpio2.png">
-<meta property="og:image" content="http://ohjvpki1b.bkt.clouddn.com/msm8909_gpio3.png">
-<meta property="og:image" content="http://ohjvpki1b.bkt.clouddn.com/msm8909_gpio4.png">
-<meta property="og:updated_time" content="2017-09-21T02:58:34.291Z">
+<meta property="og:image" content="https://lianghuanhan.club/images/msm8909_gpio5.png">
+<meta property="og:image" content="https://lianghuanhan.club/images/msm8909_gpio6.png">
+<meta property="og:image" content="https://lianghuanhan.club/images/msm8909_gpio1.png">
+<meta property="og:image" content="https://lianghuanhan.club/images/msm8909_gpio2.png">
+<meta property="og:image" content="https://lianghuanhan.club/images/msm8909_gpio3.png">
+<meta property="og:image" content="https://lianghuanhan.club/images/msm8909_gpio4.png">
+<meta property="og:updated_time" content="2018-05-31T10:47:26.579Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="高通MSM8909的gpio驱动编程">
 <meta name="twitter:description" content="#接收gpio信号输入
 ##1. 平台相关配置文件msm8909-mtp.dtsi文件中找到gpio_keys节，增加蓝字相关内容
 ##2. 引脚相关配置文件msm8909-pinctrl.dtsi文件中找到tlmm_gpio_key节，增加或更改红字相关内容
 ##3. device\qcom\msm8909\gpio-keys.kl中增加键盘扫描码对应的键盘码键盘码是Android系统收到底层驱">
-<meta name="twitter:image" content="http://ohjvpki1b.bkt.clouddn.com/msm8909_gpio5.png">
+<meta name="twitter:image" content="https://lianghuanhan.club/images/msm8909_gpio5.png">
 
 
 
@@ -315,13 +315,13 @@
 
       
         <p>#接收gpio信号输入</p>
-<p>##1. 平台相关配置文件msm8909-mtp.dtsi文件中找到gpio_keys节，增加蓝字相关内容<br><img src="http://ohjvpki1b.bkt.clouddn.com/msm8909_gpio5.png" alt="msm8909_gpio5.png"></p>
-<p>##2. 引脚相关配置文件msm8909-pinctrl.dtsi文件中找到tlmm_gpio_key节，增加或更改红字相关内容<br><img src="http://ohjvpki1b.bkt.clouddn.com/msm8909_gpio6.png" alt="msm8909_gpio6.png"></p>
+<p>##1. 平台相关配置文件msm8909-mtp.dtsi文件中找到gpio_keys节，增加蓝字相关内容<br><img src="https://lianghuanhan.club/images/msm8909_gpio5.png" alt="msm8909_gpio5.png"></p>
+<p>##2. 引脚相关配置文件msm8909-pinctrl.dtsi文件中找到tlmm_gpio_key节，增加或更改红字相关内容<br><img src="https://lianghuanhan.club/images/msm8909_gpio6.png" alt="msm8909_gpio6.png"></p>
 <p>##3. device\qcom\msm8909\gpio-keys.kl中增加键盘扫描码对应的键盘码<br>键盘码是Android系统收到底层驱动提交的扫描码后，向App发送的键盘码，比如本例</p>
 <pre><code>key 77    F7  
 </code></pre><p>扫描码对应给App的键盘码是F7，F7对应的值在frameworks\base\core\java\android\view\KeyEvent.java有现成定义:<br> public static final int KEYCODE_F7 =137;<br>另外，在root过的Android设备上直接更改system\usr\keylayout\gpio-keys.kl文件，可以为设备的按键直接更改功能。</p>
 <p><code>议将整个源代码重新编译一下，在进行烧写。</code></p>
-<p>##gpio口对应关系<br>msm8909-mtp.dtsi文件<br><img src="http://ohjvpki1b.bkt.clouddn.com/msm8909_gpio1.png" alt="msm8909_gpio1"><br>msm8909-pinctrl.dtsi文件<br><img src="http://ohjvpki1b.bkt.clouddn.com/msm8909_gpio2.png" alt="msm8909_gpio2.png"><br>原理图上对应管脚<br><img src="http://ohjvpki1b.bkt.clouddn.com/msm8909_gpio3.png" alt="msm8909_gpio3.png"><br>硬件手册对应gpio口<br><img src="http://ohjvpki1b.bkt.clouddn.com/msm8909_gpio4.png" alt="msm8909_gpio4.png"></p>
+<p>##gpio口对应关系<br>msm8909-mtp.dtsi文件<br><img src="https://lianghuanhan.club/images/msm8909_gpio1.png" alt="msm8909_gpio1"><br>msm8909-pinctrl.dtsi文件<br><img src="https://lianghuanhan.club/images/msm8909_gpio2.png" alt="msm8909_gpio2.png"><br>原理图上对应管脚<br><img src="https://lianghuanhan.club/images/msm8909_gpio3.png" alt="msm8909_gpio3.png"><br>硬件手册对应gpio口<br><img src="https://lianghuanhan.club/images/msm8909_gpio4.png" alt="msm8909_gpio4.png"></p>
 <p>##说明<br>配置好gpio后，重新编译源代码烧写系统，短接该gpio口就可以在java侧收到F7键盘消息，通过该消息监听该gpio口输入。</p>
 <p>监听键盘消息参照<br><a href="http://www.cnblogs.com/QUSIR/p/6245848.html" target="_blank" rel="external">http://www.cnblogs.com/QUSIR/p/6245848.html</a></p>
 

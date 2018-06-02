@@ -304,7 +304,7 @@
 <pre><code>unzip pyinstaller-python3.zip
 </code></pre><p>##2.安装<br>    cd pyinstaller-python3<br>    python setup.py build<br>    python setup.py install<br>安装完之后在/usr/local/bin 生成pyinstaller可执行文件</p>
 <p>##3.编译.py文件生成可执行文件<br>    pyinstaller test.py<br>在目录下生成 build和dist文件夹   可执行文件在dist目录下</p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/clipboard.png" alt="clipboard"></p>
+<p><img src="https://lianghuanhan.club/images/clipboard.png" alt="clipboard"></p>
 
           
         
@@ -434,7 +434,7 @@ tar xzvf mantisbt.tar.gz
 cp mantisbt /var/www/
 
 http://你的网址/admin/install.php
-</code></pre><p><img src="http://ohjvpki1b.bkt.clouddn.com/mantisbt-pre-installation-check.jpg.jpg" alt="msm8909_gpio5.png"></p>
+</code></pre><p><img src="https://lianghuanhan.club/images/mantisbt-pre-installation-check.jpg.jpg" alt="msm8909_gpio5.png"></p>
 <p>##安装过程视频教程</p>
 <p><a href="http://ohjvpki1b.bkt.clouddn.com/How%20to%20Install%20Mantis%20Bug%20Tracker%20v2%20with%20Nginx%20and%20PHP%207.mp4" target="_blank" rel="external">How to Install Mantis Bug Tracker v2 with Nginx and PHP 7</a></p>
 <p>##参考<br><a href="http://www.cnblogs.com/snooper/archive/2009/09/07/1561715.html" target="_blank" rel="external">http://www.cnblogs.com/snooper/archive/2009/09/07/1561715.html</a></p>
@@ -563,13 +563,13 @@ cp -r mantisbt2.5.0 /var/www/mantisbt
         
           
             <p>#接收gpio信号输入</p>
-<p>##1. 平台相关配置文件msm8909-mtp.dtsi文件中找到gpio_keys节，增加蓝字相关内容<br><img src="http://ohjvpki1b.bkt.clouddn.com/msm8909_gpio5.png" alt="msm8909_gpio5.png"></p>
-<p>##2. 引脚相关配置文件msm8909-pinctrl.dtsi文件中找到tlmm_gpio_key节，增加或更改红字相关内容<br><img src="http://ohjvpki1b.bkt.clouddn.com/msm8909_gpio6.png" alt="msm8909_gpio6.png"></p>
+<p>##1. 平台相关配置文件msm8909-mtp.dtsi文件中找到gpio_keys节，增加蓝字相关内容<br><img src="https://lianghuanhan.club/images/msm8909_gpio5.png" alt="msm8909_gpio5.png"></p>
+<p>##2. 引脚相关配置文件msm8909-pinctrl.dtsi文件中找到tlmm_gpio_key节，增加或更改红字相关内容<br><img src="https://lianghuanhan.club/images/msm8909_gpio6.png" alt="msm8909_gpio6.png"></p>
 <p>##3. device\qcom\msm8909\gpio-keys.kl中增加键盘扫描码对应的键盘码<br>键盘码是Android系统收到底层驱动提交的扫描码后，向App发送的键盘码，比如本例</p>
 <pre><code>key 77    F7  
 </code></pre><p>扫描码对应给App的键盘码是F7，F7对应的值在frameworks\base\core\java\android\view\KeyEvent.java有现成定义:<br> public static final int KEYCODE_F7 =137;<br>另外，在root过的Android设备上直接更改system\usr\keylayout\gpio-keys.kl文件，可以为设备的按键直接更改功能。</p>
 <p><code>议将整个源代码重新编译一下，在进行烧写。</code></p>
-<p>##gpio口对应关系<br>msm8909-mtp.dtsi文件<br><img src="http://ohjvpki1b.bkt.clouddn.com/msm8909_gpio1.png" alt="msm8909_gpio1"><br>msm8909-pinctrl.dtsi文件<br><img src="http://ohjvpki1b.bkt.clouddn.com/msm8909_gpio2.png" alt="msm8909_gpio2.png"><br>原理图上对应管脚<br><img src="http://ohjvpki1b.bkt.clouddn.com/msm8909_gpio3.png" alt="msm8909_gpio3.png"><br>硬件手册对应gpio口<br><img src="http://ohjvpki1b.bkt.clouddn.com/msm8909_gpio4.png" alt="msm8909_gpio4.png"></p>
+<p>##gpio口对应关系<br>msm8909-mtp.dtsi文件<br><img src="https://lianghuanhan.club/images/msm8909_gpio1.png" alt="msm8909_gpio1"><br>msm8909-pinctrl.dtsi文件<br><img src="https://lianghuanhan.club/images/msm8909_gpio2.png" alt="msm8909_gpio2.png"><br>原理图上对应管脚<br><img src="https://lianghuanhan.club/images/msm8909_gpio3.png" alt="msm8909_gpio3.png"><br>硬件手册对应gpio口<br><img src="https://lianghuanhan.club/images/msm8909_gpio4.png" alt="msm8909_gpio4.png"></p>
 <p>##说明<br>配置好gpio后，重新编译源代码烧写系统，短接该gpio口就可以在java侧收到F7键盘消息，通过该消息监听该gpio口输入。</p>
 <p>监听键盘消息参照<br><a href="http://www.cnblogs.com/QUSIR/p/6245848.html" target="_blank" rel="external">http://www.cnblogs.com/QUSIR/p/6245848.html</a></p>
 
@@ -694,7 +694,7 @@ cp -r mantisbt2.5.0 /var/www/mantisbt
             <h1 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h1><h4 id="什么是反向代理"><a href="#什么是反向代理" class="headerlink" title="什么是反向代理"></a>什么是反向代理</h4><p><strong>反向代理</strong>（Reverse Proxy）方式是指用代理服务器来接受 internet 上的连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给 internet 上请求连接的客户端，此时代理服务器对外就表现为一个反向代理服务器。</p>
 <p>举个例子，一个用户访问 <a href="http://www.example.com/readme" target="_blank" rel="external">http://www.example.com/readme</a>，但是 www.example.com 上并不存在 readme 页面，它是偷偷从另外一台服务器上取回来，然后作为自己的内容返回给用户。但是用户并不知情这个过程。对用户来说，就像是直接从 www.example.com 获取 readme 页面一样。这里所提到的 www.example.com 这个域名对应的服务器就设置了反向代理功能。</p>
 <p>反向代理服务器，对于客户端而言它就像是原始服务器，并且客户端不需要进行任何特别的设置。客户端向反向代理的命名空间(name-space)中的内容发送普通请求，接着反向代理将判断向何处(原始服务器)转交请求，并将获得的内容返回给客户端，就像这些内容原本就是它自己的一样。如下图所示：</p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/proxy.png" alt="proxy"></p>
+<p><img src="https://lianghuanhan.club/images/proxy.png" alt="proxy"></p>
 <h4 id="反向代理典型应用场景"><a href="#反向代理典型应用场景" class="headerlink" title="反向代理典型应用场景"></a>反向代理典型应用场景</h4><p>反向代理的典型用途是将防火墙后面的服务器提供给 Internet 用户访问，加强安全防护。反向代理还可以为后端的多台服务器提供负载均衡，或为后端较慢的服务器提供 <strong>缓冲</strong> 服务。另外，反向代理还可以启用高级 URL 策略和管理技术，从而使处于不同 web 服务器系统的 web 页面同时存在于同一个 URL 空间下。</p>
 <p>Nginx 的其中一个用途是做 HTTP 反向代理，下面简单介绍 Nginx 作为反向代理服务器的方法。</p>
 <blockquote>
@@ -703,7 +703,7 @@ cp -r mantisbt2.5.0 /var/www/mantisbt
 <p><code>nginx.conf</code> 配置示例：</p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">worker_processes</span> <span class="number">1</span>;</div><div class="line"></div><div class="line"><span class="attribute">pid</span> logs/nginx.pid;</div><div class="line"><span class="attribute">error_log</span> logs/error.log <span class="literal">warn</span>;</div><div class="line"></div><div class="line"><span class="section">events</span> &#123;</div><div class="line">    <span class="attribute">worker_connections</span> <span class="number">3000</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="section">http</span> &#123;</div><div class="line">    <span class="attribute">include</span> mime.types;</div><div class="line">    <span class="attribute">server_tokens</span> <span class="literal">off</span>;</div><div class="line"></div><div class="line">	<span class="comment">## 下面配置反向代理的参数</span></div><div class="line">    <span class="section">server</span> &#123;</div><div class="line">        <span class="attribute">listen</span>    <span class="number">80</span>;</div><div class="line"></div><div class="line">        <span class="comment">## 1. 用户访问 http://ip:port，则反向代理到 https://github.com</span></div><div class="line">        <span class="attribute">location</span> / &#123;</div><div class="line">            <span class="attribute">proxy_pass</span>  https://github.com;</div><div class="line">            <span class="attribute">proxy_redirect</span>     <span class="literal">off</span>;</div><div class="line">            <span class="attribute">proxy_set_header</span>   Host             <span class="variable">$host</span>;</div><div class="line">            <span class="attribute">proxy_set_header</span>   X-Real-IP        <span class="variable">$remote_addr</span>;</div><div class="line">            <span class="attribute">proxy_set_header</span>   X-Forwarded-For  <span class="variable">$proxy_add_x_forwarded_for</span>;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">## 2.用户访问 http://ip:port/README.md，则反向代理到</span></div><div class="line">        <span class="comment">##   https://github.com/.../README.md</span></div><div class="line">        <span class="attribute">location</span> /README.md &#123;</div><div class="line">            <span class="attribute">proxy_set_header</span>  X-Real-IP  <span class="variable">$remote_addr</span>;</div><div class="line">            <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</div><div class="line">            <span class="attribute">proxy_pass</span> https://github.com/moonbingbing/openresty-best-practices/blob/master/README.md;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>成功启动 Nginx 后，我们打开浏览器，验证下反向代理的效果。在浏览器地址栏中输入 <code>localhost/README.md</code>，返回的结果是我们 GitHub 源代码的 README 页面。如下图：</p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/proxy_example.png" alt="proxy_example"></p>
+<p><img src="https://lianghuanhan.club/images/proxy_example.png" alt="proxy_example"></p>
 <p>我们只需要配置一下 <code>nginx.conf</code> 文件，不用写任何 web 页面，就可以偷偷地从别的服务器上读取一个页面返回给用户。</p>
 <p>下面我们来看一下 <code>nginx.conf</code> 里用到的配置项：</p>
 <p>(1) location</p>
@@ -1352,8 +1352,8 @@ wavegen.cpp:(.text+0x58e): undefined reference to</code>Pa_StreamActive’<br>co
 <p><a href="http://www.cnblogs.com/QUSIR/p/6180236.html" target="_blank" rel="external">各种Android手机Root方法</a></p>
 <p>##以recovery方式刷入下xposed framework<br><a href="http://dl-xda.xposed.info/framework/" target="_blank" rel="external">Xposed Framework下载地址</a><br>其中，sdk21，sdk22，sdk23，分别对应Android 5.0，5.1， 6.0.<br>根据，手机ROM版本和处理器类型选择Xposed Framework刷机包。</p>
 <p>比如，中兴Blade a1移动版(5.1, arm64)，我选择了刷机包xposed-v86-sdk22-arm64.zip 和卸载包xposed-uninstaller-20150831-arm64.zip<br>下载之后，将这两个压缩包，拷贝到SD卡根目录下。</p>
-<p>###安装<br>1.重启手机,进入Recovery界面。(adb reboot recovery)<br><img src="http://ohjvpki1b.bkt.clouddn.com/xposed3.jpg" alt="view"><br>2.选择【安装刷机包】进入下级页面，选择【从SD卡选择ZIP文件】</p>
-<p>3.在SD卡根目录找到Xposed Framework刷机包(xposed-v86-sdk22-arm64.zip)，并选择。<br><img src="http://ohjvpki1b.bkt.clouddn.com/xposed4.jpg" alt="view"><br>4.滑动底部的滑动条，确认刷入，等待提示刷机完成。</p>
+<p>###安装<br>1.重启手机,进入Recovery界面。(adb reboot recovery)<br><img src="https://lianghuanhan.club/images/xposed3.jpg" alt="view"><br>2.选择【安装刷机包】进入下级页面，选择【从SD卡选择ZIP文件】</p>
+<p>3.在SD卡根目录找到Xposed Framework刷机包(xposed-v86-sdk22-arm64.zip)，并选择。<br><img src="https://lianghuanhan.club/images/xposed4.jpg" alt="view"><br>4.滑动底部的滑动条，确认刷入，等待提示刷机完成。</p>
 <p>5.重启手机，等待进入桌面。</p>
 <p>###卸载<br>1.如果刷入Xposed Framework刷机包之后，无限重启，进不去桌面怎么办？</p>
 <p>2.那就按照下面提示，卸载掉Xposed Framework。</p>
@@ -1361,7 +1361,7 @@ wavegen.cpp:(.text+0x58e): undefined reference to</code>Pa_StreamActive’<br>co
 <p>4.选择【安装刷机包】进入下级页面，选择【从SD卡选择ZIP文件】</p>
 <p>5.在SD卡根目录找到Xposed Framework卸载刷机包(xposed-uninstaller-20150831-arm64.zip)，并选择。<br>滑动底部的滑动条，确认刷入，等待提示刷机完成。</p>
 <p>6.重启手机，等待进入桌面。</p>
-<p>###Xposed Installer<br>这是一个管理Xposed模块的官方应用。通过它，你可以随时禁用或者启用Xposed模块，然后重启手机。<br>对于Android 5.0以上的手机，请前往XDA论坛主题贴下载附件 XposedInstaller_3.0_alpha4.apk，并安装。<br>下载地址：<a href="http://forum.xda-developers.com/showthread.php?t=3034811" target="_blank" rel="external">http://forum.xda-developers.com/showthread.php?t=3034811</a><br>如果你看到以下界面，恭喜你，Xposed Framework安装完成。<br><img src="http://ohjvpki1b.bkt.clouddn.com/xposed.png" alt="view"></p>
+<p>###Xposed Installer<br>这是一个管理Xposed模块的官方应用。通过它，你可以随时禁用或者启用Xposed模块，然后重启手机。<br>对于Android 5.0以上的手机，请前往XDA论坛主题贴下载附件 XposedInstaller_3.0_alpha4.apk，并安装。<br>下载地址：<a href="http://forum.xda-developers.com/showthread.php?t=3034811" target="_blank" rel="external">http://forum.xda-developers.com/showthread.php?t=3034811</a><br>如果你看到以下界面，恭喜你，Xposed Framework安装完成。<br><img src="https://lianghuanhan.club/images/xposed.png" alt="view"></p>
 <p>##参考</p>
 <p><a href="http://www.snowdream.tech/2016/09/02/android-install-xposed-framework/" target="_blank" rel="external">http://www.snowdream.tech/2016/09/02/android-install-xposed-framework/</a></p>
 
@@ -1504,10 +1504,10 @@ wavegen.cpp:(.text+0x58e): undefined reference to</code>Pa_StreamActive’<br>co
 make dep
 
 make
-</code></pre><p>##运行例子程序<br><img src="http://ohjvpki1b.bkt.clouddn.com/build_pjsip.png" alt="view"></p>
+</code></pre><p>##运行例子程序<br><img src="https://lianghuanhan.club/images/build_pjsip.png" alt="view"></p>
 <p>##音频驱动切换</p>
 <p>&emsp;Linux音频驱动分为alsa和oss，oss是比较旧的驱动，pjsip支持这两种音频驱动，默认是oss，蓝天门口机的内核使用的是alsa驱动，运行例子程序的时候会出现以下问题。</p>
-<p><img src="http://ohjvpki1b.bkt.clouddn.com/pjsip_device.png" alt="view"></p>
+<p><img src="https://lianghuanhan.club/images/pjsip_device.png" alt="view"></p>
 <p>###解决方法<br>修改config_site.h文件  在pjproject-2.4.5\pjlib\include\pj目录下</p>
 <p>增加</p>
 <pre><code>#define PJMEDIA_AUDIO_DEV_HAS_ALSA 1
